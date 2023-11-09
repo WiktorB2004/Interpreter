@@ -1,7 +1,7 @@
 // TODO(#1): Define syntax (BNF/EBNF)
 // TODO(#2): Create lexer
 // TODO(#3): Create parser
-// TODO: Create iterpreter
+// TODO(#4): Create iterpreter
 // TODO: Test and upgrade
 
 #include <stdio.h>
