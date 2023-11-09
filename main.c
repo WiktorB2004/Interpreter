@@ -1,6 +1,6 @@
 // TODO(#1): Define syntax (BNF/EBNF)
 // TODO(#2): Create lexer
-// TODO: Create parser
+// TODO(#3): Create parser
 // TODO: Create iterpreter
 // TODO: Test and upgrade
 
