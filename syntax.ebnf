@@ -1,10 +1,19 @@
-(* Example EBNF program syntax *)
+(* WLang syntax in EBNF *)
 <program> ::= { <statement> }
 <statement> ::= <assignment> | <if_statement> | <print_statement>
-<assignment> ::= "SET" <identifier> "=" <expression> ";"
+<assignment> ::= <variable_type> <identifier> "=" (<expression> | <list>) ";"
+<variable_type> ::= "int" | "char" | "string" | "bool"
+<list> ::= "[" [ <expression> { "," <expression> } ] "]"
+<function_declaration> ::= "def" <identifier>"::"<function_type> "(" [ <parameter_list> ] ")" "{" <function_body> "}"
+<function_type> ::= variable_type | "void"
+<parameter_list> ::= <identifier> { "," <identifier> }
+<function_body> ::= { <statement> }
 <if_statement> ::= "IF" <condition> "THEN" <program> "ENDIF" [ "ELSE" <program> "ENDIF" ]
 <print_statement> ::= "PRINT" <expression> ";"
-<condition> ::= <expression> ( "<" | ">" | "==" ) <expression>
+<condition> ::= <logical_term> { <logical_operator> <logical_term> }
+<logical_term> ::= <expression> <relational_operator> <expression> | "(" <condition> ")" | "!" <logical_term>
+<logical_operator> ::= "&&" | "||"
+<relational_operator> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
 <expression> ::= <term> { ("+" | "-") <term> }
 <term> ::= <factor> { ("*" | "/") <factor> }
 <factor> ::= <identifier> | <number> | "(" <expression> ")"
