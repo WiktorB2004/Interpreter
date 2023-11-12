@@ -1,4 +1,4 @@
-(* My custom language syntax in EBNF *)
+(* WLang syntax in EBNF *)
 <program> ::= { <statement> }
 <statement> ::= <assignment> | <if_statement> | <print_statement>
 <assignment> ::= <variable_type> <identifier> "=" (<expression> | <list>) ";"
