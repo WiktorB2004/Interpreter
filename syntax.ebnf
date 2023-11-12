@@ -11,6 +11,7 @@
 <if_statement> ::= "IF" <condition> "THEN" <program> "ENDIF" [ "ELSE" <program> "ENDIF" ]
 <print_statement> ::= "PRINT" <expression> ";"
 <condition> ::= <logical_term> { <logical_operator> <logical_term> }
+<while_loop> ::= "WHILE" <condition> "DO" <program> "ENDWHILE"
 <logical_term> ::= <expression> <relational_operator> <expression> | "(" <condition> ")" | "!" <logical_term>
 <logical_operator> ::= "&&" | "||"
 <relational_operator> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
