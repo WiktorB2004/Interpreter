@@ -8,9 +8,9 @@
 <function_type> ::= variable_type | "void"
 <parameter_list> ::= <identifier> { "," <identifier> }
 <function_body> ::= { <statement> }
-<if_statement> ::= "IF" <condition> "THEN" <program> "ENDIF" [ "ELSE" <program> "ENDIF" ]
+<if_statement> ::= "IF" <condition> "{" <program> "}" [ "ELSE {" <program> "}" ]
 <print_statement> ::= "PRINT" <expression> ";"
-<while_loop> ::= "WHILE" <condition> "DO" <program> "ENDWHILE"
+<while_loop> ::= "WHILE" <condition> "{" <program> "}"
 <condition> ::= <logical_term> { <logical_operator> <logical_term> }
 <logical_term> ::= <expression> <relational_operator> <expression> | "(" <condition> ")" | "!" <logical_term>
 <logical_operator> ::= "&&" | "||"
