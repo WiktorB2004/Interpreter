@@ -4,6 +4,7 @@
 // TODO(#5): Test and upgrade
 
 // FIXME: Refactor the lexer and methods to specify token types
+// FIXME: Move code to relevant files (create modules) and modify CMakeLists.txt to match new structure
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,21 +42,26 @@ typedef struct
     char value[80];
 } Token;
 
+// Definition of utility functions for lexer
+// Check if char is valid ID or VAL
 int is_valid_char_token(char ch)
 {
     return isalnum(ch) || ch == '_';
 }
 
+// A function to help distinguish between T_VAL and VAL
 int get_text_value(char ch)
 {
-    return ch >= 20 && ch <= 126 && ch != 34 && ch != 39;
+    return isspace(ch) || isalnum(ch) && ch != 34 && ch != 39;
 }
 
+// A function to check if char is valid bracket (Any bracket)
 int is_bracket(char ch)
 {
     return ch == 123 || ch == 125 || ch == 91 || ch == 93 || ch == 40 || ch == 41;
 }
 
+// A function to check if char is valid operator (Logic and Relational operators)
 int is_operator(char ch)
 {
     return ch == 60 || ch == 61 || ch == 62 || ch == 33 || ch == 38 || ch == 124;
@@ -73,6 +79,7 @@ int is_string_in_list(const char *target, const char *list[], int listSize)
     return 0;
 }
 
+// Lexer function
 Token *lexer(const char *input_text, int *num_tokens)
 {
     Token *tokens = malloc(strlen(input_text) * sizeof(Token));
@@ -137,7 +144,7 @@ Token *lexer(const char *input_text, int *num_tokens)
             strcpy(tokens[*num_tokens].value, buffer);
             (*num_tokens)++;
         }
-        // Handle integer and float tokens
+        // Handle integer and float tokens (VAL)
         else if (isdigit(*input_text) || *input_text == '.')
         {
             char buffer[80];
@@ -153,7 +160,7 @@ Token *lexer(const char *input_text, int *num_tokens)
             strcpy(tokens[*num_tokens].value, buffer);
             (*num_tokens)++;
         }
-        // Handle all types of brackets
+        // Handle all types of brackets (O_*, C_*, LIST_*)
         else if (is_bracket(*input_text))
         {
             switch (*input_text)
@@ -188,7 +195,7 @@ Token *lexer(const char *input_text, int *num_tokens)
             *input_text++;
             (*num_tokens)++;
         }
-        // Handle - or ->
+        // Handle - and -> (ARITH_OP, R_TYPE)
         else if (*input_text == '-')
         {
             tokens[*num_tokens].value[0] = *input_text++;
@@ -207,7 +214,7 @@ Token *lexer(const char *input_text, int *num_tokens)
             (*num_tokens)++;
         }
 
-        // Handle logical and relational operators
+        // Handle logical and relational operators (LOGIC_OP, RELAT_O)
         else if (is_operator(*input_text) == 1)
         {
             char buffer[80];
@@ -293,7 +300,7 @@ void print_tokens(Token *tokens, int num_tokens)
 int main(void)
 {
     // EXAMPLE CODE
-    const char *source_code = "int float char string bool void = [] {} () DEF -> IF ELSE PRINT WHILE || && == != < > <= >= + - * / ; , a b c abc 1 2 3 123 1.2 \"\" \"Hello world\" '' 'H'";
+    const char *source_code = "int float char string bool void = [] {} () DEF -> IF ELSE PRINT WHILE || && == != < > <= >= + - * / ; , a b c abc 1 2 3 123 1.2 \"\" \"Hello world\" '' 'H' === >>> <<< !!=";
     int num_tokens;
 
     Token *tokens = lexer(source_code, &num_tokens);
