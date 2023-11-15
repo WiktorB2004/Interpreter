@@ -42,6 +42,7 @@ typedef struct
 } Token;
 
 // Definition of utility functions for lexer
+
 // Check if char is valid ID or VAL
 int is_valid_char_token(char ch)
 {
@@ -78,6 +79,8 @@ int is_string_in_list(const char *target, const char *list[], int listSize)
     }
     return 0;
 }
+
+// LEXER
 
 // Lexer function
 Token *lexer(const char *input_text, int *num_tokens)
@@ -296,6 +299,12 @@ void print_tokens(Token *tokens, int num_tokens)
         printf("Token Type: %d, Value: %s\n", tokens[i].type, tokens[i].value);
     }
 }
+
+// PARSER
+
+// INTERPRETER
+
+// PARSING THE CODE AND MAIN
 
 // Function to load source code from file (filename.wl)
 char *get_source_code(const char *filename)
