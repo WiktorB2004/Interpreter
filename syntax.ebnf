@@ -1,7 +1,9 @@
 (* WLang syntax in EBNF *)
 <program> ::= { <statement> }
-<statement> ::= <assignment> | <if_statement> | <print_statement>
+<statement> ::= <assignment> | <if_statement> | <print_statement> | <function_call> | <return_statement>
 <assignment> ::= <variable_type> <identifier> "=" (<expression> | <list>) ";"
+<function_call> ::= <identifier> "(" [ <parameter_list> ] ");"
+<return_statement> ::= "return" ( <identifier> | <expression> )
 <variable_type> ::= "int" | "float" | "char" | "string" | "bool"
 <list> ::= "[" [ <expression> { "," <expression> } ] "]"
 <function_declaration> ::= "DEF" <identifier> "->" <function_type> "(" [ <parameter_list> ] ")" "{" <function_body> "}"
