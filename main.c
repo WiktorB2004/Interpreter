@@ -67,6 +67,7 @@ int is_operator(char ch)
     return ch == 60 || ch == 61 || ch == 62 || ch == 33 || ch == 38 || ch == 124;
 }
 
+// A function to check if string exists in list
 int is_string_in_list(const char *target, const char *list[], int listSize)
 {
     for (int i = 0; i < listSize; ++i)
@@ -297,10 +298,59 @@ void print_tokens(Token *tokens, int num_tokens)
     }
 }
 
+// Function to load source code from file (filename.wl)
+char *get_source_code(const char *filename)
+{
+    FILE *filePointer;
+    char *buffer;
+    long fileSize;
+    size_t result;
+
+    // Open file in read mode
+    filePointer = fopen(filename, "rb");
+    if (filePointer == NULL)
+    {
+        printf("File could not be opened.");
+        return NULL;
+    }
+
+    // Get file size
+    fseek(filePointer, 0, SEEK_END);
+    fileSize = ftell(filePointer);
+    rewind(filePointer);
+
+    // Allocate memory to store the file content
+    buffer = (char *)malloc((fileSize + 1) * sizeof(char));
+    if (buffer == NULL)
+    {
+        printf("Memory allocation failed.");
+        fclose(filePointer);
+        return NULL;
+    }
+
+    // Read file content into buffer
+    result = fread(buffer, sizeof(char), fileSize, filePointer);
+    if (result != fileSize)
+    {
+        printf("Reading file failed.");
+        fclose(filePointer);
+        free(buffer);
+        return NULL;
+    }
+
+    // Add null terminator to indicate end of string
+    buffer[fileSize] = '\0';
+
+    // Close the file
+    fclose(filePointer);
+
+    return buffer;
+}
+
 int main(void)
 {
-    // EXAMPLE CODE
-    const char *source_code = "int float char string bool void = [] {} () DEF -> IF ELSE PRINT WHILE || && == != < > <= >= + - * / ; , a b c abc 1 2 3 123 1.2 \"\" \"Hello world\" '' 'H' === >>> <<< !!=";
+    const char *filename = "./example.wl";
+    char *source_code = get_source_code(filename);
     int num_tokens;
 
     Token *tokens = lexer(source_code, &num_tokens);
@@ -308,5 +358,6 @@ int main(void)
     print_tokens(tokens, num_tokens);
 
     free(tokens);
+    free(source_code);
     return 0;
 }
