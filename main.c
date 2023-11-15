@@ -67,6 +67,7 @@ int is_operator(char ch)
     return ch == 60 || ch == 61 || ch == 62 || ch == 33 || ch == 38 || ch == 124;
 }
 
+// A function to check if string exists in list
 int is_string_in_list(const char *target, const char *list[], int listSize)
 {
     for (int i = 0; i < listSize; ++i)
