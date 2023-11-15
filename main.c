@@ -301,6 +301,97 @@ void print_tokens(Token *tokens, int num_tokens)
 }
 
 // PARSER
+typedef enum
+{
+    NODE_ID,        // 0 Identifier (variable name)
+    NODE_V_TYPE,    // 1 Variable type
+    NODE_VAL,       // 2 Value (Variable value)
+    NODE_T_VAL,     // 3 Text variable value (char/string)
+    NODE_KEYWORD,   // 4 Keywords (e.g., SET, PRINT, IF, WHILE)
+    NODE_ARITH_OP,  // 5 Arithmetic operators (e.g., +, -)
+    NODE_LOGIC_OP,  // 6 Logic operators (e.g., ||, &&)
+    NODE_RELAT_OP,  // 7 Relational operators (e.g., >, ==)
+    NODE_ASSIGN,    // 8 Assignment operator (=)
+    NODE_O_BRACKET, // 9 Opening bracket {
+    NODE_C_BRACKET, // 10 Closing bracket }
+    NODE_LIST_B,    // 11 Begining of the list [
+    NODE_LIST_E,    // 12 Ending of the list ]
+    NODE_O_PAREN,   // 13 Opening parenthesis (
+    NODE_C_PAREN,   // 14 Closing parenthesis )
+    NODE_R_TYPE,    // 15 Return type ->
+    NODE_COMMA,     // 16 Comma ,
+    NODE_SEMI,      // 17 Semicolon ;
+} NodeType;
+
+typedef struct ASTNode
+{
+    NodeType type;
+    char *value;
+    struct ASTNode *children;
+    size_t children_num;
+} ASTNode;
+
+ASTNode *create_ASTNode(TokenType type, const char *value)
+{
+    ASTNode *newNode = (ASTNode *)malloc(sizeof(ASTNode));
+    if (!newNode)
+    {
+        fprintf(stderr, "Memory allocation failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    newNode->type = type;
+    newNode->value = strdup(value);
+    newNode->children = NULL;
+    newNode->children_num = 0;
+    return newNode;
+}
+
+void *add_child(ASTNode *parent, ASTNode *child)
+{
+}
+
+ASTNode *create_variable_declaration(const char *type, const char *id)
+{
+}
+
+ASTNode *create_literal(TokenType type, const char *value)
+{
+}
+
+ASTNode *create_assignment(ASTNode *variable, ASTNode *expression)
+{
+}
+
+ASTNode *create_print_statement(ASTNode *expression)
+{
+}
+
+ASTNode *create_if_statement(ASTNode *condition, ASTNode *if_body, ASTNode *else_body)
+{
+}
+
+ASTNode *create_while_loop(ASTNode *condition, ASTNode *loop_body)
+{
+}
+
+ASTNode *create_function_declaration(const char *name, const char *return_type, ASTNode *parameter_list, ASTNode *function_body)
+{
+}
+
+ASTNode *parse_program(Token **tokens)
+{
+    ASTNode *root = (ASTNode *)malloc(sizeof(ASTNode));
+    if (!root)
+    {
+        fprintf(stderr, "Memory allocation failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // PARSE THE PROGRAM - token by token
+
+    return root;
+}
 
 // INTERPRETER
 
