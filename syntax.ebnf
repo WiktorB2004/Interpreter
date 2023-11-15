@@ -1,17 +1,19 @@
 (* WLang syntax in EBNF *)
 <program> ::= { <statement> }
-<statement> ::= <assignment> | <if_statement> | <print_statement>
+<statement> ::= <assignment> | <if_statement> | <print_statement> | <function_call> | <return_statement>
 <assignment> ::= <variable_type> <identifier> "=" (<expression> | <list>) ";"
-<variable_type> ::= "int" | "char" | "string" | "bool"
+<function_call> ::= <identifier> "(" [ <parameter_list> ] ");"
+<return_statement> ::= "return" ( <identifier> | <expression> )
+<variable_type> ::= "int" | "float" | "char" | "string" | "bool"
 <list> ::= "[" [ <expression> { "," <expression> } ] "]"
-<function_declaration> ::= "def" <identifier>"::"<function_type> "(" [ <parameter_list> ] ")" "{" <function_body> "}"
+<function_declaration> ::= "DEF" <identifier> "->" <function_type> "(" [ <parameter_list> ] ")" "{" <function_body> "}"
 <function_type> ::= variable_type | "void"
 <parameter_list> ::= <identifier> { "," <identifier> }
 <function_body> ::= { <statement> }
-<if_statement> ::= "IF" <condition> "THEN" <program> "ENDIF" [ "ELSE" <program> "ENDIF" ]
+<if_statement> ::= "IF" <condition> "{" <program> "}" [ "ELSE {" <program> "}" ]
 <print_statement> ::= "PRINT" <expression> ";"
+<while_loop> ::= "WHILE" <condition> "{" <program> "}"
 <condition> ::= <logical_term> { <logical_operator> <logical_term> }
-<while_loop> ::= "WHILE" <condition> "DO" <program> "ENDWHILE"
 <logical_term> ::= <expression> <relational_operator> <expression> | "(" <condition> ")" | "!" <logical_term>
 <logical_operator> ::= "&&" | "||"
 <relational_operator> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
