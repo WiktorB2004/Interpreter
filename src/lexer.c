@@ -1,45 +1,8 @@
-// TODO(#3): Create parser
-// TODO(#4): Create iterpreter
-// TODO(#5): Test and upgrade
-
-// FIXME: Refactor the lexer and methods to specify token types
-// FIXME: Move code to relevant files (create modules) and modify CMakeLists.txt to match new structure
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
-
-// Token types
-typedef enum
-{
-    ID,        // 0 Identifier (variable name)
-    V_TYPE,    // 1 Variable type
-    VAL,       // 2 Value (Variable value)
-    T_VAL,     // 3 Text variable value (char/string)
-    KEYWORD,   // 4 Keywords (e.g., SET, PRINT, IF, WHILE)
-    ARITH_OP,  // 5 Arithmetic operators (e.g., +, -)
-    LOGIC_OP,  // 6 Logic operators (e.g., ||, &&)
-    RELAT_OP,  // 7 Relational operators (e.g., >, ==)
-    ASSIGN,    // 8 Assignment operator (=)
-    O_BRACKET, // 9 Opening bracket {
-    C_BRACKET, // 10 Closing bracket }
-    LIST_B,    // 11 Begining of the list [
-    LIST_E,    // 12 Ending of the list ]
-    O_PAREN,   // 13 Opening parenthesis (
-    C_PAREN,   // 14 Closing parenthesis )
-    R_TYPE,    // 15 Return type ->
-    COMMA,     // 16 Comma ,
-    SEMI,      // 17 Semicolon ;
-    INVALID    // 18 Invalid token
-} TokenType;
-
-// Token structure
-typedef struct
-{
-    TokenType type;
-    char value[80];
-} Token;
+#include <ctype.h>
+#include "../include/lexer.h"
 
 // Definition of utility functions for lexer
 
@@ -52,7 +15,7 @@ int is_valid_char_token(char ch)
 // A function to help distinguish between T_VAL and VAL
 int get_text_value(char ch)
 {
-    return isspace(ch) || isalnum(ch) && ch != 34 && ch != 39;
+    return ch > 31 && ch < 127 && ch != 34 && ch != 39;
 }
 
 // A function to check if char is valid bracket (Any bracket)
@@ -87,16 +50,24 @@ Token *lexer(const char *input_text, int *num_tokens)
 {
     Token *tokens = malloc(strlen(input_text) * sizeof(Token));
     *num_tokens = 0;
-
+    int is_line_empty;
     const char *types[6] = {"int", "float", "char", "string", "bool", "void"};
     const char *keywords[5] = {"DEF", "IF", "ELSE", "PRINT", "WHILE"};
 
     while (*input_text)
     {
-        // Skip whitespaces
+        // Skip whitespaces and create TOKEN_Newline's
         while (isspace(*input_text))
         {
-            ++input_text;
+            if (*input_text == '\n')
+            {
+                tokens[(*num_tokens)++].type = TOKEN_Newline;
+                ++input_text;
+            }
+            else
+            {
+                ++input_text;
+            }
         }
 
         // Handle letters only tokens
@@ -288,175 +259,16 @@ Token *lexer(const char *input_text, int *num_tokens)
             }
         }
     }
+    tokens[*num_tokens].type = TOKEN_EOF;
+    (*num_tokens)++;
     return tokens;
 }
 
-// Function to print tokens (for debugging purposes)
+// Function to print tokens (for debugging purpose)
 void print_tokens(Token *tokens, int num_tokens)
 {
     for (int i = 0; i < num_tokens; ++i)
     {
         printf("Token Type: %d, Value: %s\n", tokens[i].type, tokens[i].value);
     }
-}
-
-// PARSER
-typedef enum
-{
-    NODE_ID,        // 0 Identifier (variable name)
-    NODE_V_TYPE,    // 1 Variable type
-    NODE_VAL,       // 2 Value (Variable value)
-    NODE_T_VAL,     // 3 Text variable value (char/string)
-    NODE_KEYWORD,   // 4 Keywords (e.g., SET, PRINT, IF, WHILE)
-    NODE_ARITH_OP,  // 5 Arithmetic operators (e.g., +, -)
-    NODE_LOGIC_OP,  // 6 Logic operators (e.g., ||, &&)
-    NODE_RELAT_OP,  // 7 Relational operators (e.g., >, ==)
-    NODE_ASSIGN,    // 8 Assignment operator (=)
-    NODE_O_BRACKET, // 9 Opening bracket {
-    NODE_C_BRACKET, // 10 Closing bracket }
-    NODE_LIST_B,    // 11 Begining of the list [
-    NODE_LIST_E,    // 12 Ending of the list ]
-    NODE_O_PAREN,   // 13 Opening parenthesis (
-    NODE_C_PAREN,   // 14 Closing parenthesis )
-    NODE_R_TYPE,    // 15 Return type ->
-    NODE_COMMA,     // 16 Comma ,
-    NODE_SEMI,      // 17 Semicolon ;
-} NodeType;
-
-typedef struct ASTNode
-{
-    NodeType type;
-    char *value;
-    struct ASTNode *children;
-    size_t children_num;
-} ASTNode;
-
-ASTNode *create_ASTNode(TokenType type, const char *value)
-{
-    ASTNode *newNode = (ASTNode *)malloc(sizeof(ASTNode));
-    if (!newNode)
-    {
-        fprintf(stderr, "Memory allocation failed.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    newNode->type = type;
-    newNode->value = strdup(value);
-    newNode->children = NULL;
-    newNode->children_num = 0;
-    return newNode;
-}
-
-void *add_child(ASTNode *parent, ASTNode *child)
-{
-}
-
-ASTNode *create_variable_declaration(const char *type, const char *id)
-{
-}
-
-ASTNode *create_literal(TokenType type, const char *value)
-{
-}
-
-ASTNode *create_assignment(ASTNode *variable, ASTNode *expression)
-{
-}
-
-ASTNode *create_print_statement(ASTNode *expression)
-{
-}
-
-ASTNode *create_if_statement(ASTNode *condition, ASTNode *if_body, ASTNode *else_body)
-{
-}
-
-ASTNode *create_while_loop(ASTNode *condition, ASTNode *loop_body)
-{
-}
-
-ASTNode *create_function_declaration(const char *name, const char *return_type, ASTNode *parameter_list, ASTNode *function_body)
-{
-}
-
-ASTNode *parse_program(Token **tokens)
-{
-    ASTNode *root = (ASTNode *)malloc(sizeof(ASTNode));
-    if (!root)
-    {
-        fprintf(stderr, "Memory allocation failed.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    // PARSE THE PROGRAM - token by token
-
-    return root;
-}
-
-// INTERPRETER
-
-// PARSING THE CODE AND MAIN
-
-// Function to load source code from file (filename.wl)
-char *get_source_code(const char *filename)
-{
-    FILE *filePointer;
-    char *buffer;
-    long fileSize;
-    size_t result;
-
-    // Open file in read mode
-    filePointer = fopen(filename, "rb");
-    if (filePointer == NULL)
-    {
-        printf("File could not be opened.");
-        return NULL;
-    }
-
-    // Get file size
-    fseek(filePointer, 0, SEEK_END);
-    fileSize = ftell(filePointer);
-    rewind(filePointer);
-
-    // Allocate memory to store the file content
-    buffer = (char *)malloc((fileSize + 1) * sizeof(char));
-    if (buffer == NULL)
-    {
-        printf("Memory allocation failed.");
-        fclose(filePointer);
-        return NULL;
-    }
-
-    // Read file content into buffer
-    result = fread(buffer, sizeof(char), fileSize, filePointer);
-    if (result != fileSize)
-    {
-        printf("Reading file failed.");
-        fclose(filePointer);
-        free(buffer);
-        return NULL;
-    }
-
-    // Add null terminator to indicate end of string
-    buffer[fileSize] = '\0';
-
-    // Close the file
-    fclose(filePointer);
-
-    return buffer;
-}
-
-int main(void)
-{
-    const char *filename = "./example.wl";
-    char *source_code = get_source_code(filename);
-    int num_tokens;
-
-    Token *tokens = lexer(source_code, &num_tokens);
-
-    print_tokens(tokens, num_tokens);
-
-    free(tokens);
-    free(source_code);
-    return 0;
 }

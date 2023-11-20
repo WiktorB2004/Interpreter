@@ -1,5 +1,8 @@
+hello_world = "1";
+hello_world = 1 + 1;
 
-DEF hello_world -> string () {
+
+DEF hello_world -> void () {
     PRINT "Hello World inside function";
 }
 
@@ -20,6 +23,8 @@ DEF main -> int () {
     int num2 = 10;
     char chr = 'h';
     string str = "Hello, World";
-    int sum = num1 + num2;
+    PRINT func(num1, num2);
+    PRINT func(3, 4);
+    hello_world();
     PRINT str;
 }
