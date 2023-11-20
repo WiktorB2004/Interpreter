@@ -17,7 +17,7 @@ set(SOURCES
     ${SOURCE_DIR}/main.c
     ${SOURCE_DIR}/lexer.c
     ${SOURCE_DIR}/parser.c
-    ${UTILS_DIR}/stack.c
+    ${UTILS_DIR}/ASTNode_Stack.c
     ${UTILS_DIR}/load_code.c
 )
 
