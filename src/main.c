@@ -9,11 +9,7 @@
 #include <string.h>
 #include "../include/lexer.h"
 #include "../include/parser.h"
-#include "../include/utils/stack.h"
 #include "../include/utils/load_code.h"
-
-Token *lexer(const char *input_text, int *num_tokens);
-ASTNode *parse_program(Token **tokens);
 
 // MAIN
 int main(void)
@@ -29,14 +25,14 @@ int main(void)
 
     Token *tokens = lexer(source_code, &num_tokens);
 
-    printf("\nLEXER \n");
-    print_tokens(tokens, num_tokens);
-    printf("\nPARSER \n");
+    // printf("\nLEXER \n");
+    // print_tokens(tokens, num_tokens);
+    // printf("\nPARSER \n");
     ASTNode *ASTree = parse_program(&tokens);
     print_ASTree(ASTree, 0);
 
     free(source_code);
     free(tokens);
-    free(ASTree);
+    // free_ASTree(ASTree);
     return 0;
 }

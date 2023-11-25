@@ -8,7 +8,7 @@ ASTNodeStack *create_ASTNodeStack()
     ASTNodeStack *stack = (ASTNodeStack *)malloc(sizeof(ASTNodeStack));
     if (stack != NULL)
     {
-        stack->top = -1; // Empty stack
+        stack->top = -1;
     }
     return stack;
 }
