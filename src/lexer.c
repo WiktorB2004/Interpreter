@@ -52,7 +52,7 @@ Token *lexer(const char *input_text, int *num_tokens)
     *num_tokens = 0;
     int is_line_empty;
     const char *types[6] = {"int", "float", "char", "string", "bool", "void"};
-    const char *keywords[5] = {"DEF", "IF", "ELSE", "PRINT", "WHILE"};
+    const char *keywords[6] = {"DEF", "IF", "ELSE", "PRINT", "WHILE", "return"};
 
     while (*input_text)
     {
@@ -123,7 +123,6 @@ Token *lexer(const char *input_text, int *num_tokens)
         {
             char buffer[80];
             int i = 0;
-
             while (isdigit(*input_text) || *input_text == '.')
             {
                 buffer[i++] = *input_text++;

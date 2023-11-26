@@ -28,7 +28,9 @@ typedef enum
     NODE_ROOT,       // 18 Root parent_node of the program
     NODE_EXPRESSION, // 19 Helper node to handle expressions
     NODE_SCOPE,      // 20 Helper node to handle code scopes
-    NODE_PARAMETERS  // 21 Helper node to handle function parameters
+    NODE_PARAMETERS, // 21 Helper node to handle function parameters
+    NODE_RETURN,     // 22 Helper node to handle function return
+    NODE_FUNC_CALL   // 23 Helper node to handle function calls
 } NodeType;
 
 // Define the ASTNode structure

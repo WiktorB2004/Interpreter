@@ -180,7 +180,7 @@ ASTNode *parse_program(Token **tokens)
                         if (token->type != LIST_E)
                         {
                             fprintf(stderr, "Expected ] after opening the list on %d line\n", line_count);
-                            // exit(EXIT_FAILURE);
+                            exit(EXIT_FAILURE);
                         }
                         *token++;
                     }
@@ -200,6 +200,9 @@ ASTNode *parse_program(Token **tokens)
                             case VAL:
                                 add_child(expression, create_ASTNode(NODE_VAL, token->value));
                                 break;
+                            case ID:
+                                add_child(expression, create_ASTNode(NODE_ID, token->value));
+                                break;
                             case O_PAREN:
                                 add_child(expression, create_ASTNode(NODE_O_PAREN, token->value));
                                 break;
@@ -208,7 +211,7 @@ ASTNode *parse_program(Token **tokens)
                                 break;
                             default:
                                 fprintf(stderr, "Incorrect token occured on %d line\n", line_count);
-                                // exit(EXIT_FAILURE);
+                                exit(EXIT_FAILURE);
                                 break;
                             }
                             *token++;
@@ -218,13 +221,51 @@ ASTNode *parse_program(Token **tokens)
                     if (token->type != SEMI)
                     {
                         fprintf(stderr, "Expected semicolon on line %d\n", line_count);
-                        // exit(EXIT_FAILURE);
+                        exit(EXIT_FAILURE);
                     }
+                }
+                else if (token->type == O_PAREN)
+                {
+                    *token++;
+                    ASTNode *function_call = create_ASTNode(NODE_FUNC_CALL, "Function_Call");
+                    add_child(function_call, create_ASTNode(NODE_ID, id->value));
+                    ASTNode *parameter_list = create_ASTNode(NODE_PARAMETERS, "Function_Parameters");
+                    while (token->type != C_PAREN)
+                    {
+                        if (token->type != COMMA)
+                        {
+                            switch (token->type)
+                            {
+                            case ID:
+                                add_child(parameter_list, create_ASTNode(NODE_ID, token->value));
+                                break;
+                            case VAL:
+                                add_child(parameter_list, create_ASTNode(NODE_VAL, token->value));
+                                break;
+                            case T_VAL:
+                                add_child(parameter_list, create_ASTNode(NODE_T_VAL, token->value));
+                                break;
+                            default:
+                                fprintf(stderr, "Invalid parameters provided in function call on line: %d.\n", line_count);
+                                exit(EXIT_FAILURE);
+                                break;
+                            }
+                        }
+                        *token++;
+                    }
+                    *token++;
+                    if (token->type != SEMI)
+                    {
+                        fprintf(stderr, "Missing semicolon on line: %d.\n", line_count);
+                        exit(EXIT_FAILURE);
+                    }
+                    add_child(function_call, parameter_list);
+                    add_child(parent_node, function_call);
                 }
                 else
                 {
                     fprintf(stderr, "Incorrect token occured after variable id on line %d.\n", line_count);
-                    // exit(EXIT_FAILURE);
+                    exit(EXIT_FAILURE);
                 }
             }
             else if (token->type == V_TYPE)
@@ -262,7 +303,7 @@ ASTNode *parse_program(Token **tokens)
                                             else
                                             {
                                                 fprintf(stderr, "Invalid parameters provided in function declaration on line: %d.\n", line_count);
-                                                // exit(EXIT_FAILURE);
+                                                exit(EXIT_FAILURE);
                                             }
                                         }
                                         *token++;
@@ -275,7 +316,7 @@ ASTNode *parse_program(Token **tokens)
                                     else
                                     {
                                         fprintf(stderr, "Incorrect function definition, missing closing parenthese on line: %d.\n", line_count);
-                                        // exit(EXIT_FAILURE);
+                                        exit(EXIT_FAILURE);
                                     }
                                 }
                                 else
@@ -287,14 +328,14 @@ ASTNode *parse_program(Token **tokens)
                             else
                             {
                                 fprintf(stderr, "Incorrect function definition, incorrect identifier on line: %d.\n", line_count);
-                                // exit(EXIT_FAILURE);
+                                exit(EXIT_FAILURE);
                             }
                         }
                     }
                     else
                     {
                         fprintf(stderr, "Return type not specified on line: %d.\n", line_count);
-                        // exit(EXIT_FAILURE);
+                        exit(EXIT_FAILURE);
                     }
                     ASTNodeStack_push(root_stack, scope);
                 }
@@ -303,20 +344,78 @@ ASTNode *parse_program(Token **tokens)
                 {
                     ASTNode *print_statement = create_ASTNode(NODE_KEYWORD, "Print");
                     *token++;
-                    if (token->type == T_VAL || token->type == VAL || token->type == ID)
+                    if (token->type == T_VAL)
                     {
-                        add_child(print_statement, create_ASTNode(NODE_EXPRESSION, token->value));
+                        add_child(print_statement, create_ASTNode(NODE_T_VAL, token->value));
+                        *token++;
+                        if (token->type != SEMI)
+                        {
+                            fprintf(stderr, "Missing semicolon on line: %d.\n", line_count);
+                            exit(EXIT_FAILURE);
+                        }
+                    }
+                    else if (token->type == VAL)
+                    {
+                        add_child(print_statement, create_ASTNode(NODE_VAL, token->value));
+                        *token++;
+                        if (token->type != SEMI)
+                        {
+                            fprintf(stderr, "Missing semicolon on line: %d.\n", line_count);
+                            exit(EXIT_FAILURE);
+                        }
+                    }
+                    else if (token->type == ID)
+                    {
+                        char *identifier = token->value;
+                        *token++;
+                        if (token->type == SEMI)
+                        {
+                            add_child(print_statement, create_ASTNode(NODE_ID, identifier));
+                        }
+                        else if (token->type == O_PAREN)
+                        {
+                            *token++;
+                            ASTNode *function_call = create_ASTNode(NODE_FUNC_CALL, "Function_Call");
+                            add_child(function_call, create_ASTNode(NODE_ID, identifier));
+                            ASTNode *parameter_list = create_ASTNode(NODE_PARAMETERS, "Function_Parameters");
+                            while (token->type != C_PAREN)
+                            {
+                                if (token->type != COMMA)
+                                {
+                                    switch (token->type)
+                                    {
+                                    case ID:
+                                        add_child(parameter_list, create_ASTNode(NODE_ID, token->value));
+                                        break;
+                                    case VAL:
+                                        add_child(parameter_list, create_ASTNode(NODE_VAL, token->value));
+                                        break;
+                                    case T_VAL:
+                                        add_child(parameter_list, create_ASTNode(NODE_T_VAL, token->value));
+                                        break;
+                                    default:
+                                        fprintf(stderr, "Invalid parameters provided in function call on line: %d.\n", line_count);
+                                        exit(EXIT_FAILURE);
+                                        break;
+                                    }
+                                }
+                                *token++;
+                            }
+                            *token++;
+                            if (token->type != SEMI)
+                            {
+                                fprintf(stderr, "Missing semicolon on line: %d.\n", line_count);
+                                exit(EXIT_FAILURE);
+                            }
+                            add_child(function_call, parameter_list);
+                            add_child(print_statement, function_call);
+                            add_child(parent_node, print_statement);
+                        }
                     }
                     else
                     {
                         fprintf(stderr, "Invalid print parameter on line: %d.\n", line_count);
-                        // exit(EXIT_FAILURE);
-                    }
-                    *token++;
-                    if (token->type != SEMI)
-                    {
-                        fprintf(stderr, "Missing semicolon on line: %d.\n", line_count);
-                        // exit(EXIT_FAILURE);
+                        exit(EXIT_FAILURE);
                     }
                     add_child(parent_node, print_statement);
                 }
@@ -325,6 +424,59 @@ ASTNode *parse_program(Token **tokens)
                     ASTNode *scope = create_ASTNode(NODE_SCOPE, "Conditional_Scope");
                     if (strcmp(token->value, "ELSE"))
                     {
+                    }
+                }
+                else if (strcmp(token->value, "return") == 0)
+                {
+                    ASTNode *return_statement = create_ASTNode(NODE_RETURN, "Return_Statement");
+                    *token++;
+                    if (token->type == ID)
+                    {
+                        char *identifier = token->value;
+                        *token++;
+                        if (token->type == SEMI)
+                        {
+                            add_child(return_statement, create_ASTNode(NODE_ID, identifier));
+                        }
+                        else if (token->type == O_PAREN)
+                        {
+                            *token++;
+                            ASTNode *function_call = create_ASTNode(NODE_FUNC_CALL, "Function_Call");
+                            add_child(function_call, create_ASTNode(NODE_ID, identifier));
+                            ASTNode *parameter_list = create_ASTNode(NODE_PARAMETERS, "Function_Parameters");
+                            while (token->type != C_PAREN)
+                            {
+                                if (token->type != COMMA)
+                                {
+                                    switch (token->type)
+                                    {
+                                    case ID:
+                                        add_child(parameter_list, create_ASTNode(NODE_ID, token->value));
+                                        break;
+                                    case VAL:
+                                        add_child(parameter_list, create_ASTNode(NODE_VAL, token->value));
+                                        break;
+                                    case T_VAL:
+                                        add_child(parameter_list, create_ASTNode(NODE_T_VAL, token->value));
+                                        break;
+                                    default:
+                                        fprintf(stderr, "Invalid parameters provided in function call on line: %d.\n", line_count);
+                                        exit(EXIT_FAILURE);
+                                        break;
+                                    }
+                                }
+                                *token++;
+                            }
+                            add_child(function_call, parameter_list);
+                            add_child(return_statement, function_call);
+                            *token++;
+                        }
+                    }
+                    add_child(parent_node, return_statement);
+                    if (token->type != SEMI)
+                    {
+                        fprintf(stderr, "Missing semicolon on line: %d.\n", line_count);
+                        exit(EXIT_FAILURE);
                     }
                 }
             }
@@ -341,11 +493,10 @@ ASTNode *parse_program(Token **tokens)
             else
             {
                 fprintf(stderr, "Invalid token %s : %d (Value:Type) on line %d\n", token->value, token->type, line_count);
-                // exit(EXIT_FAILURE);
+                exit(EXIT_FAILURE);
             }
         }
         *token++;
     }
-
     return root;
 }
