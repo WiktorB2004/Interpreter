@@ -11,10 +11,12 @@ void print_ASTree(ASTNode *root, int depth)
         return;
     }
 
+    printf("|");
     for (int i = 0; i < depth; ++i)
     {
-        printf("  ");
+        printf("-- ");
     }
+    printf("|");
 
     printf("(%d) %s -> [%ld]\n", root->type, root->value, root->children_num);
 
@@ -483,6 +485,7 @@ ASTNode *parse_program(Token **tokens)
             // Handle scopes
             else if (token->type == O_BRACKET)
             {
+                ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
             }
             else if (token->type == C_BRACKET)
             {
