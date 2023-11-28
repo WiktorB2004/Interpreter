@@ -1,33 +1,51 @@
 hello_world = "1";
+hello_world = 1 + 1 * 2;
+hello_world = 1 > 2;
+hello_world = 1 == 2;
 hello_world = (1 + 1) * 2;
 hello_world = [1, 2, 3];
 hello_world = ["1", "2", "3"];
-hello_world = ['c', "2", 3];
-
 
 DEF hello_world -> void () {
-    PRINT "Hello World inside function";
+    int num = 0;
+    WHILE (num < 10) {
+        PRINT "Hello World inside function ";
+        PRINT num;
+        num = num + 1;
+    }
+    num = 15;
 }
 
 DEF func -> int (a, b) {
     int sum = a + b;
-    int diff = a - b;
-    int prod = a * b;
-    int quo = a / b;
+    {
+        int diff = a - b;
+        int prod = a * b;
+        int quo = a / b;
+    }
     PRINT sum;
     PRINT diff;
     PRINT prod;
     PRINT quo;
-    return sum
+    return sum;
 }
 
 DEF main -> int () {
     int num1 = 5;
+    IF (num1 >= 5) {
+        PRINT "HELLO";
+    }
+    IF (num1 == "5" || num == 5) {
+        PRINT "HELLO1\n";
+    } ELSE {
+        PRINT "WORLD1";
+    }
+    hello_world();
     int num2 = 10;
     char chr = 'h';
     string str = "Hello, World";
-    PRINT func(num1, num2);
     PRINT func(3, 4);
-    hello_world();
+    PRINT func(num1, num2);
     PRINT str;
+    return func(1, 2);
 }
