@@ -30,7 +30,8 @@ typedef enum
     NODE_SCOPE,      // 20 Helper node to handle code scopes
     NODE_PARAMETERS, // 21 Helper node to handle function parameters
     NODE_RETURN,     // 22 Helper node to handle function return
-    NODE_FUNC_CALL   // 23 Helper node to handle function calls
+    NODE_FUNC_CALL,  // 23 Helper node to handle function calls
+    NODE_V_DEF       // 24 Helper node to handle variable definition
 } NodeType;
 
 // Define the ASTNode structure

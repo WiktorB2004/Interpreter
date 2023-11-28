@@ -155,7 +155,6 @@ ASTNode *parse_program(Token **tokens)
                 if (token->type == ASSIGN)
                 {
                     *token++;
-                    // ASSIGNING TEXT VALUE
                     if (token->type == T_VAL)
                     {
                         add_child(parent_node, create_assignment(id, create_ASTNode(NODE_T_VAL, token->value)));
@@ -164,18 +163,24 @@ ASTNode *parse_program(Token **tokens)
                     else if (token->type == LIST_B)
                     {
                         ASTNode *list = create_ASTNode(NODE_LIST_B, token->value);
+                        *token++;
                         while (token->type != LIST_E && token->type != TOKEN_Newline)
                         {
-                            switch (token->type)
+                            if (token->type != COMMA)
                             {
-                            case VAL:
-                                add_child(list, create_ASTNode(NODE_VAL, token->value));
-                                break;
-                            case T_VAL:
-                                add_child(list, create_ASTNode(NODE_T_VAL, token->value));
-                                break;
-                            default:
-                                break;
+                                switch (token->type)
+                                {
+                                case VAL:
+                                    add_child(list, create_ASTNode(NODE_VAL, token->value));
+                                    break;
+                                case T_VAL:
+                                    add_child(list, create_ASTNode(NODE_T_VAL, token->value));
+                                    break;
+                                default:
+                                    fprintf(stderr, "Incorrect list declaration on %d line\n", line_count);
+                                    exit(EXIT_FAILURE);
+                                    break;
+                                }
                             }
                             *token++;
                         }
@@ -232,7 +237,7 @@ ASTNode *parse_program(Token **tokens)
                     ASTNode *function_call = create_ASTNode(NODE_FUNC_CALL, "Function_Call");
                     add_child(function_call, create_ASTNode(NODE_ID, id->value));
                     ASTNode *parameter_list = create_ASTNode(NODE_PARAMETERS, "Function_Parameters");
-                    while (token->type != C_PAREN)
+                    while (token->type != C_PAREN && token->type != TOKEN_Newline)
                     {
                         if (token->type != COMMA)
                         {
@@ -266,12 +271,109 @@ ASTNode *parse_program(Token **tokens)
                 }
                 else
                 {
+
                     fprintf(stderr, "Incorrect token occured after variable id on line %d.\n", line_count);
                     exit(EXIT_FAILURE);
                 }
             }
             else if (token->type == V_TYPE)
             {
+                ASTNode *variable = create_ASTNode(NODE_V_DEF, token->value);
+                *token++;
+                if (token->type == ID)
+                {
+                    *token++;
+                    // FIXME: This is the copy of assignment logic, try to refactor this
+                    if (token->type == ASSIGN)
+                    {
+                        *token++;
+                        if (token->type == T_VAL)
+                        {
+                            add_child(parent_node, create_assignment(variable, create_ASTNode(NODE_T_VAL, token->value)));
+                            *token++;
+                        }
+                        else if (token->type == LIST_B)
+                        {
+                            ASTNode *list = create_ASTNode(NODE_LIST_B, token->value);
+                            *token++;
+                            while (token->type != LIST_E && token->type != TOKEN_Newline)
+                            {
+                                if (token->type != COMMA)
+                                {
+                                    switch (token->type)
+                                    {
+                                    case VAL:
+                                        add_child(list, create_ASTNode(NODE_VAL, token->value));
+                                        break;
+                                    case T_VAL:
+                                        add_child(list, create_ASTNode(NODE_T_VAL, token->value));
+                                        break;
+                                    default:
+                                        fprintf(stderr, "Incorrect list declaration on %d line\n", line_count);
+                                        exit(EXIT_FAILURE);
+                                        break;
+                                    }
+                                }
+                                *token++;
+                            }
+                            if (token->type != LIST_E)
+                            {
+                                fprintf(stderr, "Expected ] after opening the list on %d line\n", line_count);
+                                exit(EXIT_FAILURE);
+                            }
+                            *token++;
+                        }
+                        else
+                        {
+                            ASTNode *expression = create_ASTNode(NODE_EXPRESSION, "Expression");
+                            while (token->type != SEMI && token->type != TOKEN_Newline)
+                            {
+                                switch (token->type)
+                                {
+                                case ARITH_OP:
+                                    add_child(expression, create_ASTNode(NODE_ARITH_OP, token->value));
+                                    break;
+                                case RELAT_OP:
+                                    add_child(expression, create_ASTNode(NODE_RELAT_OP, token->value));
+                                    break;
+                                case VAL:
+                                    add_child(expression, create_ASTNode(NODE_VAL, token->value));
+                                    break;
+                                case ID:
+                                    add_child(expression, create_ASTNode(NODE_ID, token->value));
+                                    break;
+                                case O_PAREN:
+                                    add_child(expression, create_ASTNode(NODE_O_PAREN, token->value));
+                                    break;
+                                case C_PAREN:
+                                    add_child(expression, create_ASTNode(NODE_C_PAREN, token->value));
+                                    break;
+                                default:
+                                    fprintf(stderr, "Incorrect token occured on %d line\n", line_count);
+                                    exit(EXIT_FAILURE);
+                                    break;
+                                }
+                                *token++;
+                            }
+                            add_child(parent_node, create_assignment(variable, expression));
+                        }
+                        if (token->type != SEMI)
+                        {
+                            fprintf(stderr, "Expected semicolon on line %d\n", line_count);
+                            exit(EXIT_FAILURE);
+                        }
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Incorrect variable definition on line %d.\n", line_count);
+                        exit(EXIT_FAILURE);
+                    }
+                }
+                else
+                {
+                    fprintf(stderr, "Incorrect variable definition on line %d.\n", line_count);
+                    exit(EXIT_FAILURE);
+                }
             }
             else if (token->type == KEYWORD)
             {
@@ -423,9 +525,69 @@ ASTNode *parse_program(Token **tokens)
                 }
                 else if (strcmp(token->value, "IF") == 0)
                 {
-                    ASTNode *scope = create_ASTNode(NODE_SCOPE, "Conditional_Scope");
-                    if (strcmp(token->value, "ELSE"))
+                    *token++;
+                    if (token->type == O_PAREN)
                     {
+                        *token++;
+                        ASTNode *scope = create_ASTNode(NODE_SCOPE, "Conditional_Scope");
+                        ASTNode *conditions = create_ASTNode(NODE_EXPRESSION, "Conditions");
+                        while (token->type != C_PAREN && token->type != TOKEN_Newline)
+                        {
+                            switch (token->type)
+                            {
+                            case VAL:
+                                add_child(conditions, create_ASTNode(NODE_VAL, token->value));
+                                break;
+                            case ID:
+                                add_child(conditions, create_ASTNode(NODE_ID, token->value));
+                                break;
+                            case T_VAL:
+                                add_child(conditions, create_ASTNode(NODE_T_VAL, token->value));
+                                break;
+                            case ARITH_OP:
+                                add_child(conditions, create_ASTNode(NODE_ARITH_OP, token->value));
+                                break;
+                            case RELAT_OP:
+                                add_child(conditions, create_ASTNode(NODE_RELAT_OP, token->value));
+                                break;
+                            case LOGIC_OP:
+                                add_child(conditions, create_ASTNode(NODE_LOGIC_OP, token->value));
+                                break;
+                            default:
+                                fprintf(stderr, "Invalid token inside IF statement on line: %d.\n", line_count);
+                                exit(EXIT_FAILURE);
+                                break;
+                            }
+                            *token++;
+                        }
+                        *token++;
+                        if (token->type == O_BRACKET)
+                        {
+                            add_child(scope, conditions);
+                            ASTNodeStack_push(root_stack, scope);
+                        }
+                        else
+                        {
+                            fprintf(stderr, "Invalid use of IF, missing { on line: %d.\n", line_count);
+                            exit(EXIT_FAILURE);
+                        }
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Invalid use of IF on line: %d.\n", line_count);
+                        exit(EXIT_FAILURE);
+                    }
+                }
+                else if (strcmp(token->value, "ELSE") == 0)
+                {
+                    if (strcmp(parent_node->value, "Conditional_Scope") == 0)
+                    {
+                        ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "Else_Scope"));
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Invalid use of ELSE, missing preceding IF on line: %d.\n", line_count);
+                        exit(EXIT_FAILURE);
                     }
                 }
                 else if (strcmp(token->value, "return") == 0)
@@ -483,14 +645,61 @@ ASTNode *parse_program(Token **tokens)
                 }
             }
             // Handle scopes
+            // FIXME: Some problem with creating scopes, probably caused by IF/ELSE
             else if (token->type == O_BRACKET)
             {
-                ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
+                if (strcmp(parent_node->value, "Function_Scope") == 0)
+                {
+                    ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
+                }
+                else if (strcmp(parent_node->value, "Else_Scope") == 0)
+                {
+                    ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "Else_Scope"));
+                }
+                else
+                {
+                    fprintf(stderr, "Invalid Scope creation on line: %d.\n", line_count);
+                    exit(EXIT_FAILURE);
+                }
             }
             else if (token->type == C_BRACKET)
             {
-                ASTNode *top = ASTNodeStack_pop(root_stack);
-                add_child(ASTNodeStack_peek(root_stack), top);
+                if (strcmp(parent_node->value, "Conditional_Scope") == 0)
+                {
+                    *token++;
+                    if (strcmp(token->value, "ELSE") != 0)
+                    {
+                        ASTNode *if_scope = ASTNodeStack_pop(root_stack);
+                        add_child(ASTNodeStack_peek(root_stack), if_scope);
+                    }
+                    else if (token->type == TOKEN_Newline)
+                    {
+                        *token++;
+                        if (strcmp(token->value, "ELSE") != 0)
+                        {
+                            ASTNode *if_scope = ASTNodeStack_pop(root_stack);
+                            add_child(ASTNodeStack_peek(root_stack), if_scope);
+                            ASTNode *top = ASTNodeStack_pop(root_stack);
+                            add_child(ASTNodeStack_peek(root_stack), top);
+                        }
+                        *token--;
+                    }
+                    *token--;
+                }
+                else if (strcmp(parent_node->value, "Else_Scope") == 0)
+                {
+                    ASTNode *else_scope = ASTNodeStack_pop(root_stack);
+                    ASTNode *if_scope = ASTNodeStack_pop(root_stack);
+                    ASTNode *top = ASTNodeStack_pop(root_stack);
+                    add_child(if_scope, else_scope);
+                    add_child(ASTNodeStack_peek(root_stack), if_scope);
+                    add_child(ASTNodeStack_peek(root_stack), top);
+                }
+                else
+                {
+                    ASTNode *top = ASTNodeStack_pop(root_stack);
+                    add_child(ASTNodeStack_peek(root_stack), top);
+                }
             }
             // Invalid token occured
             else
