@@ -162,7 +162,7 @@ ASTNode *parse_program(Token **tokens)
                     }
                     else if (token->type == LIST_B)
                     {
-                        ASTNode *list = create_ASTNode(NODE_LIST_B, token->value);
+                        ASTNode *list = create_ASTNode(NODE_LIST_B, "List");
                         *token++;
                         while (token->type != LIST_E && token->type != TOKEN_Newline)
                         {
@@ -189,6 +189,7 @@ ASTNode *parse_program(Token **tokens)
                             fprintf(stderr, "Expected ] after opening the list on %d line\n", line_count);
                             exit(EXIT_FAILURE);
                         }
+                        add_child(parent_node, create_assignment(id, list));
                         *token++;
                     }
                     else
@@ -278,10 +279,12 @@ ASTNode *parse_program(Token **tokens)
             }
             else if (token->type == V_TYPE)
             {
-                ASTNode *variable = create_ASTNode(NODE_V_DEF, token->value);
+                ASTNode *variable = create_ASTNode(NODE_V_DEF, "Variable_Declaration");
+                add_child(variable, create_ASTNode(NODE_V_TYPE, token->value));
                 *token++;
                 if (token->type == ID)
                 {
+                    add_child(variable, create_ASTNode(NODE_ID, token->value));
                     *token++;
                     // FIXME: This is the copy of assignment logic, try to refactor this
                     if (token->type == ASSIGN)
@@ -289,12 +292,13 @@ ASTNode *parse_program(Token **tokens)
                         *token++;
                         if (token->type == T_VAL)
                         {
-                            add_child(parent_node, create_assignment(variable, create_ASTNode(NODE_T_VAL, token->value)));
+                            add_child(variable, create_ASTNode(NODE_T_VAL, token->value));
+                            add_child(parent_node, variable);
                             *token++;
                         }
                         else if (token->type == LIST_B)
                         {
-                            ASTNode *list = create_ASTNode(NODE_LIST_B, token->value);
+                            ASTNode *list = create_ASTNode(NODE_LIST_B, "List");
                             *token++;
                             while (token->type != LIST_E && token->type != TOKEN_Newline)
                             {
@@ -321,6 +325,8 @@ ASTNode *parse_program(Token **tokens)
                                 fprintf(stderr, "Expected ] after opening the list on %d line\n", line_count);
                                 exit(EXIT_FAILURE);
                             }
+                            add_child(variable, list);
+                            add_child(parent_node, variable);
                             *token++;
                         }
                         else
@@ -355,7 +361,8 @@ ASTNode *parse_program(Token **tokens)
                                 }
                                 *token++;
                             }
-                            add_child(parent_node, create_assignment(variable, expression));
+                            add_child(variable, expression);
+                            add_child(parent_node, variable);
                         }
                         if (token->type != SEMI)
                         {
