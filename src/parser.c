@@ -523,6 +523,58 @@ ASTNode *parse_program(Token **tokens)
                     }
                     add_child(parent_node, print_statement);
                 }
+                else if (strcmp(token->value, "WHILE") == 0)
+                {
+                    ASTNode *scope = create_ASTNode(NODE_SCOPE, "While_Loop");
+                    ASTNode *conditions = create_ASTNode(NODE_EXPRESSION, "Conditions");
+                    *token++;
+                    if (token->type == O_PAREN)
+                    {
+                        *token++;
+                        while (token->type != C_PAREN && token->type != TOKEN_Newline)
+                        {
+                            switch (token->type)
+                            {
+                            case VAL:
+                                add_child(conditions, create_ASTNode(NODE_VAL, token->value));
+                                break;
+                            case ID:
+                                add_child(conditions, create_ASTNode(NODE_ID, token->value));
+                                break;
+                            case T_VAL:
+                                add_child(conditions, create_ASTNode(NODE_T_VAL, token->value));
+                                break;
+                            case ARITH_OP:
+                                add_child(conditions, create_ASTNode(NODE_ARITH_OP, token->value));
+                                break;
+                            case RELAT_OP:
+                                add_child(conditions, create_ASTNode(NODE_RELAT_OP, token->value));
+                                break;
+                            case LOGIC_OP:
+                                add_child(conditions, create_ASTNode(NODE_LOGIC_OP, token->value));
+                                break;
+                            default:
+                                fprintf(stderr, "Invalid token inside WHILE conditions on line: %d.\n", line_count);
+                                exit(EXIT_FAILURE);
+                                break;
+                            }
+                            *token++;
+                        }
+                        *token++;
+                        if (token->type != O_BRACKET)
+                        {
+                            fprintf(stderr, "Missing { after while condition on line: %d.\n", line_count);
+                            exit(EXIT_FAILURE);
+                        }
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Invalid token inside IF statement on line: %d.\n", line_count);
+                        exit(EXIT_FAILURE);
+                    }
+                    add_child(scope, conditions);
+                    ASTNodeStack_push(root_stack, scope);
+                }
                 else if (strcmp(token->value, "IF") == 0)
                 {
                     *token++;
