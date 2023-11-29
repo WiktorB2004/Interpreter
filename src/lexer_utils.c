@@ -1,3 +1,6 @@
+#include <string.h>
+#include <ctype.h>
+
 // Check if char is valid ID or VAL
 int is_valid_char_token(char ch)
 {
