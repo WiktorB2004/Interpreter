@@ -3,6 +3,8 @@ Project start date: 9.11.2023 <br>
 Project status: Under development <br>
 About: The project involved the creation of a custom language interpreter for WLang using the C programming language. <br>
 
+- WLang language (project) docs - Under Development
+
 ## Project Plan / Phases
 The development process consisted of several key phases, each contributing to the successful implementation of the interpreter.
 
