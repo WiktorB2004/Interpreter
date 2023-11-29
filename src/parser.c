@@ -3,6 +3,10 @@
 #include "../include/parser.h"
 #include "../include/utils/ASTNode_Stack.h"
 
+// FIXME: Reafactor the code - move logic into prepared functions
+// FIXME: Test the code - write automated test cases for parser and lexer + create good/bad example files
+// FIXME: Comment the code and document the logic
+
 // Function to print AST
 void print_ASTree(ASTNode *root, int depth)
 {
@@ -286,13 +290,14 @@ ASTNode *parse_program(Token **tokens)
                 {
                     add_child(variable, create_ASTNode(NODE_ID, token->value));
                     *token++;
-                    // FIXME: This is the copy of assignment logic, try to refactor this
                     if (token->type == ASSIGN)
                     {
                         *token++;
                         if (token->type == T_VAL)
                         {
-                            add_child(variable, create_ASTNode(NODE_T_VAL, token->value));
+                            ASTNode *expression = create_ASTNode(NODE_EXPRESSION, "Value");
+                            add_child(expression, create_ASTNode(NODE_T_VAL, token->value));
+                            add_child(variable, expression);
                             add_child(parent_node, variable);
                             *token++;
                         }
@@ -520,7 +525,6 @@ ASTNode *parse_program(Token **tokens)
                             }
                             add_child(function_call, parameter_list);
                             add_child(print_statement, function_call);
-                            add_child(parent_node, print_statement);
                         }
                     }
                     else
@@ -703,19 +707,13 @@ ASTNode *parse_program(Token **tokens)
                     }
                 }
             }
-            // Handle scopes
-            // FIXME: Some problem with creating scopes, probably caused by IF/ELSE
             else if (token->type == O_BRACKET)
             {
                 if (strcmp(parent_node->value, "Function_Scope") == 0)
                 {
                     ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
                 }
-                else if (strcmp(parent_node->value, "Else_Scope") == 0)
-                {
-                    ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "Else_Scope"));
-                }
-                else
+                else if (strcmp(parent_node->value, "Else_Scope") != 0)
                 {
                     fprintf(stderr, "Invalid Scope creation on line: %d.\n", line_count);
                     exit(EXIT_FAILURE);
@@ -749,10 +747,8 @@ ASTNode *parse_program(Token **tokens)
                 {
                     ASTNode *else_scope = ASTNodeStack_pop(root_stack);
                     ASTNode *if_scope = ASTNodeStack_pop(root_stack);
-                    ASTNode *top = ASTNodeStack_pop(root_stack);
                     add_child(if_scope, else_scope);
                     add_child(ASTNodeStack_peek(root_stack), if_scope);
-                    add_child(ASTNodeStack_peek(root_stack), top);
                 }
                 else
                 {
