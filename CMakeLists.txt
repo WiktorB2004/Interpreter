@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(MyProject)
+project(WLang_Interpreter)
 
 # Set C standard to C11
 set(CMAKE_C_STANDARD 11)
