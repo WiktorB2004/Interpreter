@@ -8,6 +8,7 @@
 #include <string.h>
 #include "../include/lexer.h"
 #include "../include/parser.h"
+#include "../include/interpreter.h"
 #include "../include/utils/load_code.h"
 
 // MAIN
