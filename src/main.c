@@ -30,6 +30,7 @@ int main(void)
     // printf("\nPARSER \n");
     ASTNode *ASTree = parse_program(&tokens);
     print_ASTree(ASTree, 0);
+    evaluate(ASTree);
 
     free(source_code);
     free(tokens);
