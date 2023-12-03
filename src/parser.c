@@ -453,7 +453,9 @@ ASTNode *parse_program(Token **tokens)
                         fprintf(stderr, "Return type not specified on line: %d.\n", line_count);
                         exit(EXIT_FAILURE);
                     }
+                    ASTNode *function_body = create_ASTNode(NODE_SCOPE, "Function_Body");
                     ASTNodeStack_push(root_stack, scope);
+                    ASTNodeStack_push(root_stack, function_body);
                 }
                 // FIXME: Make it handle funtion return value print
                 else if (strcmp(token->value, "PRINT") == 0)
@@ -584,7 +586,9 @@ ASTNode *parse_program(Token **tokens)
                         exit(EXIT_FAILURE);
                     }
                     add_child(scope, conditions);
+                    ASTNode *body = create_ASTNode(NODE_SCOPE, "Loop_Body");
                     ASTNodeStack_push(root_stack, scope);
+                    ASTNodeStack_push(root_stack, body);
                 }
                 else if (strcmp(token->value, "IF") == 0)
                 {
@@ -709,7 +713,7 @@ ASTNode *parse_program(Token **tokens)
             }
             else if (token->type == O_BRACKET)
             {
-                if (strcmp(parent_node->value, "Function_Scope") == 0)
+                if (strcmp(parent_node->value, "Function_Body") == 0)
                 {
                     ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
                 }
@@ -749,6 +753,13 @@ ASTNode *parse_program(Token **tokens)
                     ASTNode *if_scope = ASTNodeStack_pop(root_stack);
                     add_child(if_scope, else_scope);
                     add_child(ASTNodeStack_peek(root_stack), if_scope);
+                }
+                else if (strcmp(parent_node->value, "Function_Body") == 0 || strcmp(parent_node->value, "Loop_Body") == 0)
+                {
+                    ASTNode *body = ASTNodeStack_pop(root_stack);
+                    ASTNode *scope = ASTNodeStack_pop(root_stack);
+                    add_child(scope, body);
+                    add_child(ASTNodeStack_peek(root_stack), scope);
                 }
                 else
                 {
