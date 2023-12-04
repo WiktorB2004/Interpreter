@@ -1,13 +1,14 @@
-hello_world = "1";
-int hello_world = 1 + 1 * 2;
-hello_world = 1 > 2;
+int exp = 1 + 1 * 2;
+string str = "1";
+int hello_world = 1 > 2;
 hello_world = 1 == 2;
 hello_world = (1 + 1) * 2;
-int hello_world = [1, 2, 3];
-hello_world = [1, 2, 3];
-string hello_world = ["1", "2", "3"];
+int list = [1, 2, 3];
+list = [1, 2, 3, 4];
+string str_list = ["1", "2", "3"];
 
-DEF hello_world -> void () {
+
+DEF test_func -> void () {
     int num = 0;
     WHILE (num < 10) {
         PRINT "Hello World inside function ";
@@ -41,12 +42,12 @@ DEF main -> int () {
     } ELSE {
         PRINT "WORLD1";
     }
-    hello_world();
+    test_func();
     int num2 = 10;
     char chr = 'h';
-    string str = "Hello, World";
-    PRINT func(3, 4);
-    PRINT func(num1, num2);
+    str = "Hello, World";
     PRINT str;
-    return func(1, 2);
+    return str;
 }
+
+main();

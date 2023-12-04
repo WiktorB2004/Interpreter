@@ -2,6 +2,8 @@
 // TODO(#5): Test and upgrade
 
 // FIXME: Refactor the code
+// FIXME: Replace constant constraints (like maximum SymbolTable size)
+// BUG: Parsing the return statements (just number not ID's)
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,10 +29,17 @@ int main(void)
 
     // printf("\nLEXER \n");
     // print_tokens(tokens, num_tokens);
-    // printf("\nPARSER \n");
+    printf("\nParser \n");
     ASTNode *ASTree = parse_program(&tokens);
     print_ASTree(ASTree, 0);
-    evaluate(ASTree);
+
+    printf("\nInterpreter \n");
+    SymbolTable GlobalMemory;
+    SymbolTable *Memory[500];
+    init_SymbolTable(&GlobalMemory);
+    evaluate(ASTree, &GlobalMemory);
+
+    // print_SymbolTable(&GlobalMemory);
 
     free(source_code);
     free(tokens);

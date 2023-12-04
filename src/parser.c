@@ -630,8 +630,10 @@ ASTNode *parse_program(Token **tokens)
                         *token++;
                         if (token->type == O_BRACKET)
                         {
+                            ASTNode *if_body = create_ASTNode(NODE_SCOPE, "If_Body");
                             add_child(scope, conditions);
                             ASTNodeStack_push(root_stack, scope);
+                            ASTNodeStack_push(root_stack, if_body);
                         }
                         else
                         {
@@ -647,9 +649,9 @@ ASTNode *parse_program(Token **tokens)
                 }
                 else if (strcmp(token->value, "ELSE") == 0)
                 {
-                    if (strcmp(parent_node->value, "Conditional_Scope") == 0)
+                    if (strcmp(parent_node->value, "If_Body") == 0)
                     {
-                        ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "Else_Scope"));
+                        ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "Else_Body"));
                     }
                     else
                     {
@@ -717,7 +719,7 @@ ASTNode *parse_program(Token **tokens)
                 {
                     ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
                 }
-                else if (strcmp(parent_node->value, "Else_Scope") != 0)
+                else if (strcmp(parent_node->value, "Else_Body") != 0)
                 {
                     fprintf(stderr, "Invalid Scope creation on line: %d.\n", line_count);
                     exit(EXIT_FAILURE);
@@ -725,12 +727,14 @@ ASTNode *parse_program(Token **tokens)
             }
             else if (token->type == C_BRACKET)
             {
-                if (strcmp(parent_node->value, "Conditional_Scope") == 0)
+                if (strcmp(parent_node->value, "If_Body") == 0)
                 {
                     *token++;
                     if (strcmp(token->value, "ELSE") != 0)
                     {
+                        ASTNode *if_body = ASTNodeStack_pop(root_stack);
                         ASTNode *if_scope = ASTNodeStack_pop(root_stack);
+                        add_child(if_scope, if_body);
                         add_child(ASTNodeStack_peek(root_stack), if_scope);
                     }
                     else if (token->type == TOKEN_Newline)
@@ -738,7 +742,9 @@ ASTNode *parse_program(Token **tokens)
                         *token++;
                         if (strcmp(token->value, "ELSE") != 0)
                         {
+                            ASTNode *if_body = ASTNodeStack_pop(root_stack);
                             ASTNode *if_scope = ASTNodeStack_pop(root_stack);
+                            add_child(if_scope, if_body);
                             add_child(ASTNodeStack_peek(root_stack), if_scope);
                             ASTNode *top = ASTNodeStack_pop(root_stack);
                             add_child(ASTNodeStack_peek(root_stack), top);
@@ -747,10 +753,12 @@ ASTNode *parse_program(Token **tokens)
                     }
                     *token--;
                 }
-                else if (strcmp(parent_node->value, "Else_Scope") == 0)
+                else if (strcmp(parent_node->value, "Else_Body") == 0)
                 {
                     ASTNode *else_scope = ASTNodeStack_pop(root_stack);
+                    ASTNode *if_body = ASTNodeStack_pop(root_stack);
                     ASTNode *if_scope = ASTNodeStack_pop(root_stack);
+                    add_child(if_scope, if_body);
                     add_child(if_scope, else_scope);
                     add_child(ASTNodeStack_peek(root_stack), if_scope);
                 }
