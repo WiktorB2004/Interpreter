@@ -209,6 +209,9 @@ ASTNode *parse_program(Token **tokens)
                             case RELAT_OP:
                                 add_child(expression, create_ASTNode(NODE_RELAT_OP, token->value));
                                 break;
+                            case LOGIC_OP:
+                                add_child(expression, create_ASTNode(NODE_LOGIC_OP, token->value));
+                                break;
                             case VAL:
                                 add_child(expression, create_ASTNode(NODE_VAL, token->value));
                                 break;
@@ -346,6 +349,9 @@ ASTNode *parse_program(Token **tokens)
                                     break;
                                 case RELAT_OP:
                                     add_child(expression, create_ASTNode(NODE_RELAT_OP, token->value));
+                                    break;
+                                case LOGIC_OP:
+                                    add_child(expression, create_ASTNode(NODE_LOGIC_OP, token->value));
                                     break;
                                 case VAL:
                                     add_child(expression, create_ASTNode(NODE_VAL, token->value));

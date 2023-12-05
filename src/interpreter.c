@@ -1,6 +1,7 @@
 #include <string.h>
 #include "../include/interpreter.h"
 #include "../include/parser.h"
+#include "../include/utils/ASTNode_Stack.h"
 
 void init_SymbolTable(SymbolTable *sym_table)
 {
@@ -89,13 +90,194 @@ Variable *find_variable(SymbolTable *table, char *name)
     exit(EXIT_FAILURE);
 }
 
-void exit_scope(SymbolTable **memory_stack, int current_scope)
+// Function to check if a node is an operator
+int is_node_operator(NodeType type)
 {
-    if (current_scope >= 0)
+    return type == NODE_ARITH_OP || type == NODE_LOGIC_OP || type == NODE_RELAT_OP;
+}
+
+// Function to get the precedence of an operator
+int precedence(NodeType type, char *op)
+{
+    switch (type)
     {
-        free(memory_stack[current_scope]);
-        current_scope--;
+    case NODE_ARITH_OP:
+        if (strcmp(op, "*") == 0 || strcmp(op, "/") == 0)
+        {
+            return 4;
+        }
+        return 3;
+    case NODE_RELAT_OP:
+        return 2;
+    case NODE_LOGIC_OP:
+        return 1;
+    default:
+        return -1;
     }
+}
+
+ASTNode *infix_to_postfix(ASTNode **expression, size_t size, SymbolTable *memory)
+{
+    ASTNode *output[size];
+    size_t output_idx = 0;
+
+    ASTNode *stack[size];
+    size_t stack_idx = 0;
+
+    for (size_t i = 0; i < size; ++i)
+    {
+        ASTNode *current = expression[i];
+
+        if (current->type == NODE_O_PAREN)
+        {
+            stack[stack_idx++] = current;
+        }
+        else if (current->type == NODE_C_PAREN)
+        {
+            while (stack_idx > 0 && stack[stack_idx - 1]->type != NODE_O_PAREN)
+            {
+                output[output_idx++] = stack[--stack_idx];
+            }
+            if (stack_idx > 0 && stack[stack_idx - 1]->type == NODE_O_PAREN)
+            {
+                --stack_idx;
+            }
+        }
+        else if (is_node_operator(current->type))
+        {
+            while (stack_idx > 0 && is_node_operator(stack[stack_idx - 1]->type) &&
+                   precedence(stack[stack_idx - 1]->type, stack[stack_idx - 1]->value) >= precedence(current->type, current->value))
+            {
+                output[output_idx++] = stack[--stack_idx];
+            }
+            stack[stack_idx++] = current;
+        }
+        else if (current->type == NODE_ID)
+        {
+            output[output_idx++] = find_variable(memory, current->value)->value;
+        }
+        else
+        {
+            output[output_idx++] = current;
+        }
+    }
+
+    while (stack_idx > 0)
+    {
+        output[output_idx++] = stack[--stack_idx];
+    }
+
+    ASTNode *res = create_ASTNode(NODE_EXPRESSION, "Postfix_Expression");
+    for (size_t i = 0; i < output_idx; i++)
+    {
+        add_child(res, output[i]);
+    }
+    return res;
+}
+
+char *int_to_string(int number)
+{
+    int length = snprintf(NULL, 0, "%d", number);
+    char *str = (char *)malloc((length + 1) * sizeof(char));
+
+    if (str != NULL)
+    {
+        snprintf(str, length + 1, "%d", number);
+    }
+    return str;
+}
+
+ASTNode *evaluate_expression(ASTNode *expression)
+{
+    // FIXME: Correcly hanlde operations on different types
+    ASTNodeStack *stack = create_ASTNodeStack();
+    for (size_t i = 0; i < expression->children_num; ++i)
+    {
+        ASTNode *curr = expression->children[i];
+        ASTNode *val1, *val2;
+        switch (curr->type)
+        {
+        case NODE_VAL:
+        case NODE_T_VAL:
+            ASTNodeStack_push(stack, curr);
+            break;
+        case NODE_ARITH_OP:
+            val1 = ASTNodeStack_pop(stack);
+            val2 = ASTNodeStack_pop(stack);
+            if (strcmp(curr->value, "+") == 0)
+            {
+                int sum = atoi(val1->value) + atoi(val2->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(sum)));
+            }
+            else if (strcmp(curr->value, "-") == 0)
+            {
+                int diff = atoi(val2->value) - atoi(val1->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(diff)));
+            }
+            else if (strcmp(curr->value, "*") == 0)
+            {
+                int prod = atoi(val1->value) * atoi(val2->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(prod)));
+            }
+            else if (strcmp(curr->value, "/") == 0)
+            {
+                int quo = atoi(val2->value) / atoi(val1->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(quo)));
+            }
+            break;
+        case NODE_LOGIC_OP:
+            val1 = ASTNodeStack_pop(stack);
+            val2 = ASTNodeStack_pop(stack);
+            if (strcmp(curr->value, "||") == 0)
+            {
+                int sum = atoi(val1->value) == 1 || atoi(val2->value) == 1;
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(sum)));
+            }
+            else if (strcmp(curr->value, "&&") == 0)
+            {
+                int diff = atoi(val1->value) == 1 && atoi(val2->value) == 1;
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(diff)));
+            }
+            break;
+        case NODE_RELAT_OP:
+            val1 = ASTNodeStack_pop(stack);
+            val2 = ASTNodeStack_pop(stack);
+            if (strcmp(curr->value, "==") == 0)
+            {
+                int sum = atoi(val1->value) == atoi(val2->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(sum)));
+            }
+            else if (strcmp(curr->value, "!=") == 0)
+            {
+                int diff = atoi(val1->value) != atoi(val2->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(diff)));
+            }
+            else if (strcmp(curr->value, ">") == 0)
+            {
+                int diff = atoi(val2->value) > atoi(val1->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(diff)));
+            }
+            else if (strcmp(curr->value, ">=") == 0)
+            {
+                int prod = atoi(val2->value) >= atoi(val1->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(prod)));
+            }
+            else if (strcmp(curr->value, "<") == 0)
+            {
+                int quo = atoi(val2->value) < atoi(val1->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(quo)));
+            }
+            else if (strcmp(curr->value, "<=") == 0)
+            {
+                int quo = atoi(val2->value) <= atoi(val1->value);
+                ASTNodeStack_push(stack, create_ASTNode(NODE_VAL, int_to_string(quo)));
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    return ASTNodeStack_peek(stack);
 }
 
 ASTNode *evaluate(ASTNode *node, SymbolTable *memory)
@@ -105,7 +287,7 @@ ASTNode *evaluate(ASTNode *node, SymbolTable *memory)
         return NULL;
     }
 
-    ASTNode *type, *name, *value, *params;
+    ASTNode *type, *name, *value, *value2, *params;
     switch (node->type)
     {
     // SECTION: Variables
@@ -133,7 +315,8 @@ ASTNode *evaluate(ASTNode *node, SymbolTable *memory)
         {
             return node->children[0];
         }
-        return create_ASTNode(NODE_VAL, "Expression_Dummy");
+        ASTNode *postfix_epxression = infix_to_postfix(node->children, node->children_num, memory);
+        return evaluate_expression(postfix_epxression);
         break;
     case NODE_LIST_B:
         // FIXME: Get list values
@@ -152,35 +335,29 @@ ASTNode *evaluate(ASTNode *node, SymbolTable *memory)
         }
         else if (strcmp(node->value, "While_Loop") == 0)
         {
-            params = node->children[0];
+            params = evaluate(node->children[0], memory);
             value = node->children[1];
-            // FIXME: Interpret while loop by evaluating "value" (body) while the condition is true
-            printf("While loop:\n");
-            printf("Loop condition:");
-            print_ASTree(params, 0);
-            printf("Loop body:");
-            print_ASTree(value, 0);
-            printf("\n");
+            while (atoi(params->value) == 1)
+            {
+                evaluate(value, memory);
+                params = evaluate(node->children[0], memory);
+            }
         }
         else if (strcmp(node->value, "Conditional_Scope") == 0)
         {
-            params = node->children[0];
+            params = evaluate(node->children[0], memory);
             value = node->children[1];
-            if (node->children[2] != NULL)
+            if (atoi(params->value) == 1)
             {
-                name = node->children[2];
+                evaluate(value, memory);
             }
-            // FIXME: Interpret if by checking condition and passing correct node to evaluate
-            printf("IF / ELSE:\n");
-            printf("Condition:\n");
-            print_ASTree(params, 0);
-            printf("If:\n");
-            print_ASTree(value, 0);
-            printf("Else:\n");
-            print_ASTree(name, 0);
-            printf("\n");
+            else if (node->children[2] != NULL)
+            {
+                value2 = node->children[2];
+                evaluate(value2, memory);
+            }
         }
-        else if (strcmp(node->value, "Function_Body") == 0)
+        else
         {
             for (size_t i = 0; i < node->children_num; i++)
             {
@@ -192,7 +369,6 @@ ASTNode *evaluate(ASTNode *node, SymbolTable *memory)
     case NODE_KEYWORD:
         if (strcmp(node->value, "Print") == 0)
         {
-            // FIXME: Correctly print expiressions etc.
             // FIXME: Correctly insert newlines etc.
             value = node->children[0];
             switch (value->type)
@@ -216,8 +392,27 @@ ASTNode *evaluate(ASTNode *node, SymbolTable *memory)
     case NODE_FUNC_CALL:
         name = evaluate(node->children[0], memory);
         params = node->children[1];
-        Variable *function = find_variable(memory, name->value);
+        Variable *param, *var, *function = find_variable(memory, name->value);
+        ASTNode *curr;
+        for (size_t i = 0; i < params->children_num; i++)
+        {
+            curr = params->children[i];
+            if (curr->type != NODE_ID)
+            {
+                param = create_variable("int", function->params->children[i]->value, curr, NULL);
+                insert_variable(memory, param);
+            }
+            else
+            {
+                var = find_variable(memory, curr->value);
+                param = create_variable(var->type, function->params->children[i]->value, var->value, NULL);
+                insert_variable(memory, param);
+            }
+        }
         evaluate(function->value, memory);
+        break;
+    case NODE_RETURN:
+        return evaluate(node->children[0], memory);
         break;
     default:
         for (size_t i = 0; i < node->children_num; i++)

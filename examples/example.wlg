@@ -1,24 +1,24 @@
-int exp = 1 + 1 * 2;
+int exp1 = 1 + 1 * 2;
+int exp2 = 1 + 1 > 2 && 1 > 2 - 2;
 string str = "1";
-int hello_world = 1 > 2;
-hello_world = 1 == 2;
-hello_world = (1 + 1) * 2;
+int hello_world1 = 1 > 2;
+int hello_world2 = 2 == 2;
+int hello_world3 = (1 + 1) * 2;
 int list = [1, 2, 3];
 list = [1, 2, 3, 4];
 string str_list = ["1", "2", "3"];
 
-
 DEF test_func -> void () {
     int num = 0;
     WHILE (num < 10) {
-        PRINT "Hello World inside function ";
+        PRINT "Hello World inside function";
         PRINT num;
         num = num + 1;
     }
     num = 15;
 }
 
-DEF func -> int (a, b) {
+DEF func1 -> int (a, b) {
     int sum = a + b;
     {
         int diff = a - b;
@@ -32,19 +32,31 @@ DEF func -> int (a, b) {
     return sum;
 }
 
+DEF func2 -> int (a, b) {
+    int sum = a + b;
+    int diff = a - b;
+    int prod = a * b;
+    int quo = a / b;
+    PRINT sum;
+    PRINT diff;
+    PRINT prod;
+    PRINT quo;
+    return sum;
+}
+
 DEF main -> int () {
     int num1 = 5;
     IF (num1 >= 5) {
         PRINT "HELLO";
     }
-    IF (num1 == "5" || num == 5) {
+    IF (num1 == "5" || num1 == 5) {
         PRINT "HELLO1\n";
     } ELSE {
         PRINT "WORLD1";
     }
     test_func();
     int num2 = 10;
-    char chr = 'h';
+    func2(num2, 5);
     str = "Hello, World";
     PRINT str;
     return str;
