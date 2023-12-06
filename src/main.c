@@ -40,8 +40,6 @@ int main(void)
     push_scope(&memoryStack, 2000);
     evaluate(ASTree, &memoryStack);
 
-    // print_SymbolTable(&GlobalMemory);
-
     free(source_code);
     free(tokens);
     // free_ASTree(ASTree);

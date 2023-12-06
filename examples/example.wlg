@@ -24,11 +24,13 @@ DEF func1 -> int (a, b) {
         int diff = a - b;
         int prod = a * b;
         int quo = a / b;
+        PRINT "Inside user scope";
+        PRINT diff;
+        PRINT prod;
+        PRINT quo;
     }
+    PRINT "Outside user scope";
     PRINT sum;
-    PRINT diff;
-    PRINT prod;
-    PRINT quo;
     return sum;
 }
 
@@ -56,6 +58,7 @@ DEF main -> int () {
     }
     test_func();
     int num2 = 10;
+    func1(10, 5);
     func2(num2, 5);
     str = "Hello, World";
     PRINT str;

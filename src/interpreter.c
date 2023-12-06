@@ -153,6 +153,7 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         }
         else if (strcmp(node->value, "While_Loop") == 0)
         {
+            push_scope(memory, 250);
             params = evaluate(node->children[0], memory);
             value = node->children[1];
             while (atoi(params->value) == 1)
@@ -160,6 +161,7 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
                 evaluate(value, memory);
                 params = evaluate(node->children[0], memory);
             }
+            pop_scope(memory);
         }
         else if (strcmp(node->value, "Conditional_Scope") == 0)
         {
@@ -177,9 +179,17 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         }
         else
         {
+            if (strcmp(node->value, "User_Scope") == 0)
+            {
+                push_scope(memory, 500);
+            }
             for (size_t i = 0; i < node->children_num; i++)
             {
                 evaluate(node->children[i], memory);
+            }
+            if (strcmp(node->value, "User_Scope") == 0)
+            {
+                pop_scope(memory);
             }
         }
         break;
@@ -212,6 +222,7 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         params = node->children[1];
         Variable *param, *var, *function = find_variable(memory, name->value);
         ASTNode *curr;
+        push_scope(memory, 250);
         for (size_t i = 0; i < params->children_num; i++)
         {
             curr = params->children[i];
@@ -226,6 +237,7 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             }
         }
         evaluate(function->value, memory);
+        pop_scope(memory);
         break;
     case NODE_RETURN:
         return evaluate(node->children[0], memory);
