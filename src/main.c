@@ -3,6 +3,7 @@
 
 // FIXME: Refactor the code
 // FIXME: Replace constant constraints (like maximum SymbolTable size)
+// FIXME: Include only needed functions in header files, "optimize" file structure
 // BUG: Parsing the return statements (just number not ID's)
 
 #include <stdio.h>
@@ -34,10 +35,10 @@ int main(void)
     print_ASTree(ASTree, 0);
 
     printf("\nInterpreter \n");
-    SymbolTable GlobalMemory;
-    SymbolTable *Memory[500];
-    init_SymbolTable(&GlobalMemory);
-    evaluate(ASTree, &GlobalMemory);
+    ScopeStack memoryStack;
+    init_ScopeStack(&memoryStack, 500);
+    push_scope(&memoryStack, 2000);
+    evaluate(ASTree, &memoryStack);
 
     // print_SymbolTable(&GlobalMemory);
 

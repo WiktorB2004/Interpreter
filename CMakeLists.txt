@@ -18,7 +18,9 @@ set(SOURCES
     ${SOURCE_DIR}/lexer.c
     ${SOURCE_DIR}/parser.c
     ${SOURCE_DIR}/interpreter.c
-    ${SOURCE_DIR}/lexer_utils.c
+    ${UTILS_DIR}/memory.c
+    ${UTILS_DIR}/lexer_utils.c
+    ${UTILS_DIR}/expression_eval.c
     ${UTILS_DIR}/ASTNode_Stack.c
     ${UTILS_DIR}/load_code.c
 )
