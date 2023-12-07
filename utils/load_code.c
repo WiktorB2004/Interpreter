@@ -13,7 +13,6 @@ char *get_source_code(const char *filename)
     filePointer = fopen(filename, "rb");
     if (filePointer == NULL)
     {
-        printf("File could not be opened.");
         return NULL;
     }
 

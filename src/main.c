@@ -15,15 +15,20 @@
 #include "../include/utils/load_code.h"
 
 // MAIN
-int main(void)
+int main(int argc, char *argv[])
 {
-    const char *filename = "./examples/example.wlg";
-    if (!filename)
+    if (argc != 2)
     {
-        fprintf(stderr, "Did not find the file\n");
+        fprintf(stderr, "Please provide filename for WLan interpreter\n");
         exit(EXIT_FAILURE);
     }
+    const char *filename = argv[1];
     char *source_code = get_source_code(filename);
+    if (source_code == NULL)
+    {
+        fprintf(stderr, "Couldnt load the file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
     int num_tokens;
 
     Token *tokens = lexer(source_code, &num_tokens);
