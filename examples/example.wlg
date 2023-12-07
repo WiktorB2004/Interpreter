@@ -1,68 +1,67 @@
-int exp1 = 1 + 1 * 2;
-int exp2 = 1 + 1 > 2 && 1 > 2 - 2;
-string str = "1";
-int hello_world1 = 1 > 2;
-int hello_world2 = 2 == 2;
-int hello_world3 = (1 + 1) * 2;
-int list = [1, 2, 3];
-list = [1, 2, 3, 4];
-string str_list = ["1", "2", "3"];
-
-DEF test_func -> void () {
+DEF test_while -> void () {
     int num = 0;
-    WHILE (num < 10) {
-        PRINT "Hello World inside function";
+    WHILE (num < 3) {
+        PRINT "While loop iteration: ";
         PRINT num;
         num = num + 1;
     }
-    num = 15;
 }
 
-DEF func1 -> int (a, b) {
+DEF test_user_scope -> void (a, b) {
     int sum = a + b;
+    int diff = a - b;
     {
-        int diff = a - b;
+        PRINT "Inside user scope";
         int prod = a * b;
         int quo = a / b;
-        PRINT "Inside user scope";
-        PRINT diff;
         PRINT prod;
         PRINT quo;
+        PRINT "Outer function scope variable print: ";
+        PRINT sum;
     }
     PRINT "Outside user scope";
     PRINT sum;
-    return sum;
-}
-
-DEF func2 -> int (a, b) {
-    int sum = a + b;
-    int diff = a - b;
-    int prod = a * b;
-    int quo = a / b;
-    PRINT sum;
     PRINT diff;
-    PRINT prod;
-    PRINT quo;
-    return sum;
 }
 
-DEF main -> int () {
-    int num1 = 5;
-    IF (num1 >= 5) {
-        PRINT "HELLO";
-    }
-    IF (num1 == "5" || num1 == 5) {
+DEF test_return -> int (a, b) {
+    return a + b;
+}
+
+DEF test_if_else -> int (a) {
+    IF (a == "5" || a == 5) {
         PRINT "HELLO1\n";
     } ELSE {
         PRINT "WORLD1";
     }
-    test_func();
-    int num2 = 10;
-    func1(10, 5);
-    func2(num2, 5);
-    str = "Hello, World";
-    PRINT str;
-    return str;
 }
 
-main();
+DEF main -> int () {
+    int num1 = 5;
+    test_while();
+    test_user_scope(10, num1);
+    test_if_else(num1);
+    test_if_else(12);
+    int return_val = test_return(1, 2);
+    return return_val;
+}
+
+PRINT main();
+
+PRINT "Global variables test";
+int exp1 = 1 + 1 * 2;
+int exp2 = (1 + 1) * 2;
+int exp3 = 1 + 1 > 2 && 1 > 2 - 2;
+int exp4 = 1 != 2;
+int exp5 = 2 == 2;
+int list = [1, 2, 3];
+string str_list = ["1", "2", "3"];
+
+PRINT exp1;
+PRINT exp2;
+PRINT exp3;
+PRINT exp4;
+PRINT exp5;
+PRINT list;
+PRINT str_list;
+
