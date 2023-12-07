@@ -15,9 +15,9 @@ The development process consisted of several key phases, each contributing to th
    - [x] Once the foundational knowledge was acquired, the next step was to devise an overall plan for the interpreter's architecture and functionality. This phase involved outlining the grammar rules of the WLang language in EBNF, defining the tokenization and parsing processes, creating the AST structure, and designing the execution flow. The plan also included breaking down the project into smaller manageable tasks and establishing a roadmap for development.
 
 5. Writing the Code:
-   - [ ] With a plan in place, the implementation phase began. This step includes implementing lexing and parsing functions to tokenize the input code and construct the AST. Additionally, coding the interpreter requires defining execution logic for interpreting the AST nodes and executing the WLang code according to its defined grammar rules.
+   - [x] With a plan in place, the implementation phase began. This step includes implementing lexing and parsing functions to tokenize the input code and construct the AST. Additionally, coding the interpreter requires defining execution logic for interpreting the AST nodes and executing the WLang code according to its defined grammar rules.
 
-7. Testing and Debugging:
+7. Testing, bug fixing and implementing missing features:
    - [ ] Throughout the coding phase, rigorous testing and debugging will be essential. This involves creating test cases to validate the interpreter's functionality, identifying and resolving bugs, and refining the code for optimal performance and correctness.
 
 9. Iterative Development:
