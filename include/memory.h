@@ -7,6 +7,7 @@ typedef struct
     char *type;
     ASTNode *params;
     ASTNode *value;
+    ASTNode *return_value;
 } Variable;
 
 typedef struct

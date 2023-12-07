@@ -30,11 +30,11 @@ int main(void)
 
     // printf("\nLEXER \n");
     // print_tokens(tokens, num_tokens);
-    printf("\nParser \n");
+    // printf("\nParser \n");
     ASTNode *ASTree = parse_program(&tokens);
-    print_ASTree(ASTree, 0);
+    // print_ASTree(ASTree, 0);
 
-    printf("\nInterpreter \n");
+    // printf("\nInterpreter \n");
     ScopeStack memoryStack;
     init_ScopeStack(&memoryStack, 500);
     push_scope(&memoryStack, 2000);
