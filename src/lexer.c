@@ -33,7 +33,8 @@ Token *lexer(const char *input_text, int *num_tokens)
                 ++input_text;
             }
         }
-
+        if (*input_text == '\0')
+            break;
         // Handle letters only tokens
         if (isalpha(*input_text))
         {
