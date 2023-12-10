@@ -1,6 +1,9 @@
 # Set library directory
 set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 
+# Set test dir
+set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
+
 # Set Unity source files
 set(UNITY_SOURCES
     ${LIB_DIR}/Unity/unity.c
@@ -11,27 +14,67 @@ set(UNITY_SOURCES
 # Add the Unity source files to your project
 add_library(unity STATIC ${UNITY_SOURCES})
 
+
 # Set test source files
-set(TEST_SOURCES
-    test1.c
+set(LEXER_TEST_SOURCES
+    ${TEST_DIR}/lexer_test/sample.c
+)
+
+set(PARSER_TEST_SOURCES
+    ${TEST_DIR}/parser_test/sample.c
+)
+
+set(INTERPRETER_TEST_SOURCES
+    ${TEST_DIR}/interpreter_test/sample.c
+)
+
+set(UTILS_TEST_SOURCES
+    ${TEST_DIR}/utils_test/sample.c
 )
 
 # Add an executable for tests
-add_executable(test_executable ${TEST_SOURCES})
+add_executable(test_lexer ${LEXER_TEST_SOURCES})
+add_executable(test_parser ${PARSER_TEST_SOURCES})
+add_executable(test_interpreter ${INTERPRETER_TEST_SOURCES})
+add_executable(test_utils ${UTILS_TEST_SOURCES})
 
 # Include directories for tests
-target_include_directories(test_executable PRIVATE ${LIB_DIR}/Unity)
+target_include_directories(test_lexer PRIVATE ${LIB_DIR}/Unity)
+target_include_directories(test_parser PRIVATE ${LIB_DIR}/Unity)
+target_include_directories(test_interpreter PRIVATE ${LIB_DIR}/Unity)
+target_include_directories(test_utils PRIVATE ${LIB_DIR}/Unity)
 
 # Link Unity library with test executable
-target_link_libraries(test_executable PRIVATE unity)
+target_link_libraries(test_lexer PRIVATE unity)
+target_link_libraries(test_parser PRIVATE unity)
+target_link_libraries(test_interpreter PRIVATE unity)
+target_link_libraries(test_utils PRIVATE unity)
 
 # Optionally, set output directories for test files
-set_target_properties(test_executable PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj
+set_target_properties(test_lexer PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lexer/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lexer/obj
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lexer/obj
+)
+set_target_properties(test_parser PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/parser/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/parser/obj
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/parser/obj
+)
+set_target_properties(test_interpreter PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/interpreter/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/interpreter/obj
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/interpreter/obj
+)
+set_target_properties(test_utils PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils/obj
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils/obj
 )
 
 # Add tests
 enable_testing()
-add_test(NAME my_tests COMMAND test_executable)
+add_test(NAME lexer COMMAND test_lexer)
+add_test(NAME parser COMMAND test_parser)
+add_test(NAME interpreter COMMAND test_interpreter)
+add_test(NAME utils COMMAND test_utils)
