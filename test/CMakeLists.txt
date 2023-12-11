@@ -30,6 +30,7 @@ set(LEXER_TEST_SOURCES
     ${SOURCE_DIR}/lexer.c
     ${TEST_DIR}/lexer_test/src/lexer_edge_cases.c
     ${TEST_DIR}/lexer_test/src/lexer_tokens.c
+    ${TEST_DIR}/lexer_test/src/lexer_common_combinations.c
 )
 
 set(PARSER_TEST_SOURCES

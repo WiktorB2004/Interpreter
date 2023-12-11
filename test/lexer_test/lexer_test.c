@@ -28,5 +28,12 @@ int main(void)
     RUN_TEST(tokens_keywords);
     RUN_TEST(tokens_operators);
     RUN_TEST(tokens_special);
+    // Common combinations
+    RUN_TEST(variable_declaration);
+    RUN_TEST(variable_assignment);
+    RUN_TEST(function_declaration);
+    RUN_TEST(while_loop);
+    RUN_TEST(conditional_statement);
+    RUN_TEST(expression);
     return UNITY_END();
 }

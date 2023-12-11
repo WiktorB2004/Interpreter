@@ -105,27 +105,27 @@ Token *lexer(const char *input_text, int *num_tokens)
             {
             case '{':
                 tokens[*num_tokens].type = O_BRACKET;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "{");
                 break;
             case '}':
                 tokens[*num_tokens].type = C_BRACKET;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "}");
                 break;
             case '[':
                 tokens[*num_tokens].type = LIST_B;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "[");
                 break;
             case ']':
                 tokens[*num_tokens].type = LIST_E;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "]");
                 break;
             case '(':
                 tokens[*num_tokens].type = O_PAREN;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "(");
                 break;
             case ')':
                 tokens[*num_tokens].type = C_PAREN;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, ")");
                 break;
             default:
                 break;

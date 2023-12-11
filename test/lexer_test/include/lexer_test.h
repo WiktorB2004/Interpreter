@@ -12,3 +12,10 @@ void tokens_t_val(void);
 void tokens_keywords(void);
 void tokens_operators(void);
 void tokens_special(void);
+// Common combinations
+void variable_declaration(void);
+void variable_assignment(void);
+void function_declaration(void);
+void while_loop(void);
+void conditional_statement(void);
+void expression(void);
