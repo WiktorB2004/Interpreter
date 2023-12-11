@@ -1,8 +1,12 @@
-# Set library directory
+# Set directory shortcuts
+set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
+set(UTILS_DIR ${CMAKE_SOURCE_DIR}/utils)
 set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
-
-# Set test dir
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+
+# Include main header files
+include_directories(${INCLUDE_DIR})
 
 # Set Unity source files
 set(UNITY_SOURCES
@@ -14,35 +18,55 @@ set(UNITY_SOURCES
 # Add the Unity source files to your project
 add_library(unity STATIC ${UNITY_SOURCES})
 
+# Link each test suite header files
+include_directories(${TEST_DIR}/lexer_test/include)
+include_directories(${TEST_DIR}/parser_test/include)
+include_directories(${TEST_DIR}/interpreter_test/include)
+include_directories(${TEST_DIR}/utils_test/include)
 
-# Set test source files
+# Set all test suites source files
 set(LEXER_TEST_SOURCES
-    ${TEST_DIR}/lexer_test/sample.c
+    ${UTILS_DIR}/lexer_utils.c
+    ${SOURCE_DIR}/lexer.c
+    ${TEST_DIR}/lexer_test/src/lexer_edge_cases.c
+    ${TEST_DIR}/lexer_test/src/lexer_tokens.c
 )
 
 set(PARSER_TEST_SOURCES
-    ${TEST_DIR}/parser_test/sample.c
+    ${SOURCE_DIR}/parser.c
+    ${UTILS_DIR}/ASTNode_Stack.c
+    ${TEST_DIR}/parser_test/src/parser_edge_cases.c
 )
 
 set(INTERPRETER_TEST_SOURCES
-    ${TEST_DIR}/interpreter_test/sample.c
+    ${UTILS_DIR}/ASTNode_Stack.c
+    ${UTILS_DIR}/expression_eval.c
+    ${UTILS_DIR}/memory.c
+    ${SOURCE_DIR}/parser.c
+    ${SOURCE_DIR}/interpreter.c
+    ${TEST_DIR}/interpreter_test/src/interpreter_edge_cases.c
 )
 
 set(UTILS_TEST_SOURCES
-    ${TEST_DIR}/utils_test/sample.c
+    ${SOURCE_DIR}/lexer.c
+    ${SOURCE_DIR}/parser.c
+    ${SOURCE_DIR}/interpreter.c
+    ${UTILS_DIR}/ASTNode_Stack.c
+    ${UTILS_DIR}/load_code.c
+    ${UTILS_DIR}/lexer_utils.c
+    ${UTILS_DIR}/expression_eval.c
+    ${UTILS_DIR}/memory.c
+    ${TEST_DIR}/utils_test/src/utils_edge_cases.c
 )
 
-# Add an executable for tests
-add_executable(test_lexer ${LEXER_TEST_SOURCES})
-add_executable(test_parser ${PARSER_TEST_SOURCES})
-add_executable(test_interpreter ${INTERPRETER_TEST_SOURCES})
-add_executable(test_utils ${UTILS_TEST_SOURCES})
+# Include Unity
+include_directories(${LIB_DIR}/Unity)
 
-# Include directories for tests
-target_include_directories(test_lexer PRIVATE ${LIB_DIR}/Unity)
-target_include_directories(test_parser PRIVATE ${LIB_DIR}/Unity)
-target_include_directories(test_interpreter PRIVATE ${LIB_DIR}/Unity)
-target_include_directories(test_utils PRIVATE ${LIB_DIR}/Unity)
+# Add an executable for tests
+add_executable(test_lexer ${TEST_DIR}/lexer_test/lexer_test.c ${LEXER_TEST_SOURCES})
+add_executable(test_parser ${TEST_DIR}/parser_test/parser_test.c ${PARSER_TEST_SOURCES})
+add_executable(test_interpreter ${TEST_DIR}/interpreter_test/interpreter_test.c ${INTERPRETER_TEST_SOURCES})
+add_executable(test_utils ${TEST_DIR}/utils_test/utils_test.c ${UTILS_TEST_SOURCES})
 
 # Link Unity library with test executable
 target_link_libraries(test_lexer PRIVATE unity)
