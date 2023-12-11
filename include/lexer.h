@@ -32,11 +32,5 @@ typedef struct
     char value[80];
 } Token;
 
-int is_valid_char_token(char ch);
-int get_text_value(char ch);
-int is_bracket(char ch);
-int is_operator(char ch);
-int is_string_in_list(const char *target, const char *list[], int listSize);
-
 Token *lexer(const char *input_text, int *num_tokens);
 void print_tokens(Token *tokens, int num_tokens);
