@@ -64,5 +64,4 @@ ASTNode *create_print_statement(ASTNode *expression);
 ASTNode *create_if_statement(ASTNode *condition, ASTNode *if_body, ASTNode *else_body);
 ASTNode *create_while_loop(ASTNode *condition, ASTNode *loop_body);
 ASTNode *create_function_declaration(const char *name, const char *return_type, ASTNode *parameter_list, ASTNode *function_body);
-ASTNode *generate_expressionTree(ASTNode *expression);
 ASTNode *parse_program(Token **tokens);
