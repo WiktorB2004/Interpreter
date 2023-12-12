@@ -3,8 +3,6 @@
 #include "../include/lexer_test.h"
 #include "../../include/lexer.h"
 
-// FIXME: Create test groups instead of executing multiple tests inside one test case
-
 void tokens_id(void)
 {
     int num_tokens;
@@ -40,12 +38,14 @@ void tokens_val(void)
     TEST_ASSERT_EQUAL_INT(VAL, output[3].type);
     TEST_ASSERT_EQUAL_STRING("123", output[3].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[4].type);
+    TEST_MESSAGE("int val_1 = 123 -> ok");
     // Variable assignment
     char *input2 = "val2 = -52";
     output = lexer(input2, &num_tokens);
     TEST_ASSERT_EQUAL_INT(VAL, output[2].type);
     TEST_ASSERT_EQUAL_STRING("-52", output[2].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[3].type);
+    TEST_MESSAGE("val2 = -52 -> ok");
     char *input3 = "val2 = 1.5";
     output = lexer(input3, &num_tokens);
     TEST_ASSERT_EQUAL_INT(VAL, output[2].type);
@@ -63,22 +63,26 @@ void tokens_t_val(void)
     TEST_ASSERT_EQUAL_INT(T_VAL, output[3].type);
     TEST_ASSERT_EQUAL_STRING("\"hello World 123 \"", output[3].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[4].type);
+    TEST_MESSAGE("int val_1 = \"hello World 123 \" -> ok");
     // Variable assignment
     char *input2 = "val2 = \"-52\"";
     output = lexer(input2, &num_tokens);
     TEST_ASSERT_EQUAL_INT(T_VAL, output[2].type);
     TEST_ASSERT_EQUAL_STRING("\"-52\"", output[2].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[3].type);
+    TEST_MESSAGE("val2 = \"-52\" -> ok");
     char *input3 = "val3 = \"1.5\"";
     output = lexer(input3, &num_tokens);
     TEST_ASSERT_EQUAL_INT(T_VAL, output[2].type);
     TEST_ASSERT_EQUAL_STRING("\"1.5\"", output[2].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[3].type);
+    TEST_MESSAGE("val3 = \"1.5\" -> ok");
     char *input4 = "val4 = \".,?!@#$%^&*()-_+=;:<>/\\|[]{}~\"";
     output = lexer(input4, &num_tokens);
     TEST_ASSERT_EQUAL_INT(T_VAL, output[2].type);
     TEST_ASSERT_EQUAL_STRING("\".,?!@#$%^&*()-_+=;:<>/\\|[]{}~\"", output[2].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[3].type);
+    TEST_MESSAGE("Special characters -> ok");
     free(output);
 }
 
@@ -115,6 +119,7 @@ void tokens_operators(void)
     TEST_ASSERT_EQUAL_STRING("/", output[2].value);
     TEST_ASSERT_EQUAL_STRING("*", output[3].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Arithmetic -> ok");
     // RELATIONAL
     char *input2 = "> >= < <= == !=";
     output = lexer(input2, &num_tokens);
@@ -129,6 +134,7 @@ void tokens_operators(void)
     TEST_ASSERT_EQUAL_STRING("==", output[4].value);
     TEST_ASSERT_EQUAL_STRING("!=", output[5].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Relational -> ok");
     // LOGIC
     char *input3 = "&& ||";
     output = lexer(input3, &num_tokens);
@@ -137,6 +143,7 @@ void tokens_operators(void)
     TEST_ASSERT_EQUAL_INT(LOGIC_OP, output[1].type);
     TEST_ASSERT_EQUAL_STRING("||", output[1].value);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Logic -> ok");
     free(output);
 }
 

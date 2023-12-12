@@ -20,6 +20,7 @@ int main(void)
     RUN_TEST(whitespace_input);
     RUN_TEST(newline_input);
     RUN_TEST(mixed_edge_cases);
+    TEST_MESSAGE("Lexer Edge Cases -> ok");
     // Tokens
     RUN_TEST(tokens_id);
     RUN_TEST(tokens_v_type);
@@ -28,6 +29,7 @@ int main(void)
     RUN_TEST(tokens_keywords);
     RUN_TEST(tokens_operators);
     RUN_TEST(tokens_special);
+    TEST_MESSAGE("Lexer Tokens -> ok");
     // Common combinations
     RUN_TEST(variable_declaration);
     RUN_TEST(variable_assignment);
@@ -35,5 +37,6 @@ int main(void)
     RUN_TEST(while_loop);
     RUN_TEST(conditional_statement);
     RUN_TEST(expression);
+    TEST_MESSAGE("Lexer Common Cominations -> ok");
     return UNITY_END();
 }

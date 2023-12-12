@@ -3,8 +3,6 @@
 #include "../include/lexer_test.h"
 #include "../../include/lexer.h"
 
-// FIXME: Create test groups instead of executing multiple tests inside one test case
-
 void variable_declaration(void)
 {
     int num_tokens;
@@ -23,6 +21,7 @@ void variable_declaration(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Negative float case-> ok");
     char *input2 = "string str = \"Hello World!\";";
     output = lexer(input2, &num_tokens);
     // Types
@@ -38,6 +37,7 @@ void variable_declaration(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Hello world string-> ok");
     char *input3 = "char chr = \'c\';";
     output = lexer(input3, &num_tokens);
     // Types
@@ -53,6 +53,7 @@ void variable_declaration(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Single char-> ok");
     char *input4 = "int num2 = num1;";
     output = lexer(input4, &num_tokens);
     // Types
@@ -68,6 +69,7 @@ void variable_declaration(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Variable as value-> ok");
     free(output);
 }
 
@@ -87,6 +89,7 @@ void variable_assignment(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Netative float-> ok");
     char *input2 = "str = \"Hello World!\";";
     output = lexer(input2, &num_tokens);
     // Types
@@ -100,6 +103,7 @@ void variable_assignment(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Hello world string-> ok");
     char *input3 = "chr = \'c\';";
     output = lexer(input3, &num_tokens);
     // Types
@@ -113,6 +117,7 @@ void variable_assignment(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("Single char-> ok");
     free(output);
 }
 
@@ -259,6 +264,7 @@ void expression(void)
     TEST_ASSERT_EQUAL_STRING(")", output[8].value);
 
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("1 + num1 * (5 + 8) expression-> ok");
     char *input2 = "-5 + test > 38 * word";
     output = lexer(input2, &num_tokens);
     // Types
@@ -279,6 +285,7 @@ void expression(void)
     TEST_ASSERT_EQUAL_STRING("word", output[6].value);
 
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("-5 + test > 38 * word expression-> ok");
     char *input3 = "(-5 > hello || 2 + 2 == 4) && 5 != 3";
     output = lexer(input3, &num_tokens);
     // Types
@@ -315,5 +322,6 @@ void expression(void)
     TEST_ASSERT_EQUAL_STRING("3", output[14].value);
 
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("(-5 > hello || 2 + 2 == 4) && 5 != 3 expression-> ok");
     free(output);
 }
