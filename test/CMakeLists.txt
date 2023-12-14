@@ -34,9 +34,12 @@ set(LEXER_TEST_SOURCES
 )
 
 set(PARSER_TEST_SOURCES
+    ${UTILS_DIR}/lexer_utils.c
+    ${SOURCE_DIR}/lexer.c
     ${SOURCE_DIR}/parser.c
     ${UTILS_DIR}/ASTNode_Stack.c
     ${TEST_DIR}/parser_test/src/parser_edge_cases.c
+    ${TEST_DIR}/parser_test/src/parser_common_combinations.c
 )
 
 set(INTERPRETER_TEST_SOURCES

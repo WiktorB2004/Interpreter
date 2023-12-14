@@ -3,6 +3,7 @@
 // FIXME: Refactor the code
 // FIXME: Replace constant constraints (like maximum SymbolTable size)
 // FIXME: Include only needed functions in header files, "optimize" file structure
+// FIXME: Create error handler which will print the message and exit if not in testing_mode -> Then test the erorr handling
 // BUG: Parsing the return statements (just number not ID's)
 
 #include <stdio.h>

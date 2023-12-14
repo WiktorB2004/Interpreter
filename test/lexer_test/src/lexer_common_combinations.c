@@ -3,6 +3,8 @@
 #include "../include/lexer_test.h"
 #include "../../include/lexer.h"
 
+// FIXME: Instead of using inputNUM overwrite one single input char*
+
 void variable_declaration(void)
 {
     int num_tokens;
@@ -69,7 +71,35 @@ void variable_declaration(void)
 
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
-    TEST_MESSAGE("Variable as value-> ok");
+    TEST_MESSAGE("Variable as value -> ok");
+    char *input5 = "int num2 = [1, 2, 3];";
+    output = lexer(input5, &num_tokens);
+    // Types
+    TEST_ASSERT_EQUAL_INT(V_TYPE, output[0].type);
+    TEST_ASSERT_EQUAL_INT(ID, output[1].type);
+    TEST_ASSERT_EQUAL_INT(ASSIGN, output[2].type);
+    TEST_ASSERT_EQUAL_INT(LIST_B, output[3].type);
+    TEST_ASSERT_EQUAL_INT(VAL, output[4].type);
+    TEST_ASSERT_EQUAL_INT(COMMA, output[5].type);
+    TEST_ASSERT_EQUAL_INT(VAL, output[6].type);
+    TEST_ASSERT_EQUAL_INT(COMMA, output[7].type);
+    TEST_ASSERT_EQUAL_INT(VAL, output[8].type);
+    TEST_ASSERT_EQUAL_INT(LIST_E, output[9].type);
+    // Values
+    TEST_ASSERT_EQUAL_STRING("int", output[0].value);
+    TEST_ASSERT_EQUAL_STRING("num2", output[1].value);
+    TEST_ASSERT_EQUAL_STRING("=", output[2].value);
+    TEST_ASSERT_EQUAL_STRING("[", output[3].value);
+    TEST_ASSERT_EQUAL_STRING("1", output[4].value);
+    TEST_ASSERT_EQUAL_STRING(",", output[5].value);
+    TEST_ASSERT_EQUAL_STRING("2", output[6].value);
+    TEST_ASSERT_EQUAL_STRING(",", output[7].value);
+    TEST_ASSERT_EQUAL_STRING("3", output[8].value);
+    TEST_ASSERT_EQUAL_STRING("]", output[9].value);
+
+    TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
+    TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("List variable declaration -> ok");
     free(output);
 }
 
@@ -118,6 +148,32 @@ void variable_assignment(void)
     TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
     TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
     TEST_MESSAGE("Single char-> ok");
+    char *input4 = "num2 = [1, 2, 3];";
+    output = lexer(input4, &num_tokens);
+    // Types
+    TEST_ASSERT_EQUAL_INT(ID, output[0].type);
+    TEST_ASSERT_EQUAL_INT(ASSIGN, output[1].type);
+    TEST_ASSERT_EQUAL_INT(LIST_B, output[2].type);
+    TEST_ASSERT_EQUAL_INT(VAL, output[3].type);
+    TEST_ASSERT_EQUAL_INT(COMMA, output[4].type);
+    TEST_ASSERT_EQUAL_INT(VAL, output[5].type);
+    TEST_ASSERT_EQUAL_INT(COMMA, output[6].type);
+    TEST_ASSERT_EQUAL_INT(VAL, output[7].type);
+    TEST_ASSERT_EQUAL_INT(LIST_E, output[8].type);
+    // Values
+    TEST_ASSERT_EQUAL_STRING("num2", output[0].value);
+    TEST_ASSERT_EQUAL_STRING("=", output[1].value);
+    TEST_ASSERT_EQUAL_STRING("[", output[2].value);
+    TEST_ASSERT_EQUAL_STRING("1", output[3].value);
+    TEST_ASSERT_EQUAL_STRING(",", output[4].value);
+    TEST_ASSERT_EQUAL_STRING("2", output[5].value);
+    TEST_ASSERT_EQUAL_STRING(",", output[6].value);
+    TEST_ASSERT_EQUAL_STRING("3", output[7].value);
+    TEST_ASSERT_EQUAL_STRING("]", output[8].value);
+
+    TEST_ASSERT_EQUAL_INT(SEMI, output[num_tokens - 2].type);
+    TEST_ASSERT_EQUAL_INT(TOKEN_EOF, output[num_tokens - 1].type);
+    TEST_MESSAGE("List variable declaration -> ok");
     free(output);
 }
 
