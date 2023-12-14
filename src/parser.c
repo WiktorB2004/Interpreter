@@ -1003,5 +1003,11 @@ ASTNode *parse_program(Token **tokens)
         }
         *token++;
     }
+    if (token->type != TOKEN_EOF)
+    {
+        fprintf(stderr, "Parser couldnt reach end of file\n");
+        exit(EXIT_FAILURE);
+    }
+    add_child(root, create_ASTNode(NODE_EOF, "EOF"));
     return root;
 }

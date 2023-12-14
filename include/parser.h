@@ -33,7 +33,9 @@ typedef enum
     NODE_PARAMETERS, // 21 Helper node to handle function parameters
     NODE_RETURN,     // 22 Helper node to handle function return
     NODE_FUNC_CALL,  // 23 Helper node to handle function calls
-    NODE_V_DEF       // 24 Helper node to handle variable definition
+    NODE_V_DEF,      // 24 Helper node to handle variable definition
+    NODE_EOF,        // 25 EOF node used to stop interpreting as success
+    NODE_ERROR       // 26 Error node used to help with testing syntax errors
 } NodeType;
 
 // Define the ASTNode structure
