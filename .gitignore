@@ -2,4 +2,4 @@ a.out
 /build
 **/bin
 /obj
-.vscode
+/.vscode
