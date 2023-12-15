@@ -40,6 +40,8 @@ set(PARSER_TEST_SOURCES
     ${UTILS_DIR}/ASTNode_Stack.c
     ${TEST_DIR}/parser_test/src/parser_edge_cases.c
     ${TEST_DIR}/parser_test/src/parser_common_combinations.c
+    ${TEST_DIR}/parser_test/src/parser_expressions.c
+    ${TEST_DIR}/parser_test/src/parser_scopes.c
 )
 
 set(INTERPRETER_TEST_SOURCES

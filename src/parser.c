@@ -934,7 +934,7 @@ ASTNode *parse_program(Token **tokens)
             }
             else if (token->type == O_BRACKET)
             {
-                if (strcmp(parent_node->value, "Function_Body") == 0)
+                if (strcmp(parent_node->value, "Function_Body") == 0 || strcmp(parent_node->value, "User_Scope") == 0)
                 {
                     ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
                 }
