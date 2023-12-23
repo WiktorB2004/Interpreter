@@ -1,6 +1,6 @@
 // TODO(#5): Test and upgrade
 // TODO(#11): Create erorr handling module
-// TODO: Improve memory handling
+// TODO(#12): Improve memory handling
 
 // FIXME: Refactor the code
 // FIXME: Replace constant constraints (like maximum SymbolTable size)
