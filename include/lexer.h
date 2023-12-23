@@ -1,6 +1,5 @@
 #pragma once
 
-// FIXME: Move structs into separate file
 typedef enum
 {
     ID,            // 0 Identifier (variable name)

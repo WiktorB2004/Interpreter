@@ -78,7 +78,7 @@ Variable *find_variable(ScopeStack *stack, const char *name)
         }
     }
     printf("Variable '%s' not found\n", name);
-    exit(EXIT_FAILURE);
+    return NULL;
 }
 
 void modify_variable_value(ScopeStack *memory, char *name, ASTNode *value_node)

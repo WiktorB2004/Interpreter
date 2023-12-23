@@ -62,7 +62,8 @@ set(UTILS_TEST_SOURCES
     ${UTILS_DIR}/lexer_utils.c
     ${UTILS_DIR}/expression_eval.c
     ${UTILS_DIR}/memory.c
-    ${TEST_DIR}/utils_test/src/utils_edge_cases.c
+    ${TEST_DIR}/utils_test/src/expression_eval.c
+    ${TEST_DIR}/utils_test/src/memory.c
 )
 
 # Include Unity

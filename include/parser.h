@@ -4,8 +4,6 @@
 #include <string.h>
 #include "lexer.h"
 
-// FIXME: Move structs into separate file
-
 // Token types
 typedef enum
 {

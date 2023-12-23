@@ -22,7 +22,7 @@ void empty_input(void)
     TEST_ASSERT_EQUAL_INT(NODE_EOF, output[0].children[0]->type);
 }
 
-// FIXME: Have to create error handler and then implement syntax erorrs handler
+// FIXME: Create error handler and then implement syntax erorrs handler
 void syntax_errors(void)
 {
     input = "";

@@ -35,13 +35,18 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
     case NODE_V_TYPE:
     case NODE_LIST_B:
         return node;
-    case NODE_EXPRESSION:
-        if (node->children_num == 1)
-        {
-            return node->children[0];
-        }
+    case NODE_EXPRESSION:;
         ASTNode *postfix_epxression = infix_to_postfix(node->children, node->children_num, memory);
-        return evaluate_expression(postfix_epxression);
+        value = evaluate_expression(postfix_epxression);
+        if (value->type == NODE_VAL)
+        {
+            return value;
+        }
+        else
+        {
+            printf("Expression evaluation error: %s\n", value->value);
+            exit(EXIT_FAILURE);
+        }
         break;
     // SECTION: Functions
     case NODE_SCOPE:
@@ -51,7 +56,6 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             type = node->children[1];
             params = node->children[2];
             value = node->children[3];
-            // FIXME: Save function as ASTNode so when called it will pass the f_body and params
             add_variable(memory, type->value, name->value, value, params);
         }
         else if (strcmp(node->value, "While_Loop") == 0)
@@ -118,8 +122,7 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
                 printf("%s\n", value->value);
                 break;
             case NODE_EXPRESSION:;
-                ASTNode *postfix_epxression = infix_to_postfix(value->children, value->children_num, memory);
-                result = evaluate_expression(postfix_epxression);
+                result = evaluate(value, memory);
                 printf("%s\n", result->value);
                 break;
             case NODE_FUNC_CALL:

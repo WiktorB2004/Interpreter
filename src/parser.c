@@ -3,9 +3,7 @@
 #include "../include/parser.h"
 #include "../include/utils/ASTNode_Stack.h"
 
-// FIXME: Reafactor the code - move logic into prepared functions
-// FIXME: Test the code - write automated test cases for parser and lexer + create good/bad example files
-// FIXME: Comment the code and document the logic
+// FIXME: Move parser logic into prepared functions
 
 // Function to print AST
 void print_ASTree(ASTNode *root, int depth)
@@ -546,7 +544,6 @@ ASTNode *parse_program(Token **tokens)
                     ASTNodeStack_push(root_stack, scope);
                     ASTNodeStack_push(root_stack, function_body);
                 }
-                // FIXME: Make it handle funtion return value print
                 else if (strcmp(token->value, "PRINT") == 0)
                 {
                     ASTNode *print_statement = create_ASTNode(NODE_KEYWORD, "Print");

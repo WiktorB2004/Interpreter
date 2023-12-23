@@ -5,10 +5,6 @@
 #include "../include/lexer.h"
 #include "../include/utils/lexer_utils.h"
 
-// FIXME: Reafactor the code
-// FIXME: Test the code - write automated test cases for parser and lexer
-// FIXME: Comment the code and document the logic
-
 // Lexer function
 Token *lexer(const char *input_text, int *num_tokens)
 {

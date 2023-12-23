@@ -15,7 +15,11 @@ void tearDown(void)
 int main(void)
 {
     UNITY_BEGIN();
-    // Edge cases
-    RUN_TEST(test_sample);
+    // Expression evaluation
+    RUN_TEST(expression_edge_cases);
+    RUN_TEST(int_expression_eval);
+    RUN_TEST(float_expression_eval);
+    // Memory handling
+    RUN_TEST(memory_manipulation);
     return UNITY_END();
 }
