@@ -1,5 +1,5 @@
 // TODO(#5): Test and upgrade
-// TODO: Create erorr handling module
+// TODO(#11): Create erorr handling module
 // TODO: Improve memory handling
 
 // FIXME: Refactor the code
