@@ -11,7 +11,6 @@ About: The project involved the creation of a custom language interpreter for WL
 ```
 git clone https://github.com/WiktorB2004/WLang_interpreter-C.git
 cd WLang_interpreter-C/
-cmake configure
 mkdir build
 cd build
 cmake ..
@@ -25,19 +24,19 @@ cd ..
 The development process consisted of several key phases, each contributing to the successful implementation of the interpreter.
 
 1. Understanding Interpreter Architecture:
-   - [x] Initially, the project required a comprehensive understanding of interpreter architecture. This involved studying the theoretical foundations of interpreters, parsing techniques, lexing, abstract syntax trees (ASTs), tokenization, and interpreting code execution flow. This phase involved learning a lot from online resources.
+   - Initially, the project required a comprehensive understanding of interpreter architecture. This involved studying the theoretical foundations of interpreters, parsing techniques, lexing, abstract syntax trees (ASTs), tokenization, and interpreting code execution flow. This phase involved learning a lot from online resources.
 
 3. Planning and Designing the Interpreter:
-   - [x] Once the foundational knowledge was acquired, the next step was to devise an overall plan for the interpreter's architecture and functionality. This phase involved outlining the grammar rules of the WLang language in EBNF, defining the tokenization and parsing processes, creating the AST structure, and designing the execution flow. The plan also included breaking down the project into smaller manageable tasks and establishing a roadmap for development.
+   - Once the foundational knowledge was acquired, the next step was to devise an overall plan for the interpreter's architecture and functionality. This phase involved outlining the grammar rules of the WLang language in EBNF, defining the tokenization and parsing processes, creating the AST structure, and designing the execution flow. The plan also included breaking down the project into smaller manageable tasks and establishing a roadmap for development.
 
 5. Writing the Code:
-   - [x] With a plan in place, the implementation phase began. This step includes implementing lexing and parsing functions to tokenize the input code and construct the AST. Additionally, coding the interpreter requires defining execution logic for interpreting the AST nodes and executing the WLang code according to its defined grammar rules.
+   - With a plan in place, the implementation phase began. This step includes implementing lexing and parsing functions to tokenize the input code and construct the AST. Additionally, coding the interpreter requires defining execution logic for interpreting the AST nodes and executing the WLang code according to its defined grammar rules.
 
 7. Testing, bug fixing and implementing missing features:
-   - [ ] Throughout the coding phase, rigorous testing and debugging will be essential. This involves creating test cases to validate the interpreter's functionality, identifying and resolving bugs, and refining the code for optimal performance and correctness.
+   - Throughout the coding phase, rigorous testing and debugging will be essential. This involves creating test cases to validate the interpreter's functionality, identifying and resolving bugs, and refining the code for optimal performance and correctness.
 
 9. Iterative Development:
-    - [ ] The process of building the interpreter is planned to be iterative, requiring continuous refinement and enhancement. This involves revisiting the codebase to optimize performance, add new features, handle edge cases, and improve the interpreter's overall robustness.
+   - The process of building the interpreter is planned to be iterative, requiring continuous refinement and enhancement. This involves revisiting the codebase to optimize performance, add new features, handle edge cases, and improve the interpreter's overall robustness.
 
 ### Summary
 
