@@ -4,8 +4,6 @@
 #include <string.h>
 #include "lexer.h"
 
-// FIXME: Move structs into separate file
-
 // Token types
 typedef enum
 {
@@ -33,7 +31,9 @@ typedef enum
     NODE_PARAMETERS, // 21 Helper node to handle function parameters
     NODE_RETURN,     // 22 Helper node to handle function return
     NODE_FUNC_CALL,  // 23 Helper node to handle function calls
-    NODE_V_DEF       // 24 Helper node to handle variable definition
+    NODE_V_DEF,      // 24 Helper node to handle variable definition
+    NODE_EOF,        // 25 EOF node used to stop interpreting as success
+    NODE_ERROR       // 26 Error node used to help with testing syntax errors
 } NodeType;
 
 // Define the ASTNode structure
@@ -64,5 +64,4 @@ ASTNode *create_print_statement(ASTNode *expression);
 ASTNode *create_if_statement(ASTNode *condition, ASTNode *if_body, ASTNode *else_body);
 ASTNode *create_while_loop(ASTNode *condition, ASTNode *loop_body);
 ASTNode *create_function_declaration(const char *name, const char *return_type, ASTNode *parameter_list, ASTNode *function_body);
-ASTNode *generate_expressionTree(ASTNode *expression);
 ASTNode *parse_program(Token **tokens);

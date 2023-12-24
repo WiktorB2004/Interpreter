@@ -5,10 +5,6 @@
 #include "../include/lexer.h"
 #include "../include/utils/lexer_utils.h"
 
-// FIXME: Reafactor the code
-// FIXME: Test the code - write automated test cases for parser and lexer
-// FIXME: Comment the code and document the logic
-
 // Lexer function
 Token *lexer(const char *input_text, int *num_tokens)
 {
@@ -105,27 +101,27 @@ Token *lexer(const char *input_text, int *num_tokens)
             {
             case '{':
                 tokens[*num_tokens].type = O_BRACKET;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "{");
                 break;
             case '}':
                 tokens[*num_tokens].type = C_BRACKET;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "}");
                 break;
             case '[':
                 tokens[*num_tokens].type = LIST_B;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "[");
                 break;
             case ']':
                 tokens[*num_tokens].type = LIST_E;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "]");
                 break;
             case '(':
                 tokens[*num_tokens].type = O_PAREN;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, "(");
                 break;
             case ')':
                 tokens[*num_tokens].type = C_PAREN;
-                memcpy(tokens[*num_tokens].value, input_text, 1);
+                strcpy(tokens[*num_tokens].value, ")");
                 break;
             default:
                 break;
@@ -133,22 +129,36 @@ Token *lexer(const char *input_text, int *num_tokens)
             *input_text++;
             (*num_tokens)++;
         }
-        // Handle - and -> (ARITH_OP, R_TYPE)
+        // Handle -, -> and negative numbers (ARITH_OP, R_TYPE)
         else if (*input_text == '-')
         {
             tokens[*num_tokens].value[0] = *input_text++;
             if (*input_text == '>')
             {
                 tokens[*num_tokens].type = R_TYPE;
-                tokens[*num_tokens].value[1] = '>';
-                tokens[*num_tokens].value[2] = '\0';
+                strcpy(tokens[*num_tokens].value, "->");
+                *input_text++;
+            }
+            else if (isdigit(*input_text))
+            {
+                char buffer[80];
+                buffer[0] = '-';
+                int i = 1;
+                while (isdigit(*input_text) || *input_text == '.')
+                {
+                    buffer[i++] = *input_text++;
+                }
+                buffer[i] = '\0';
+
+                tokens[*num_tokens].type = VAL;
+                strcpy(tokens[*num_tokens].value, buffer);
             }
             else
             {
                 tokens[*num_tokens].type = ARITH_OP;
-                tokens[*num_tokens].value[1] = '\0';
+                strcpy(tokens[*num_tokens].value, "-");
+                *input_text++;
             }
-            *input_text++;
             (*num_tokens)++;
         }
 

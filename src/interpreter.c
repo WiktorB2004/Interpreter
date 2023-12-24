@@ -6,12 +6,13 @@
 
 ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
 {
-    if (node == NULL)
+    if (node->children_num > 0 && node->children[0]->type == NODE_EOF)
     {
         return NULL;
     }
 
     ASTNode *type, *name, *value, *value2, *params;
+    Variable *param, *var, *var2, *function;
     switch (node->type)
     {
     // SECTION: Variables
@@ -35,13 +36,18 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
     case NODE_V_TYPE:
     case NODE_LIST_B:
         return node;
-    case NODE_EXPRESSION:
-        if (node->children_num == 1)
-        {
-            return node->children[0];
-        }
+    case NODE_EXPRESSION:;
         ASTNode *postfix_epxression = infix_to_postfix(node->children, node->children_num, memory);
-        return evaluate_expression(postfix_epxression);
+        value = evaluate_expression(postfix_epxression);
+        if (value->type == NODE_VAL || value->type == NODE_T_VAL)
+        {
+            return value;
+        }
+        else
+        {
+            printf("Expression evaluation error: %s\n", value->value);
+            exit(EXIT_FAILURE);
+        }
         break;
     // SECTION: Functions
     case NODE_SCOPE:
@@ -51,12 +57,10 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             type = node->children[1];
             params = node->children[2];
             value = node->children[3];
-            // FIXME: Save function as ASTNode so when called it will pass the f_body and params
             add_variable(memory, type->value, name->value, value, params);
         }
         else if (strcmp(node->value, "While_Loop") == 0)
         {
-            push_scope(memory, 250);
             params = evaluate(node->children[0], memory);
             value = node->children[1];
             while (atoi(params->value) == 1)
@@ -64,7 +68,6 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
                 evaluate(value, memory);
                 params = evaluate(node->children[0], memory);
             }
-            pop_scope(memory);
         }
         else if (strcmp(node->value, "Conditional_Scope") == 0)
         {
@@ -104,13 +107,23 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             value = node->children[0];
             if (value->type == NODE_ID)
             {
-                value = find_variable(memory, value->value)->value;
+                var = find_variable(memory, value->value);
+                // FIXME: Pass all of this to error handler - return does nothing
+                if (var == NULL)
+                {
+                    return create_ASTNode(NODE_ERROR, "Variable not found");
+                }
+                value = var->value;
             }
             ASTNode *result;
             switch (value->type)
             {
             case NODE_ID:;
-                Variable *var = find_variable(memory, value->value);
+                var = find_variable(memory, value->value);
+                if (var == NULL)
+                {
+                    return create_ASTNode(NODE_ERROR, "Variable not found");
+                }
                 printf("%s\n", var->value->value);
                 break;
             case NODE_VAL:
@@ -118,14 +131,17 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
                 printf("%s\n", value->value);
                 break;
             case NODE_EXPRESSION:;
-                ASTNode *postfix_epxression = infix_to_postfix(value->children, value->children_num, memory);
-                result = evaluate_expression(postfix_epxression);
+                result = evaluate(value, memory);
                 printf("%s\n", result->value);
                 break;
             case NODE_FUNC_CALL:
                 result = evaluate(value, memory);
                 value2 = value->children[0];
                 var = find_variable(memory, value2->value);
+                if (var == NULL)
+                {
+                    return create_ASTNode(NODE_ERROR, "Variable not found");
+                }
                 printf("%s\n", var->return_value->value);
                 break;
             case LIST_B:
@@ -144,7 +160,11 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
     case NODE_FUNC_CALL:
         name = evaluate(node->children[0], memory);
         params = node->children[1];
-        Variable *param, *var, *function = find_variable(memory, name->value);
+        function = find_variable(memory, name->value);
+        if (function == NULL)
+        {
+            return create_ASTNode(NODE_ERROR, "Variable not found");
+        }
         ASTNode *curr;
         push_scope(memory, 250);
         for (size_t i = 0; i < params->children_num; i++)
@@ -158,6 +178,10 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             else
             {
                 var = find_variable(memory, curr->value);
+                if (var == NULL)
+                {
+                    return create_ASTNode(NODE_ERROR, "Variable not found");
+                }
                 add_variable(memory, var->type, function->params->children[i]->value, var->value, NULL);
             }
         }
@@ -172,6 +196,10 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         // Returning function
         value2 = node->children[1];
         var = find_variable(memory, value2->value);
+        if (var == NULL)
+        {
+            return create_ASTNode(NODE_ERROR, "Variable not found");
+        }
         if (value->type == NODE_EXPRESSION)
         {
             ASTNode *exp = infix_to_postfix(value->children, value->children_num, memory);
@@ -181,7 +209,11 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         {
             if (value->type == NODE_ID)
             {
-                Variable *var2 = find_variable(memory, value->value);
+                var2 = find_variable(memory, value->value);
+                if (var2 == NULL)
+                {
+                    return create_ASTNode(NODE_ERROR, "Variable not found");
+                }
                 var->return_value = var2->value;
             }
             else

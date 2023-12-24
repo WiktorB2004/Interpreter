@@ -37,3 +37,6 @@ set_target_properties(executable PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${OBJ_DIR}
     LIBRARY_OUTPUT_DIRECTORY ${OBJ_DIR}
 )
+
+enable_testing()
+add_subdirectory(${TEST_DIR})

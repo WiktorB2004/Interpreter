@@ -3,9 +3,7 @@
 #include "../include/parser.h"
 #include "../include/utils/ASTNode_Stack.h"
 
-// FIXME: Reafactor the code - move logic into prepared functions
-// FIXME: Test the code - write automated test cases for parser and lexer + create good/bad example files
-// FIXME: Comment the code and document the logic
+// FIXME: Move parser logic into prepared functions
 
 // Function to print AST
 void print_ASTree(ASTNode *root, int depth)
@@ -546,7 +544,6 @@ ASTNode *parse_program(Token **tokens)
                     ASTNodeStack_push(root_stack, scope);
                     ASTNodeStack_push(root_stack, function_body);
                 }
-                // FIXME: Make it handle funtion return value print
                 else if (strcmp(token->value, "PRINT") == 0)
                 {
                     ASTNode *print_statement = create_ASTNode(NODE_KEYWORD, "Print");
@@ -934,7 +931,7 @@ ASTNode *parse_program(Token **tokens)
             }
             else if (token->type == O_BRACKET)
             {
-                if (strcmp(parent_node->value, "Function_Body") == 0)
+                if (strcmp(parent_node->value, "Function_Body") == 0 || strcmp(parent_node->value, "User_Scope") == 0)
                 {
                     ASTNodeStack_push(root_stack, create_ASTNode(NODE_SCOPE, "User_Scope"));
                 }
@@ -1003,5 +1000,11 @@ ASTNode *parse_program(Token **tokens)
         }
         *token++;
     }
+    if (token->type != TOKEN_EOF)
+    {
+        fprintf(stderr, "Parser couldnt reach end of file\n");
+        exit(EXIT_FAILURE);
+    }
+    add_child(root, create_ASTNode(NODE_EOF, "EOF"));
     return root;
 }
