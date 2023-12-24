@@ -7,7 +7,7 @@
 
 ASTNode *output, *test_node;
 char *input;
-int num_tokens;
+static int num_tokens;
 
 // Empty input test case
 void empty_input(void)

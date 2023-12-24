@@ -6,12 +6,12 @@
 #include "../include/interpreter_test.h"
 
 ASTNode *output, *tree, *test_node;
+static ScopeStack memory;
 char *input;
-int num_tokens;
+static int num_tokens;
 
 void empty_input(void)
 {
-    ScopeStack memory;
     init_ScopeStack(&memory, 50);
     push_scope(&memory, 200);
     input = "";

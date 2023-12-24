@@ -7,10 +7,10 @@
 
 Token *tokens;
 ASTNode *output, *tree, *test_node;
-ScopeStack memory;
+static ScopeStack memory;
 Variable *var;
 char *input;
-int num_tokens;
+static int num_tokens;
 
 void variable_declaration(void)
 {

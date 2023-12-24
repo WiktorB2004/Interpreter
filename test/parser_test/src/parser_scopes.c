@@ -8,7 +8,7 @@
 ASTNode *output, *test_node;
 Token *tokens;
 char *input;
-int num_tokens;
+static int num_tokens;
 
 void function_scope(void)
 {
