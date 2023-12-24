@@ -5,6 +5,19 @@ About: The project involved the creation of a custom language interpreter for WL
 
 - WLang language (project) docs - Under Development
 
+## How to use:
+```
+git clone https://github.com/WiktorB2004/WLang_interpreter-C.git
+cd WLang_interpreter-C/
+cmake configure
+mkdir build
+cd build
+cmake ..
+cmake --build .
+cd ..
+./bin/executable PATH_TO_WLANG_FILE
+```
+
 ## Project Plan / Phases
 The development process consisted of several key phases, each contributing to the successful implementation of the interpreter.
 
