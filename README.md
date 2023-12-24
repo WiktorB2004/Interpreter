@@ -1,11 +1,13 @@
 ## WLang interpreter in C
+
 Project start date: 9.11.2023 <br>
 Project status: Under development <br>
 About: The project involved the creation of a custom language interpreter for WLang using the C programming language. <br>
 
 - WLang language (project) docs - Under Development
 
-## How to use:
+## How to use
+
 ```
 git clone https://github.com/WiktorB2004/WLang_interpreter-C.git
 cd WLang_interpreter-C/
@@ -15,10 +17,11 @@ cd build
 cmake ..
 cmake --build .
 cd ..
-./bin/executable PATH_TO_WLANG_FILE
+./bin/WLang PATH_TO_WLANG_FILE (eg. examples/example.wlg)
 ```
 
 ## Project Plan / Phases
+
 The development process consisted of several key phases, each contributing to the successful implementation of the interpreter.
 
 1. Understanding Interpreter Architecture:
@@ -37,9 +40,11 @@ The development process consisted of several key phases, each contributing to th
     - [ ] The process of building the interpreter is planned to be iterative, requiring continuous refinement and enhancement. This involves revisiting the codebase to optimize performance, add new features, handle edge cases, and improve the interpreter's overall robustness.
 
 ### Summary
+
 The project to build a custom language interpreter for WLang in C was an intensive process that demanded a strong understanding of interpreter design principles, meticulous planning, and systematic implementation. The outcome was an interpreter capable of parsing and executing code written in the WLang language, demonstrating the ability to create a functional interpreter from scratch in the C programming language.
 
 ## Why C?
+
 C was chosen for the WLang interpreter project due to its high performance, efficiency, portability across platforms, rich library support, and fine-grained control over system resources. Its mature ecosystem and compatibility made it an ideal language for crafting a fast and robust custom language interpreter.
 
 - - - -

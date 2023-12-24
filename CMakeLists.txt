@@ -29,10 +29,10 @@ set(SOURCES
 include_directories(${INCLUDE_DIR})
 
 # Executable
-add_executable(executable ${SOURCES})
+add_executable(WLang ${SOURCES})
 
 # Set output directories
-set_target_properties(executable PROPERTIES
+set_target_properties(WLang PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${OBJ_DIR}
     LIBRARY_OUTPUT_DIRECTORY ${OBJ_DIR}
