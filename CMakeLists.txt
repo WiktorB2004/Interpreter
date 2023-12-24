@@ -38,4 +38,5 @@ set_target_properties(executable PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${OBJ_DIR}
 )
 
+enable_testing()
 add_subdirectory(${TEST_DIR})
