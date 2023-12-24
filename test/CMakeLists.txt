@@ -45,12 +45,16 @@ set(PARSER_TEST_SOURCES
 )
 
 set(INTERPRETER_TEST_SOURCES
+    ${UTILS_DIR}/lexer_utils.c
     ${UTILS_DIR}/ASTNode_Stack.c
     ${UTILS_DIR}/expression_eval.c
     ${UTILS_DIR}/memory.c
+    ${SOURCE_DIR}/lexer.c
     ${SOURCE_DIR}/parser.c
     ${SOURCE_DIR}/interpreter.c
     ${TEST_DIR}/interpreter_test/src/interpreter_edge_cases.c
+    ${TEST_DIR}/interpreter_test/src/control_flow.c
+    ${TEST_DIR}/interpreter_test/src/variable_handling.c
 )
 
 set(UTILS_TEST_SOURCES
