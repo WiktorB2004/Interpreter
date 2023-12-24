@@ -5,9 +5,9 @@
 #include "../../include/memory.h"
 #include "../include/interpreter_test.h"
 
-ASTNode *output, *tree, *test_node;
+static ASTNode *output, *tree, *test_node;
 static ScopeStack memory;
-char *input;
+static char *input;
 static int num_tokens;
 
 void empty_input(void)

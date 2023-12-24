@@ -5,11 +5,11 @@
 #include "../../include/memory.h"
 #include "../include/interpreter_test.h"
 
-Token *tokens;
-ASTNode *output, *tree, *test_node;
+static Token *tokens;
+static ASTNode *output, *tree, *test_node;
 static ScopeStack memory;
-Variable *var;
-char *input;
+static Variable *var;
+static char *input;
 static int num_tokens;
 
 void variable_declaration(void)

@@ -5,8 +5,8 @@
 
 // FIXME: If possible when using good practices - include each input -> output in setUp function instead making this in each test
 
-ASTNode *output, *test_node;
-char *input;
+static ASTNode *output, *test_node;
+static char *input;
 static int num_tokens;
 
 // Empty input test case

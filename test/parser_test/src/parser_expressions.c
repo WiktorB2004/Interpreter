@@ -5,9 +5,9 @@
 
 // FIXME: If possible when using good practices - include each input -> output in setUp function instead making this in each test
 
-ASTNode *output, *test_node;
-Token *tokens;
-char *input;
+static ASTNode *output, *test_node;
+static Token *tokens;
+static char *input;
 static int num_tokens;
 
 void arithmetic_expression(void)
