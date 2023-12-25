@@ -1,7 +1,7 @@
 ## WLang interpreter in C
 
 Project start date: 9.11.2023 <br>
-Project status: Under development <br>
+Project status: Mostly completed - few enhancements needed <br>
 About: The project involved the creation of a custom language interpreter for WLang using the C programming language. <br>
 
 - WLang language (project) docs - Under Development
