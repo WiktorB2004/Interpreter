@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['c_0',['C',['../index.html#autotoc_md6',1,'Why C?'],['../index.html',1,'WLang interpreter in C']]],
+  ['c_5fbracket_1',['C_BRACKET',['../lexer_8h.html#aa520fbf142ba1e7e659590c07da31921aa85f0ab9fbe904afe445c73dda4345af',1,'lexer.h']]],
+  ['c_5fparen_2',['C_PAREN',['../lexer_8h.html#aa520fbf142ba1e7e659590c07da31921a27095bacea577486c0676907bcd552f1',1,'lexer.h']]],
+  ['capacity_3',['capacity',['../structSymbolTable.html#aea6c327cc4b04bc8d2c7bbbcbded94da',1,'SymbolTable']]],
+  ['children_4',['children',['../structASTNode.html#ae75b299ea64dd241ff5c65cf0e42f734',1,'ASTNode']]],
+  ['children_5fnum_5',['children_num',['../structASTNode.html#abbe0aa0042a225cea5f9d7796eeec2d6',1,'ASTNode']]],
+  ['comma_6',['COMMA',['../lexer_8h.html#aa520fbf142ba1e7e659590c07da31921af81277bcd86412fe04bb68718ea09392',1,'lexer.h']]],
+  ['create_5fassignment_7',['create_assignment',['../parser_8c.html#a21a1b8a502070169132f8502a47a5349',1,'create_assignment(ASTNode *variable, ASTNode *expression):&#160;parser.c'],['../parser_8h.html#a21a1b8a502070169132f8502a47a5349',1,'create_assignment(ASTNode *variable, ASTNode *expression):&#160;parser.c']]],
+  ['create_5fastnode_8',['create_ASTNode',['../parser_8c.html#a461d3abf2c8ab163ac5eea2a0a522b92',1,'create_ASTNode(NodeType type, char *value):&#160;parser.c'],['../parser_8h.html#a461d3abf2c8ab163ac5eea2a0a522b92',1,'create_ASTNode(NodeType type, char *value):&#160;parser.c']]],
+  ['create_5fastnodestack_9',['create_ASTNodeStack',['../ASTNode__Stack_8c.html#a752c86b8edae2f8827ae4ae5b4fddcc9',1,'create_ASTNodeStack():&#160;ASTNode_Stack.c'],['../ASTNode__Stack_8h.html#a752c86b8edae2f8827ae4ae5b4fddcc9',1,'create_ASTNodeStack():&#160;ASTNode_Stack.c']]],
+  ['create_5ffunction_5fdeclaration_10',['create_function_declaration',['../parser_8c.html#aeff63cfd3e315e29258b7fdda9fd9237',1,'create_function_declaration(const char *name, const char *return_type, ASTNode *parameter_list, ASTNode *function_body):&#160;parser.c'],['../parser_8h.html#aeff63cfd3e315e29258b7fdda9fd9237',1,'create_function_declaration(const char *name, const char *return_type, ASTNode *parameter_list, ASTNode *function_body):&#160;parser.c']]],
+  ['create_5fif_5fstatement_11',['create_if_statement',['../parser_8c.html#a704f3cfab2c5f084b04bc0a4809fd63d',1,'create_if_statement(ASTNode *condition, ASTNode *if_body, ASTNode *else_body):&#160;parser.c'],['../parser_8h.html#a704f3cfab2c5f084b04bc0a4809fd63d',1,'create_if_statement(ASTNode *condition, ASTNode *if_body, ASTNode *else_body):&#160;parser.c']]],
+  ['create_5fliteral_12',['create_literal',['../parser_8c.html#a8cff6613cf05e57a09f0358d89566606',1,'create_literal(NodeType type, const char *value):&#160;parser.c'],['../parser_8h.html#a8cff6613cf05e57a09f0358d89566606',1,'create_literal(NodeType type, const char *value):&#160;parser.c']]],
+  ['create_5fprint_5fstatement_13',['create_print_statement',['../parser_8c.html#a7beef78ac4522e1e743746657b2fd1a2',1,'create_print_statement(ASTNode *expression):&#160;parser.c'],['../parser_8h.html#a7beef78ac4522e1e743746657b2fd1a2',1,'create_print_statement(ASTNode *expression):&#160;parser.c']]],
+  ['create_5fvariable_5fdeclaration_14',['create_variable_declaration',['../parser_8c.html#a71389664c8e4c165087179c4d0df5bd7',1,'create_variable_declaration(const char *type, const char *id):&#160;parser.c'],['../parser_8h.html#a71389664c8e4c165087179c4d0df5bd7',1,'create_variable_declaration(const char *type, const char *id):&#160;parser.c']]],
+  ['create_5fwhile_5floop_15',['create_while_loop',['../parser_8c.html#add6d07eeb8889366a2fd7ebcccb5659c',1,'create_while_loop(ASTNode *condition, ASTNode *loop_body):&#160;parser.c'],['../parser_8h.html#add6d07eeb8889366a2fd7ebcccb5659c',1,'create_while_loop(ASTNode *condition, ASTNode *loop_body):&#160;parser.c']]]
+];
