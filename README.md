@@ -9,6 +9,7 @@ About: The project involved the creation of a custom language interpreter for WL
 ## How to use
 
 #### Interpreter
+
 ```
 git clone https://github.com/WiktorB2004/WLang_interpreter-C.git
 cd WLang_interpreter-C/
@@ -19,7 +20,9 @@ cmake --build .
 cd ..
 ./bin/WLang PATH_TO_WLANG_FILE (eg. examples/example.wlg)
 ```
+
 #### Generating documentation - you need to have Doxygen installed
+
 ```
 git clone https://github.com/WiktorB2004/WLang_interpreter-C.git
 cd WLang_interpreter-C/
