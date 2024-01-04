@@ -18,6 +18,12 @@
 #include "../include/interpreter.h"
 #include "../include/utils/load_code.h"
 
+/*!
+ * \brief Interpreter call function.
+ *
+ * The function is interpreting source code from file passed by user by splitting it into tokens,
+ * then creating AST and evaluating it.
+ */
 int main(int argc, char *argv[])
 {
     if (argc != 2)

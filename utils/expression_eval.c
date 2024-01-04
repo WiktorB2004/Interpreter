@@ -4,7 +4,17 @@
 #include "../include/parser.h"
 #include "../include/memory.h"
 
+/*! \def MAX_NUM
+    \brief Highest possible number value.
+
+    This preprocessor variable defines the maximum value a number can hold.
+*/
 #define MAX_NUM 100000000000000
+/*! \def MIN_NUM
+    \brief Lowest possible number value.
+
+    This preprocessor variable defines the lowest value a number can hold.
+*/
 #define MIN_NUM -100000000000000
 
 // Function to check if a node is an operator

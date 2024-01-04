@@ -4,6 +4,8 @@
 #include "../include/memory.h"
 
 /*!
+ * \brief AST evaluation.
+ *
  * The function recursively evaluates AST (Abstract Syntax Tree).
  *
  * @param node pointer to the root node of the AST

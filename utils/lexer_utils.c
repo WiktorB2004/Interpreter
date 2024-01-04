@@ -26,9 +26,9 @@ int is_operator(char ch)
 }
 
 // A function to check if string exists in list
-int is_string_in_list(const char *target, const char *list[], int listSize)
+int is_string_in_list(const char *target, const char *list[], int list_size)
 {
-    for (int i = 0; i < listSize; ++i)
+    for (int i = 0; i < list_size; ++i)
     {
         if (strcmp(target, list[i]) == 0)
         {
