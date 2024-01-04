@@ -106,6 +106,7 @@ $(function(){initNavTree('interpreter_8h.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a207f8eed9f1c26efe40e6f914e6ecddc" id="r_a207f8eed9f1c26efe40e6f914e6ecddc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a207f8eed9f1c26efe40e6f914e6ecddc">evaluate</a> (<a class="el" href="structASTNode.html">ASTNode</a> *node, <a class="el" href="structScopeStack.html">ScopeStack</a> *memory)</td></tr>
+<tr class="memdesc:a207f8eed9f1c26efe40e6f914e6ecddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">AST evaluation.  <br /></td></tr>
 <tr class="separator:a207f8eed9f1c26efe40e6f914e6ecddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -127,11 +128,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>AST evaluation. </p>
 <p>The function recursively evaluates AST (Abstract Syntax Tree).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>pointer to the root node of the AST </td></tr>
-    <tr><td class="paramname">memory</td><td>pointer to <a class="el" href="structScopeStack.html">ScopeStack</a> which handles user program memory manipulation and scoping </td></tr>
+    <tr><td class="paramname">memory</td><td>pointer to <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a> which handles user program memory manipulation and scoping </td></tr>
   </table>
   </dd>
 </dl>

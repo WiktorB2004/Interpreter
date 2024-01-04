@@ -103,18 +103,25 @@ $(function(){initNavTree('memory_8c.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a18c3aa36b494cebb214efc0c08cb8c42" id="r_a18c3aa36b494cebb214efc0c08cb8c42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18c3aa36b494cebb214efc0c08cb8c42">init_SymbolTable</a> (<a class="el" href="structSymbolTable.html">SymbolTable</a> *table, size_t capacity)</td></tr>
+<tr class="memdesc:a18c3aa36b494cebb214efc0c08cb8c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a <a class="el" href="structSymbolTable.html" title="Represents a symbol table data structure.">SymbolTable</a> with a specified capacity.  <br /></td></tr>
 <tr class="separator:a18c3aa36b494cebb214efc0c08cb8c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72dd2b052f96d8e54021440f2b1bbdd1" id="r_a72dd2b052f96d8e54021440f2b1bbdd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72dd2b052f96d8e54021440f2b1bbdd1">init_ScopeStack</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, int max_size)</td></tr>
+<tr class="memdesc:a72dd2b052f96d8e54021440f2b1bbdd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a> with a specified maximum size.  <br /></td></tr>
 <tr class="separator:a72dd2b052f96d8e54021440f2b1bbdd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25dc3a3a25b883432159bb08c9063936" id="r_a25dc3a3a25b883432159bb08c9063936"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25dc3a3a25b883432159bb08c9063936">push_scope</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, size_t table_capacity)</td></tr>
+<tr class="memdesc:a25dc3a3a25b883432159bb08c9063936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes a new scope into the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a25dc3a3a25b883432159bb08c9063936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a025ae50e9e600c08ba4464ef4d6f3850" id="r_a025ae50e9e600c08ba4464ef4d6f3850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a025ae50e9e600c08ba4464ef4d6f3850">pop_scope</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack)</td></tr>
+<tr class="memdesc:a025ae50e9e600c08ba4464ef4d6f3850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops the top scope from the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a025ae50e9e600c08ba4464ef4d6f3850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1eaa18d2c09afb507b2c29f7ab6fb922" id="r_a1eaa18d2c09afb507b2c29f7ab6fb922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eaa18d2c09afb507b2c29f7ab6fb922">add_variable</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, char *type, char *name, <a class="el" href="structASTNode.html">ASTNode</a> *value, <a class="el" href="structASTNode.html">ASTNode</a> *params)</td></tr>
+<tr class="memdesc:a1eaa18d2c09afb507b2c29f7ab6fb922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new variable to the current (top) scope in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a1eaa18d2c09afb507b2c29f7ab6fb922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8481d305b4b4f6e10d316ea113e67446" id="r_a8481d305b4b4f6e10d316ea113e67446"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVariable.html">Variable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8481d305b4b4f6e10d316ea113e67446">find_variable</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, const char *name)</td></tr>
+<tr class="memdesc:a8481d305b4b4f6e10d316ea113e67446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a variable by name within the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a8481d305b4b4f6e10d316ea113e67446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d16e8649b07eae0ed2ab4df6ad363d6" id="r_a9d16e8649b07eae0ed2ab4df6ad363d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d16e8649b07eae0ed2ab4df6ad363d6">modify_variable_value</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *memory, char *name, <a class="el" href="structASTNode.html">ASTNode</a> *value_node)</td></tr>
+<tr class="memdesc:a9d16e8649b07eae0ed2ab4df6ad363d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the value of a variable in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a9d16e8649b07eae0ed2ab4df6ad363d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -152,6 +159,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a new variable to the current (top) scope in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+    <tr><td class="paramname">type</td><td>Type of the variable. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the variable. </td></tr>
+    <tr><td class="paramname">value</td><td>Value associated with the variable. </td></tr>
+    <tr><td class="paramname">params</td><td>Parameters associated with the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a8481d305b4b4f6e10d316ea113e67446" name="a8481d305b4b4f6e10d316ea113e67446"></a>
@@ -172,6 +191,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Finds a variable by name within the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the variable to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the found <a class="el" href="structVariable.html" title="Represents a variable in the memory scope.">Variable</a>; NULL if not found. </dd></dl>
 
 </div>
 </div>
@@ -194,6 +223,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes a <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a> with a specified maximum size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a> to be initialized. </td></tr>
+    <tr><td class="paramname">max_size</td><td>Maximum size of the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a18c3aa36b494cebb214efc0c08cb8c42" name="a18c3aa36b494cebb214efc0c08cb8c42"></a>
@@ -214,6 +252,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes a <a class="el" href="structSymbolTable.html" title="Represents a symbol table data structure.">SymbolTable</a> with a specified capacity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">table</td><td>Pointer to the <a class="el" href="structSymbolTable.html" title="Represents a symbol table data structure.">SymbolTable</a> to be initialized. </td></tr>
+    <tr><td class="paramname">capacity</td><td>Initial capacity of the <a class="el" href="structSymbolTable.html" title="Represents a symbol table data structure.">SymbolTable</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -241,6 +288,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Modifies the value of a variable in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the variable to modify. </td></tr>
+    <tr><td class="paramname">value_node</td><td>New value node to assign to the variable. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a025ae50e9e600c08ba4464ef4d6f3850" name="a025ae50e9e600c08ba4464ef4d6f3850"></a>
@@ -257,6 +314,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pops the top scope from the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -278,6 +343,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pushes a new scope into the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+    <tr><td class="paramname">table_capacity</td><td>Initial capacity of the new <a class="el" href="structSymbolTable.html" title="Represents a symbol table data structure.">SymbolTable</a> to be pushed. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -105,6 +105,7 @@ $(function(){initNavTree('lexer_8h.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structToken.html">Token</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a token with a TokenType and a value.  <a href="structToken.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -138,13 +139,16 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#aa520fbf142ba1e7e659590c07da31921aa130df27256cd45f5781fc74deeb50dc">TOKEN_EOF</a>
 <br />
  }</td></tr>
+<tr class="memdesc:aa520fbf142ba1e7e659590c07da31921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerates different token types for lexical analysis.  <a href="#aa520fbf142ba1e7e659590c07da31921">More...</a><br /></td></tr>
 <tr class="separator:aa520fbf142ba1e7e659590c07da31921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a415d9ab51783850379476d8a07f4c0cc" id="r_a415d9ab51783850379476d8a07f4c0cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structToken.html">Token</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a415d9ab51783850379476d8a07f4c0cc">lexer</a> (const char *input_text, int *num_tokens)</td></tr>
+<tr class="memdesc:a415d9ab51783850379476d8a07f4c0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs lexical analysis on the input text to generate tokens.  <br /></td></tr>
 <tr class="separator:a415d9ab51783850379476d8a07f4c0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9bfe186e382ff3278d0e6fda0a6c534" id="r_ac9bfe186e382ff3278d0e6fda0a6c534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9bfe186e382ff3278d0e6fda0a6c534">print_tokens</a> (<a class="el" href="structToken.html">Token</a> *tokens, int num_tokens)</td></tr>
+<tr class="memdesc:ac9bfe186e382ff3278d0e6fda0a6c534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the tokens to the standard output.  <br /></td></tr>
 <tr class="separator:ac9bfe186e382ff3278d0e6fda0a6c534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -159,28 +163,52 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Enumerates different token types for lexical analysis. </p>
+<p>This enumeration represents various token types used during lexical analysis. It includes identifiers, variable types, values, operators, delimiters, and special tokens. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a001479a58fb44c39a29b20d565081a68" name="aa520fbf142ba1e7e659590c07da31921a001479a58fb44c39a29b20d565081a68"></a>ID&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aad931a8f743da319f01c0cfac130dba4" name="aa520fbf142ba1e7e659590c07da31921aad931a8f743da319f01c0cfac130dba4"></a>V_TYPE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a990a2861a2fe6b95a4008a9ec07ab519" name="aa520fbf142ba1e7e659590c07da31921a990a2861a2fe6b95a4008a9ec07ab519"></a>VAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a7255d153cae4d9a994d4af8779c28fa4" name="aa520fbf142ba1e7e659590c07da31921a7255d153cae4d9a994d4af8779c28fa4"></a>T_VAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a129281444e94f5f509cba213d51a814d" name="aa520fbf142ba1e7e659590c07da31921a129281444e94f5f509cba213d51a814d"></a>KEYWORD&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a65fac6989fceb5193918405fce992412" name="aa520fbf142ba1e7e659590c07da31921a65fac6989fceb5193918405fce992412"></a>ARITH_OP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a8f82ef04dbec1eaba335b8a23def81a3" name="aa520fbf142ba1e7e659590c07da31921a8f82ef04dbec1eaba335b8a23def81a3"></a>LOGIC_OP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a9bee19309a7c30fd7b2278035c552155" name="aa520fbf142ba1e7e659590c07da31921a9bee19309a7c30fd7b2278035c552155"></a>RELAT_OP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a52a9b031766fa116251f70e65a84c01a" name="aa520fbf142ba1e7e659590c07da31921a52a9b031766fa116251f70e65a84c01a"></a>ASSIGN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a62693fa1f213e13c67a7fdff910e7e7e" name="aa520fbf142ba1e7e659590c07da31921a62693fa1f213e13c67a7fdff910e7e7e"></a>O_BRACKET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aa85f0ab9fbe904afe445c73dda4345af" name="aa520fbf142ba1e7e659590c07da31921aa85f0ab9fbe904afe445c73dda4345af"></a>C_BRACKET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a6f5757ea14df5270c6676a5cba432070" name="aa520fbf142ba1e7e659590c07da31921a6f5757ea14df5270c6676a5cba432070"></a>LIST_B&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ae3fe8329305714274699f4ce6605d952" name="aa520fbf142ba1e7e659590c07da31921ae3fe8329305714274699f4ce6605d952"></a>LIST_E&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a62c43ed6105254951befbae1fbf230f9" name="aa520fbf142ba1e7e659590c07da31921a62c43ed6105254951befbae1fbf230f9"></a>O_PAREN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a27095bacea577486c0676907bcd552f1" name="aa520fbf142ba1e7e659590c07da31921a27095bacea577486c0676907bcd552f1"></a>C_PAREN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ad2870a38b63e6595b0c26cd5d3e5131a" name="aa520fbf142ba1e7e659590c07da31921ad2870a38b63e6595b0c26cd5d3e5131a"></a>R_TYPE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921af81277bcd86412fe04bb68718ea09392" name="aa520fbf142ba1e7e659590c07da31921af81277bcd86412fe04bb68718ea09392"></a>COMMA&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a68cf729acfb0cf4857abec621022e0df" name="aa520fbf142ba1e7e659590c07da31921a68cf729acfb0cf4857abec621022e0df"></a>SEMI&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aef2863a469df3ea6871d640e3669a2f2" name="aa520fbf142ba1e7e659590c07da31921aef2863a469df3ea6871d640e3669a2f2"></a>INVALID&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a4bf3a11b55e3ec757fc4b8dbfd8ec27e" name="aa520fbf142ba1e7e659590c07da31921a4bf3a11b55e3ec757fc4b8dbfd8ec27e"></a>TOKEN_Newline&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aa130df27256cd45f5781fc74deeb50dc" name="aa520fbf142ba1e7e659590c07da31921aa130df27256cd45f5781fc74deeb50dc"></a>TOKEN_EOF&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a001479a58fb44c39a29b20d565081a68" name="aa520fbf142ba1e7e659590c07da31921a001479a58fb44c39a29b20d565081a68"></a>ID&#160;</td><td class="fielddoc"><p>Identifier (variable name) - 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aad931a8f743da319f01c0cfac130dba4" name="aa520fbf142ba1e7e659590c07da31921aad931a8f743da319f01c0cfac130dba4"></a>V_TYPE&#160;</td><td class="fielddoc"><p><a class="el" href="structVariable.html" title="Represents a variable in the memory scope.">Variable</a> type - 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a990a2861a2fe6b95a4008a9ec07ab519" name="aa520fbf142ba1e7e659590c07da31921a990a2861a2fe6b95a4008a9ec07ab519"></a>VAL&#160;</td><td class="fielddoc"><p>Value (<a class="el" href="structVariable.html" title="Represents a variable in the memory scope.">Variable</a> value) - 2 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a7255d153cae4d9a994d4af8779c28fa4" name="aa520fbf142ba1e7e659590c07da31921a7255d153cae4d9a994d4af8779c28fa4"></a>T_VAL&#160;</td><td class="fielddoc"><p>Text variable value (char/string) - 3 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a129281444e94f5f509cba213d51a814d" name="aa520fbf142ba1e7e659590c07da31921a129281444e94f5f509cba213d51a814d"></a>KEYWORD&#160;</td><td class="fielddoc"><p>Keywords (e.g., PRINT, IF, WHILE) - 4 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a65fac6989fceb5193918405fce992412" name="aa520fbf142ba1e7e659590c07da31921a65fac6989fceb5193918405fce992412"></a>ARITH_OP&#160;</td><td class="fielddoc"><p>Arithmetic operators (e.g., +, -) - 5 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a8f82ef04dbec1eaba335b8a23def81a3" name="aa520fbf142ba1e7e659590c07da31921a8f82ef04dbec1eaba335b8a23def81a3"></a>LOGIC_OP&#160;</td><td class="fielddoc"><p>Logic operators (e.g., ||, &amp;&amp;) - 6 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a9bee19309a7c30fd7b2278035c552155" name="aa520fbf142ba1e7e659590c07da31921a9bee19309a7c30fd7b2278035c552155"></a>RELAT_OP&#160;</td><td class="fielddoc"><p>Relational operators (e.g., &gt;, ==) - 7 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a52a9b031766fa116251f70e65a84c01a" name="aa520fbf142ba1e7e659590c07da31921a52a9b031766fa116251f70e65a84c01a"></a>ASSIGN&#160;</td><td class="fielddoc"><p>Assignment operator (=) - 8 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a62693fa1f213e13c67a7fdff910e7e7e" name="aa520fbf142ba1e7e659590c07da31921a62693fa1f213e13c67a7fdff910e7e7e"></a>O_BRACKET&#160;</td><td class="fielddoc"><p>Opening bracket { - 9 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aa85f0ab9fbe904afe445c73dda4345af" name="aa520fbf142ba1e7e659590c07da31921aa85f0ab9fbe904afe445c73dda4345af"></a>C_BRACKET&#160;</td><td class="fielddoc"><p>Closing bracket } - 10 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a6f5757ea14df5270c6676a5cba432070" name="aa520fbf142ba1e7e659590c07da31921a6f5757ea14df5270c6676a5cba432070"></a>LIST_B&#160;</td><td class="fielddoc"><p>Begining of the list [ - 11 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ae3fe8329305714274699f4ce6605d952" name="aa520fbf142ba1e7e659590c07da31921ae3fe8329305714274699f4ce6605d952"></a>LIST_E&#160;</td><td class="fielddoc"><p>Ending of the list ] - 12 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a62c43ed6105254951befbae1fbf230f9" name="aa520fbf142ba1e7e659590c07da31921a62c43ed6105254951befbae1fbf230f9"></a>O_PAREN&#160;</td><td class="fielddoc"><p>Opening parenthesis ( - 13 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a27095bacea577486c0676907bcd552f1" name="aa520fbf142ba1e7e659590c07da31921a27095bacea577486c0676907bcd552f1"></a>C_PAREN&#160;</td><td class="fielddoc"><p>Closing parenthesis ) - 14 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ad2870a38b63e6595b0c26cd5d3e5131a" name="aa520fbf142ba1e7e659590c07da31921ad2870a38b63e6595b0c26cd5d3e5131a"></a>R_TYPE&#160;</td><td class="fielddoc"><p>Return type -&gt; - 15 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921af81277bcd86412fe04bb68718ea09392" name="aa520fbf142ba1e7e659590c07da31921af81277bcd86412fe04bb68718ea09392"></a>COMMA&#160;</td><td class="fielddoc"><p>Comma , - 16 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a68cf729acfb0cf4857abec621022e0df" name="aa520fbf142ba1e7e659590c07da31921a68cf729acfb0cf4857abec621022e0df"></a>SEMI&#160;</td><td class="fielddoc"><p>Semicolon ; - 17 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aef2863a469df3ea6871d640e3669a2f2" name="aa520fbf142ba1e7e659590c07da31921aef2863a469df3ea6871d640e3669a2f2"></a>INVALID&#160;</td><td class="fielddoc"><p>Invalid token - 18 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a4bf3a11b55e3ec757fc4b8dbfd8ec27e" name="aa520fbf142ba1e7e659590c07da31921a4bf3a11b55e3ec757fc4b8dbfd8ec27e"></a>TOKEN_Newline&#160;</td><td class="fielddoc"><p>Newline token - 19 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aa130df27256cd45f5781fc74deeb50dc" name="aa520fbf142ba1e7e659590c07da31921aa130df27256cd45f5781fc74deeb50dc"></a>TOKEN_EOF&#160;</td><td class="fielddoc"><p>End of file token - 20 </p>
+</td></tr>
 </table>
 
 </div>
@@ -205,6 +233,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Performs lexical analysis on the input text to generate tokens. </p>
+<p>This function performs lexical analysis on the given input text and generates tokens. It returns an array of tokens and updates the 'num_tokens' variable with the total number of tokens found. The caller is responsible for freeing the memory allocated for the tokens.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_text</td><td>The input text to be analyzed. </td></tr>
+    <tr><td class="paramname">num_tokens</td><td>Pointer to an integer to hold the number of tokens found. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to an array of tokens generated from the input text. </dd></dl>
+
 </div>
 </div>
 <a id="ac9bfe186e382ff3278d0e6fda0a6c534" name="ac9bfe186e382ff3278d0e6fda0a6c534"></a>
@@ -225,6 +264,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Prints the tokens to the standard output. </p>
+<p>This function prints the provided array of tokens to the standard output. It takes an array of tokens and the number of tokens to be printed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tokens</td><td>Array of tokens to be printed. </td></tr>
+    <tr><td class="paramname">num_tokens</td><td>Number of tokens in the 'tokens' array. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

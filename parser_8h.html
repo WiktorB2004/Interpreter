@@ -110,11 +110,13 @@ $(function(){initNavTree('parser_8h.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structASTNode.html">ASTNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a node in an Abstract Syntax Tree (AST).  <a href="structASTNode.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a6b9026f45e950e06b76db629f9563f3a" id="r_a6b9026f45e950e06b76db629f9563f3a"><td class="memItemLeft" align="right" valign="top">typedef struct ASTNode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b9026f45e950e06b76db629f9563f3a">ASTNode</a></td></tr>
+<tr class="memdesc:a6b9026f45e950e06b76db629f9563f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a node in an Abstract Syntax Tree (AST).  <br /></td></tr>
 <tr class="separator:a6b9026f45e950e06b76db629f9563f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -155,33 +157,46 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#acac9cbaeea226ed297804c012dc12b16a023c16366cf9fbe5ab0336b79ba250c1">NODE_ERROR</a>
 <br />
  }</td></tr>
+<tr class="memdesc:acac9cbaeea226ed297804c012dc12b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerates different node types in an Abstract Syntax Tree (AST).  <a href="#acac9cbaeea226ed297804c012dc12b16">More...</a><br /></td></tr>
 <tr class="separator:acac9cbaeea226ed297804c012dc12b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1859e67be16e2f41e8edfa8de2f895d3" id="r_a1859e67be16e2f41e8edfa8de2f895d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1859e67be16e2f41e8edfa8de2f895d3">print_ASTree</a> (<a class="el" href="structASTNode.html">ASTNode</a> *root, int depth)</td></tr>
+<tr class="memdesc:a1859e67be16e2f41e8edfa8de2f895d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the Abstract Syntax Tree (AST) rooted at 'root' node.  <br /></td></tr>
 <tr class="separator:a1859e67be16e2f41e8edfa8de2f895d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a554c102b85acb611a8bc5bdfcf0977" id="r_a3a554c102b85acb611a8bc5bdfcf0977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a554c102b85acb611a8bc5bdfcf0977">free_ASTree</a> (<a class="el" href="structASTNode.html">ASTNode</a> *node)</td></tr>
+<tr class="memdesc:a3a554c102b85acb611a8bc5bdfcf0977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated for the AST rooted at 'node'.  <br /></td></tr>
 <tr class="separator:a3a554c102b85acb611a8bc5bdfcf0977"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a461d3abf2c8ab163ac5eea2a0a522b92" id="r_a461d3abf2c8ab163ac5eea2a0a522b92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a461d3abf2c8ab163ac5eea2a0a522b92">create_ASTNode</a> (<a class="el" href="#acac9cbaeea226ed297804c012dc12b16">NodeType</a> type, char *value)</td></tr>
+<tr class="memdesc:a461d3abf2c8ab163ac5eea2a0a522b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> with the specified type and value.  <br /></td></tr>
 <tr class="separator:a461d3abf2c8ab163ac5eea2a0a522b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a290432d8fc7e8d4545e6837057ae6962" id="r_a290432d8fc7e8d4545e6837057ae6962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a290432d8fc7e8d4545e6837057ae6962">add_child</a> (<a class="el" href="structASTNode.html">ASTNode</a> *parent, <a class="el" href="structASTNode.html">ASTNode</a> *child)</td></tr>
+<tr class="memdesc:a290432d8fc7e8d4545e6837057ae6962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a child node to the parent node in the AST.  <br /></td></tr>
 <tr class="separator:a290432d8fc7e8d4545e6837057ae6962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71389664c8e4c165087179c4d0df5bd7" id="r_a71389664c8e4c165087179c4d0df5bd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71389664c8e4c165087179c4d0df5bd7">create_variable_declaration</a> (const char *type, const char *id)</td></tr>
+<tr class="memdesc:a71389664c8e4c165087179c4d0df5bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing a variable declaration.  <br /></td></tr>
 <tr class="separator:a71389664c8e4c165087179c4d0df5bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cff6613cf05e57a09f0358d89566606" id="r_a8cff6613cf05e57a09f0358d89566606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cff6613cf05e57a09f0358d89566606">create_literal</a> (<a class="el" href="#acac9cbaeea226ed297804c012dc12b16">NodeType</a> type, const char *value)</td></tr>
+<tr class="memdesc:a8cff6613cf05e57a09f0358d89566606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing a literal value.  <br /></td></tr>
 <tr class="separator:a8cff6613cf05e57a09f0358d89566606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21a1b8a502070169132f8502a47a5349" id="r_a21a1b8a502070169132f8502a47a5349"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21a1b8a502070169132f8502a47a5349">create_assignment</a> (<a class="el" href="structASTNode.html">ASTNode</a> *variable, <a class="el" href="structASTNode.html">ASTNode</a> *expression)</td></tr>
+<tr class="memdesc:a21a1b8a502070169132f8502a47a5349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing an assignment operation.  <br /></td></tr>
 <tr class="separator:a21a1b8a502070169132f8502a47a5349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7beef78ac4522e1e743746657b2fd1a2" id="r_a7beef78ac4522e1e743746657b2fd1a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7beef78ac4522e1e743746657b2fd1a2">create_print_statement</a> (<a class="el" href="structASTNode.html">ASTNode</a> *expression)</td></tr>
+<tr class="memdesc:a7beef78ac4522e1e743746657b2fd1a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing a print statement.  <br /></td></tr>
 <tr class="separator:a7beef78ac4522e1e743746657b2fd1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a704f3cfab2c5f084b04bc0a4809fd63d" id="r_a704f3cfab2c5f084b04bc0a4809fd63d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a704f3cfab2c5f084b04bc0a4809fd63d">create_if_statement</a> (<a class="el" href="structASTNode.html">ASTNode</a> *condition, <a class="el" href="structASTNode.html">ASTNode</a> *if_body, <a class="el" href="structASTNode.html">ASTNode</a> *else_body)</td></tr>
+<tr class="memdesc:a704f3cfab2c5f084b04bc0a4809fd63d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing an if statement.  <br /></td></tr>
 <tr class="separator:a704f3cfab2c5f084b04bc0a4809fd63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add6d07eeb8889366a2fd7ebcccb5659c" id="r_add6d07eeb8889366a2fd7ebcccb5659c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add6d07eeb8889366a2fd7ebcccb5659c">create_while_loop</a> (<a class="el" href="structASTNode.html">ASTNode</a> *condition, <a class="el" href="structASTNode.html">ASTNode</a> *loop_body)</td></tr>
+<tr class="memdesc:add6d07eeb8889366a2fd7ebcccb5659c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing a while loop.  <br /></td></tr>
 <tr class="separator:add6d07eeb8889366a2fd7ebcccb5659c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeff63cfd3e315e29258b7fdda9fd9237" id="r_aeff63cfd3e315e29258b7fdda9fd9237"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeff63cfd3e315e29258b7fdda9fd9237">create_function_declaration</a> (const char *name, const char *return_type, <a class="el" href="structASTNode.html">ASTNode</a> *parameter_list, <a class="el" href="structASTNode.html">ASTNode</a> *function_body)</td></tr>
+<tr class="memdesc:aeff63cfd3e315e29258b7fdda9fd9237"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node representing a function declaration.  <br /></td></tr>
 <tr class="separator:aeff63cfd3e315e29258b7fdda9fd9237"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c1c02c8b3838c494e02c605a97d7f96" id="r_a0c1c02c8b3838c494e02c605a97d7f96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c1c02c8b3838c494e02c605a97d7f96">parse_program</a> (<a class="el" href="structToken.html">Token</a> **tokens)</td></tr>
+<tr class="memdesc:a0c1c02c8b3838c494e02c605a97d7f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a program from the given tokens and constructs the Abstract Syntax Tree (AST).  <br /></td></tr>
 <tr class="separator:a0c1c02c8b3838c494e02c605a97d7f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -197,6 +212,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Represents a node in an Abstract Syntax Tree (AST). </p>
+<p>This structure defines a node in an Abstract Syntax Tree. It contains a NodeType indicating its type, a value (if applicable), an array of child nodes, and the number of children. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -211,34 +229,64 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Enumerates different node types in an Abstract Syntax Tree (AST). </p>
+<p>This enumeration represents various node types used in an Abstract Syntax Tree. It includes identifiers, types, values, operators, delimiters, and helper nodes. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a15487eda42283ac240079d048bc5cc04" name="acac9cbaeea226ed297804c012dc12b16a15487eda42283ac240079d048bc5cc04"></a>NODE_ID&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16adff2cd984e978e4368e248ac642c1b96" name="acac9cbaeea226ed297804c012dc12b16adff2cd984e978e4368e248ac642c1b96"></a>NODE_V_TYPE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16acd45edab2afbf56a33e33c16f6957c8d" name="acac9cbaeea226ed297804c012dc12b16acd45edab2afbf56a33e33c16f6957c8d"></a>NODE_VAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a348f21a1944668ce0bb960ffba1f108d" name="acac9cbaeea226ed297804c012dc12b16a348f21a1944668ce0bb960ffba1f108d"></a>NODE_T_VAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16aeb494b1e06df361820e4c3da2336bf6a" name="acac9cbaeea226ed297804c012dc12b16aeb494b1e06df361820e4c3da2336bf6a"></a>NODE_KEYWORD&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a8ca6325e24eb155687b4496f82724a73" name="acac9cbaeea226ed297804c012dc12b16a8ca6325e24eb155687b4496f82724a73"></a>NODE_ARITH_OP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16abce90e3a73fe908d54081274541e527a" name="acac9cbaeea226ed297804c012dc12b16abce90e3a73fe908d54081274541e527a"></a>NODE_LOGIC_OP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a97cb016e6f0f559d5130190af1f7e33d" name="acac9cbaeea226ed297804c012dc12b16a97cb016e6f0f559d5130190af1f7e33d"></a>NODE_RELAT_OP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16acb63d285c93fc792d67cf021e45ee374" name="acac9cbaeea226ed297804c012dc12b16acb63d285c93fc792d67cf021e45ee374"></a>NODE_ASSIGN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ad2479d1ac1ccc8d87601138d001b0795" name="acac9cbaeea226ed297804c012dc12b16ad2479d1ac1ccc8d87601138d001b0795"></a>NODE_O_BRACKET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a8a470e7fce31e1650bbcfc8fbe298ba3" name="acac9cbaeea226ed297804c012dc12b16a8a470e7fce31e1650bbcfc8fbe298ba3"></a>NODE_C_BRACKET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a4f60e945b29153c353f7c2ec570076a2" name="acac9cbaeea226ed297804c012dc12b16a4f60e945b29153c353f7c2ec570076a2"></a>NODE_LIST_B&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16af35c186bea9938a266908a57fcca0550" name="acac9cbaeea226ed297804c012dc12b16af35c186bea9938a266908a57fcca0550"></a>NODE_LIST_E&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16aa2f42d2ac3848522c106e0d55d87726d" name="acac9cbaeea226ed297804c012dc12b16aa2f42d2ac3848522c106e0d55d87726d"></a>NODE_O_PAREN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a5bfe131f4b2f54800717554752152d5d" name="acac9cbaeea226ed297804c012dc12b16a5bfe131f4b2f54800717554752152d5d"></a>NODE_C_PAREN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a047709c1f0ad7a2796238ad60a9778e2" name="acac9cbaeea226ed297804c012dc12b16a047709c1f0ad7a2796238ad60a9778e2"></a>NODE_R_TYPE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ad1a569a7d1e5b7339e9544e864518ddb" name="acac9cbaeea226ed297804c012dc12b16ad1a569a7d1e5b7339e9544e864518ddb"></a>NODE_COMMA&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a000dc4319f17b89ba8f157f7d72edf6a" name="acac9cbaeea226ed297804c012dc12b16a000dc4319f17b89ba8f157f7d72edf6a"></a>NODE_SEMI&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ae26373f15997b455443b60bda5dcfcf5" name="acac9cbaeea226ed297804c012dc12b16ae26373f15997b455443b60bda5dcfcf5"></a>NODE_ROOT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16aad59a4e2dfe93d4bd0ade59ad10f0e45" name="acac9cbaeea226ed297804c012dc12b16aad59a4e2dfe93d4bd0ade59ad10f0e45"></a>NODE_EXPRESSION&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a6a1ca06750ce09a53c68df16a6bae85c" name="acac9cbaeea226ed297804c012dc12b16a6a1ca06750ce09a53c68df16a6bae85c"></a>NODE_SCOPE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a6bdf95433ca289ef714d0807a6c91426" name="acac9cbaeea226ed297804c012dc12b16a6bdf95433ca289ef714d0807a6c91426"></a>NODE_PARAMETERS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a935eeec09a750a34bfda507129033ee6" name="acac9cbaeea226ed297804c012dc12b16a935eeec09a750a34bfda507129033ee6"></a>NODE_RETURN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a2ca0565230681fd5a1bfde8211553c63" name="acac9cbaeea226ed297804c012dc12b16a2ca0565230681fd5a1bfde8211553c63"></a>NODE_FUNC_CALL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ad3ded5f3d8a6dcc4e06dd7b1bd5b47bf" name="acac9cbaeea226ed297804c012dc12b16ad3ded5f3d8a6dcc4e06dd7b1bd5b47bf"></a>NODE_V_DEF&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a3bd66329e10a72b9ffd7dc22060101a6" name="acac9cbaeea226ed297804c012dc12b16a3bd66329e10a72b9ffd7dc22060101a6"></a>NODE_EOF&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a023c16366cf9fbe5ab0336b79ba250c1" name="acac9cbaeea226ed297804c012dc12b16a023c16366cf9fbe5ab0336b79ba250c1"></a>NODE_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a15487eda42283ac240079d048bc5cc04" name="acac9cbaeea226ed297804c012dc12b16a15487eda42283ac240079d048bc5cc04"></a>NODE_ID&#160;</td><td class="fielddoc"><p>Identifier (variable name) - 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16adff2cd984e978e4368e248ac642c1b96" name="acac9cbaeea226ed297804c012dc12b16adff2cd984e978e4368e248ac642c1b96"></a>NODE_V_TYPE&#160;</td><td class="fielddoc"><p><a class="el" href="structVariable.html" title="Represents a variable in the memory scope.">Variable</a> type - 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16acd45edab2afbf56a33e33c16f6957c8d" name="acac9cbaeea226ed297804c012dc12b16acd45edab2afbf56a33e33c16f6957c8d"></a>NODE_VAL&#160;</td><td class="fielddoc"><p>Value (<a class="el" href="structVariable.html" title="Represents a variable in the memory scope.">Variable</a> value) - 2 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a348f21a1944668ce0bb960ffba1f108d" name="acac9cbaeea226ed297804c012dc12b16a348f21a1944668ce0bb960ffba1f108d"></a>NODE_T_VAL&#160;</td><td class="fielddoc"><p>Text variable value (char/string) - 3 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16aeb494b1e06df361820e4c3da2336bf6a" name="acac9cbaeea226ed297804c012dc12b16aeb494b1e06df361820e4c3da2336bf6a"></a>NODE_KEYWORD&#160;</td><td class="fielddoc"><p>Keywords (e.g., SET, PRINT, IF, WHILE) - 4 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a8ca6325e24eb155687b4496f82724a73" name="acac9cbaeea226ed297804c012dc12b16a8ca6325e24eb155687b4496f82724a73"></a>NODE_ARITH_OP&#160;</td><td class="fielddoc"><p>Arithmetic operators (e.g., +, -) - 5 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16abce90e3a73fe908d54081274541e527a" name="acac9cbaeea226ed297804c012dc12b16abce90e3a73fe908d54081274541e527a"></a>NODE_LOGIC_OP&#160;</td><td class="fielddoc"><p>Logic operators (e.g., ||, &amp;&amp;) - 6 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a97cb016e6f0f559d5130190af1f7e33d" name="acac9cbaeea226ed297804c012dc12b16a97cb016e6f0f559d5130190af1f7e33d"></a>NODE_RELAT_OP&#160;</td><td class="fielddoc"><p>Relational operators (e.g., &gt;, ==) - 7 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16acb63d285c93fc792d67cf021e45ee374" name="acac9cbaeea226ed297804c012dc12b16acb63d285c93fc792d67cf021e45ee374"></a>NODE_ASSIGN&#160;</td><td class="fielddoc"><p>Assignment operator (=) - 8 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ad2479d1ac1ccc8d87601138d001b0795" name="acac9cbaeea226ed297804c012dc12b16ad2479d1ac1ccc8d87601138d001b0795"></a>NODE_O_BRACKET&#160;</td><td class="fielddoc"><p>Opening bracket { - 9 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a8a470e7fce31e1650bbcfc8fbe298ba3" name="acac9cbaeea226ed297804c012dc12b16a8a470e7fce31e1650bbcfc8fbe298ba3"></a>NODE_C_BRACKET&#160;</td><td class="fielddoc"><p>Closing bracket } - 10 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a4f60e945b29153c353f7c2ec570076a2" name="acac9cbaeea226ed297804c012dc12b16a4f60e945b29153c353f7c2ec570076a2"></a>NODE_LIST_B&#160;</td><td class="fielddoc"><p>Begining of the list [ - 11 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16af35c186bea9938a266908a57fcca0550" name="acac9cbaeea226ed297804c012dc12b16af35c186bea9938a266908a57fcca0550"></a>NODE_LIST_E&#160;</td><td class="fielddoc"><p>Ending of the list ] - 12 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16aa2f42d2ac3848522c106e0d55d87726d" name="acac9cbaeea226ed297804c012dc12b16aa2f42d2ac3848522c106e0d55d87726d"></a>NODE_O_PAREN&#160;</td><td class="fielddoc"><p>Opening parenthesis ( - 13 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a5bfe131f4b2f54800717554752152d5d" name="acac9cbaeea226ed297804c012dc12b16a5bfe131f4b2f54800717554752152d5d"></a>NODE_C_PAREN&#160;</td><td class="fielddoc"><p>Closing parenthesis ) - 14 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a047709c1f0ad7a2796238ad60a9778e2" name="acac9cbaeea226ed297804c012dc12b16a047709c1f0ad7a2796238ad60a9778e2"></a>NODE_R_TYPE&#160;</td><td class="fielddoc"><p>Return type -&gt; - 15 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ad1a569a7d1e5b7339e9544e864518ddb" name="acac9cbaeea226ed297804c012dc12b16ad1a569a7d1e5b7339e9544e864518ddb"></a>NODE_COMMA&#160;</td><td class="fielddoc"><p>Comma , - 16 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a000dc4319f17b89ba8f157f7d72edf6a" name="acac9cbaeea226ed297804c012dc12b16a000dc4319f17b89ba8f157f7d72edf6a"></a>NODE_SEMI&#160;</td><td class="fielddoc"><p>Semicolon ; - 17 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ae26373f15997b455443b60bda5dcfcf5" name="acac9cbaeea226ed297804c012dc12b16ae26373f15997b455443b60bda5dcfcf5"></a>NODE_ROOT&#160;</td><td class="fielddoc"><p>Root parent_node of the program - 18 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16aad59a4e2dfe93d4bd0ade59ad10f0e45" name="acac9cbaeea226ed297804c012dc12b16aad59a4e2dfe93d4bd0ade59ad10f0e45"></a>NODE_EXPRESSION&#160;</td><td class="fielddoc"><p>Helper node to handle expressions - 19 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a6a1ca06750ce09a53c68df16a6bae85c" name="acac9cbaeea226ed297804c012dc12b16a6a1ca06750ce09a53c68df16a6bae85c"></a>NODE_SCOPE&#160;</td><td class="fielddoc"><p>Helper node to handle code scopes - 20 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a6bdf95433ca289ef714d0807a6c91426" name="acac9cbaeea226ed297804c012dc12b16a6bdf95433ca289ef714d0807a6c91426"></a>NODE_PARAMETERS&#160;</td><td class="fielddoc"><p>Helper node to handle function parameters - 21 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a935eeec09a750a34bfda507129033ee6" name="acac9cbaeea226ed297804c012dc12b16a935eeec09a750a34bfda507129033ee6"></a>NODE_RETURN&#160;</td><td class="fielddoc"><p>Helper node to handle function return - 22 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a2ca0565230681fd5a1bfde8211553c63" name="acac9cbaeea226ed297804c012dc12b16a2ca0565230681fd5a1bfde8211553c63"></a>NODE_FUNC_CALL&#160;</td><td class="fielddoc"><p>Helper node to handle function calls - 23 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16ad3ded5f3d8a6dcc4e06dd7b1bd5b47bf" name="acac9cbaeea226ed297804c012dc12b16ad3ded5f3d8a6dcc4e06dd7b1bd5b47bf"></a>NODE_V_DEF&#160;</td><td class="fielddoc"><p>Helper node to handle variable definition - 24 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a3bd66329e10a72b9ffd7dc22060101a6" name="acac9cbaeea226ed297804c012dc12b16a3bd66329e10a72b9ffd7dc22060101a6"></a>NODE_EOF&#160;</td><td class="fielddoc"><p>EOF node used to stop interpreting as success - 25 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="acac9cbaeea226ed297804c012dc12b16a023c16366cf9fbe5ab0336b79ba250c1" name="acac9cbaeea226ed297804c012dc12b16a023c16366cf9fbe5ab0336b79ba250c1"></a>NODE_ERROR&#160;</td><td class="fielddoc"><p>Error node used to help with testing syntax errors - 26 </p>
+</td></tr>
 </table>
 
 </div>
@@ -263,6 +311,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a child node to the parent node in the AST. </p>
+<p>This function adds 'child' node to the list of children of 'parent' node in the AST.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Parent node to which the 'child' node is added. </td></tr>
+    <tr><td class="paramname">child</td><td>Child node to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a21a1b8a502070169132f8502a47a5349" name="a21a1b8a502070169132f8502a47a5349"></a>
@@ -284,6 +342,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a node representing an assignment operation. </p>
+<p>This function creates a node representing an assignment operation between 'variable' and 'expression' nodes and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variable</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the variable being assigned. </td></tr>
+    <tr><td class="paramname">expression</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the expression being assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the assignment operation. </dd></dl>
+
 </div>
 </div>
 <a id="a461d3abf2c8ab163ac5eea2a0a522b92" name="a461d3abf2c8ab163ac5eea2a0a522b92"></a>
@@ -304,6 +373,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> with the specified type and value. </p>
+<p>This function creates a new <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> with the given 'type' and 'value'. It returns a pointer to the newly created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>NodeType of the new node. </td></tr>
+    <tr><td class="paramname">value</td><td>Value associated with the new node. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a>. </dd></dl>
 
 </div>
 </div>
@@ -336,6 +416,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a node representing a function declaration. </p>
+<p>This function creates a node representing a function declaration with the specified 'name', 'return_type', 'parameter_list', and 'function_body' nodes and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the function being declared. </td></tr>
+    <tr><td class="paramname">return_type</td><td>Return type of the function being declared. </td></tr>
+    <tr><td class="paramname">parameter_list</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the list of parameters for the function. </td></tr>
+    <tr><td class="paramname">function_body</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the body of the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the function declaration. </dd></dl>
+
 </div>
 </div>
 <a id="a704f3cfab2c5f084b04bc0a4809fd63d" name="a704f3cfab2c5f084b04bc0a4809fd63d"></a>
@@ -362,6 +455,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a node representing an if statement. </p>
+<p>This function creates a node representing an if statement with the specified 'condition', 'if_body', and 'else_body' nodes and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">condition</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the condition for the if statement. </td></tr>
+    <tr><td class="paramname">if_body</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the body of the if statement. </td></tr>
+    <tr><td class="paramname">else_body</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the body of the else statement (can be NULL for no else). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the if statement. </dd></dl>
+
 </div>
 </div>
 <a id="a8cff6613cf05e57a09f0358d89566606" name="a8cff6613cf05e57a09f0358d89566606"></a>
@@ -383,6 +488,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a node representing a literal value. </p>
+<p>This function creates a node representing a literal value of the specified 'type' and 'value' and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>NodeType indicating the type of the literal value. </td></tr>
+    <tr><td class="paramname">value</td><td>Value of the literal. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the literal value. </dd></dl>
+
 </div>
 </div>
 <a id="a7beef78ac4522e1e743746657b2fd1a2" name="a7beef78ac4522e1e743746657b2fd1a2"></a>
@@ -399,6 +515,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a node representing a print statement. </p>
+<p>This function creates a node representing a print statement with the specified 'expression' and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the expression to be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the print statement. </dd></dl>
 
 </div>
 </div>
@@ -421,6 +547,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a node representing a variable declaration. </p>
+<p>This function creates a node representing a variable declaration with the specified 'type' and 'id' (identifier) and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type of the variable being declared. </td></tr>
+    <tr><td class="paramname">id</td><td>Identifier (name) of the variable being declared. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the variable declaration. </dd></dl>
+
 </div>
 </div>
 <a id="add6d07eeb8889366a2fd7ebcccb5659c" name="add6d07eeb8889366a2fd7ebcccb5659c"></a>
@@ -442,6 +579,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a node representing a while loop. </p>
+<p>This function creates a node representing a while loop with the specified 'condition' and 'loop_body' nodes and returns the created node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">condition</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the condition for the while loop. </td></tr>
+    <tr><td class="paramname">loop_body</td><td><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the body of the while loop. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the newly created <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> representing the while loop. </dd></dl>
+
 </div>
 </div>
 <a id="a3a554c102b85acb611a8bc5bdfcf0977" name="a3a554c102b85acb611a8bc5bdfcf0977"></a>
@@ -459,6 +607,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Frees the memory allocated for the AST rooted at 'node'. </p>
+<p>This function traverses the AST rooted at 'node' recursively and frees the memory allocated for each node and its children.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>Root node of the AST to be freed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a0c1c02c8b3838c494e02c605a97d7f96" name="a0c1c02c8b3838c494e02c605a97d7f96"></a>
@@ -475,6 +632,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses a program from the given tokens and constructs the Abstract Syntax Tree (AST). </p>
+<p>This function parses a program from the 'tokens' array and constructs the Abstract Syntax Tree (AST). It returns the root node of the AST representing the parsed program.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tokens</td><td>Array of tokens representing the program. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the root node of the constructed AST. </dd></dl>
 
 </div>
 </div>
@@ -496,6 +663,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Prints the Abstract Syntax Tree (AST) rooted at 'root' node. </p>
+<p>This function prints the AST tree starting from the 'root' node recursively with the given 'depth' for indentation.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root</td><td>Root node of the AST. </td></tr>
+    <tr><td class="paramname">depth</td><td>Depth of the node in the AST tree. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

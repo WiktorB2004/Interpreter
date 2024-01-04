@@ -103,6 +103,7 @@ $(function(){initNavTree('load__code_8h.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a81d7f09bcdbd4d36f65dc52a6dc5b14a" id="r_a81d7f09bcdbd4d36f65dc52a6dc5b14a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81d7f09bcdbd4d36f65dc52a6dc5b14a">get_source_code</a> (const char *filename)</td></tr>
+<tr class="memdesc:a81d7f09bcdbd4d36f65dc52a6dc5b14a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the source code from a file.  <br /></td></tr>
 <tr class="separator:a81d7f09bcdbd4d36f65dc52a6dc5b14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -120,6 +121,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retrieves the source code from a file. </p>
+<p>This function reads the contents of the specified file and returns a dynamically allocated buffer containing the source code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The name of the file from which to retrieve the source code. It should be a null-terminated string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to a dynamically allocated buffer containing the source code. The caller is responsible for freeing the memory when no longer needed. If the file cannot be read or an error occurs, NULL is returned. </dd></dl>
 
 </div>
 </div>

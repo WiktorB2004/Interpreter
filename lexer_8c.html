@@ -107,8 +107,10 @@ $(function(){initNavTree('lexer_8c.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a415d9ab51783850379476d8a07f4c0cc" id="r_a415d9ab51783850379476d8a07f4c0cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structToken.html">Token</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a415d9ab51783850379476d8a07f4c0cc">lexer</a> (const char *input_text, int *num_tokens)</td></tr>
+<tr class="memdesc:a415d9ab51783850379476d8a07f4c0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs lexical analysis on the input text to generate tokens.  <br /></td></tr>
 <tr class="separator:a415d9ab51783850379476d8a07f4c0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9bfe186e382ff3278d0e6fda0a6c534" id="r_ac9bfe186e382ff3278d0e6fda0a6c534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9bfe186e382ff3278d0e6fda0a6c534">print_tokens</a> (<a class="el" href="structToken.html">Token</a> *tokens, int num_tokens)</td></tr>
+<tr class="memdesc:ac9bfe186e382ff3278d0e6fda0a6c534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the tokens to the standard output.  <br /></td></tr>
 <tr class="separator:ac9bfe186e382ff3278d0e6fda0a6c534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -131,6 +133,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Performs lexical analysis on the input text to generate tokens. </p>
+<p>This function performs lexical analysis on the given input text and generates tokens. It returns an array of tokens and updates the 'num_tokens' variable with the total number of tokens found. The caller is responsible for freeing the memory allocated for the tokens.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_text</td><td>The input text to be analyzed. </td></tr>
+    <tr><td class="paramname">num_tokens</td><td>Pointer to an integer to hold the number of tokens found. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to an array of tokens generated from the input text. </dd></dl>
+
 </div>
 </div>
 <a id="ac9bfe186e382ff3278d0e6fda0a6c534" name="ac9bfe186e382ff3278d0e6fda0a6c534"></a>
@@ -151,6 +164,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Prints the tokens to the standard output. </p>
+<p>This function prints the provided array of tokens to the standard output. It takes an array of tokens and the number of tokens to be printed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tokens</td><td>Array of tokens to be printed. </td></tr>
+    <tr><td class="paramname">num_tokens</td><td>Number of tokens in the 'tokens' array. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

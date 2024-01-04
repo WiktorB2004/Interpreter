@@ -103,15 +103,20 @@ $(function(){initNavTree('lexer__utils_8c.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8ab089ce431a6313cd020cb91b179066" id="r_a8ab089ce431a6313cd020cb91b179066"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ab089ce431a6313cd020cb91b179066">is_valid_char_token</a> (char ch)</td></tr>
+<tr class="memdesc:a8ab089ce431a6313cd020cb91b179066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validating char value.  <br /></td></tr>
 <tr class="separator:a8ab089ce431a6313cd020cb91b179066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15653044c585304448f69774299fc2dc" id="r_a15653044c585304448f69774299fc2dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15653044c585304448f69774299fc2dc">get_text_value</a> (char ch)</td></tr>
+<tr class="memdesc:a15653044c585304448f69774299fc2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helping with extracting text values.  <br /></td></tr>
 <tr class="separator:a15653044c585304448f69774299fc2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d887cab43f5a75faa3d59e52a8c26d3" id="r_a0d887cab43f5a75faa3d59e52a8c26d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d887cab43f5a75faa3d59e52a8c26d3">is_bracket</a> (char ch)</td></tr>
+<tr class="memdesc:a0d887cab43f5a75faa3d59e52a8c26d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checking if char is bracket.  <br /></td></tr>
 <tr class="separator:a0d887cab43f5a75faa3d59e52a8c26d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fe58669fe9983e647a04f4536187b1c" id="r_a2fe58669fe9983e647a04f4536187b1c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fe58669fe9983e647a04f4536187b1c">is_operator</a> (char ch)</td></tr>
+<tr class="memdesc:a2fe58669fe9983e647a04f4536187b1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checking if char is operator.  <br /></td></tr>
 <tr class="separator:a2fe58669fe9983e647a04f4536187b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5690902a7ab65c15be29202944de254" id="r_ae5690902a7ab65c15be29202944de254"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5690902a7ab65c15be29202944de254">is_string_in_list</a> (const char *target, const char *list[], int listSize)</td></tr>
-<tr class="separator:ae5690902a7ab65c15be29202944de254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34193b4d2429e2479f493420fcf1cd92" id="r_a34193b4d2429e2479f493420fcf1cd92"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34193b4d2429e2479f493420fcf1cd92">is_string_in_list</a> (const char *target, const char *list[], int list_size)</td></tr>
+<tr class="memdesc:a34193b4d2429e2479f493420fcf1cd92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if target is in the list.  <br /></td></tr>
+<tr class="separator:a34193b4d2429e2479f493420fcf1cd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a15653044c585304448f69774299fc2dc" name="a15653044c585304448f69774299fc2dc"></a>
@@ -128,6 +133,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Helping with extracting text values. </p>
+<p>Helper function to extract value of string/char from user program. Returns true when the ch is not " or ' and is valid text value - any letter/number and symbol </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ch</td><td>character to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returning 1/0 as true/false </dd></dl>
 
 </div>
 </div>
@@ -146,6 +160,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checking if char is bracket. </p>
+<p>Check if the char value is any type of bracket </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ch</td><td>character to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returning 1/0 as true/false </dd></dl>
+
 </div>
 </div>
 <a id="a2fe58669fe9983e647a04f4536187b1c" name="a2fe58669fe9983e647a04f4536187b1c"></a>
@@ -163,10 +186,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checking if char is operator. </p>
+<p>Check if the char value is any type of operator </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ch</td><td>character to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returning 1/0 as true/false </dd></dl>
+
 </div>
 </div>
-<a id="ae5690902a7ab65c15be29202944de254" name="ae5690902a7ab65c15be29202944de254"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5690902a7ab65c15be29202944de254">&#9670;&#160;</a></span>is_string_in_list()</h2>
+<a id="a34193b4d2429e2479f493420fcf1cd92" name="a34193b4d2429e2479f493420fcf1cd92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34193b4d2429e2479f493420fcf1cd92">&#9670;&#160;</a></span>is_string_in_list()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,10 +216,21 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>listSize</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>list_size</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if target is in the list. </p>
+<p>Check if target string is inside list </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>target of search </td></tr>
+    <tr><td class="paramname">list</td><td>list in which to look for target </td></tr>
+    <tr><td class="paramname">list_size</td><td>size of the list </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returning 1/0 as true/false </dd></dl>
 
 </div>
 </div>
@@ -205,6 +248,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Validating char value. </p>
+<p>Function validating if char value is alphanumeric or _ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ch</td><td>character to validate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returning 1/0 as true/false </dd></dl>
 
 </div>
 </div>

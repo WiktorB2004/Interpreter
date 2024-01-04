@@ -98,6 +98,9 @@ $(function(){initNavTree('structScopeStack.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a stack of memory scopes.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="memory_8h_source.html">memory.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -109,7 +112,10 @@ Data Fields</h2></td></tr>
 <tr class="memitem:adf3ff060de21b56a175bf6dc90a1d319" id="r_adf3ff060de21b56a175bf6dc90a1d319"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf3ff060de21b56a175bf6dc90a1d319">max_size</a></td></tr>
 <tr class="separator:adf3ff060de21b56a175bf6dc90a1d319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a stack of memory scopes. </p>
+<p>This structure defines a stack of SymbolTables to manage memory scopes. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a id="a2cda4a7c159ec4cb9283b3134e91470f" name="a2cda4a7c159ec4cb9283b3134e91470f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cda4a7c159ec4cb9283b3134e91470f">&#9670;&#160;</a></span>items</h2>
 
@@ -121,6 +127,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Array of SymbolTables </p>
 
 </div>
 </div>
@@ -135,6 +142,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Maximum size of the stack - scopes capacity </p>
 
 </div>
 </div>
@@ -149,6 +157,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Index indicating the top of the stack </p>
 
 </div>
 </div>

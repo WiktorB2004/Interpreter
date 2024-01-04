@@ -98,6 +98,9 @@ $(function(){initNavTree('structSymbolTable.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a symbol table data structure.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="memory_8h_source.html">memory.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -109,7 +112,10 @@ Data Fields</h2></td></tr>
 <tr class="memitem:aa4917418424af9c7a415c84a265b1331" id="r_aa4917418424af9c7a415c84a265b1331"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4917418424af9c7a415c84a265b1331">size</a></td></tr>
 <tr class="separator:aa4917418424af9c7a415c84a265b1331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a symbol table data structure. </p>
+<p>This structure defines a symbol table containing entries - variables, capacity, and size information. It makes possible to store variables as key-value pairs inside the memory. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a id="aea6c327cc4b04bc8d2c7bbbcbded94da" name="aea6c327cc4b04bc8d2c7bbbcbded94da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea6c327cc4b04bc8d2c7bbbcbded94da">&#9670;&#160;</a></span>capacity</h2>
 
@@ -121,6 +127,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Maximum capacity of the symbol table - variable storage capacity </p>
 
 </div>
 </div>
@@ -135,6 +142,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Array of <a class="el" href="structVariable.html" title="Represents a variable in the memory scope.">Variable</a> entries </p>
 
 </div>
 </div>
@@ -149,6 +157,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Current size of the symbol table </p>
 
 </div>
 </div>

@@ -105,14 +105,19 @@ $(function(){initNavTree('expression__eval_8h.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a141cbbe331de423925760a5e791f88bf" id="r_a141cbbe331de423925760a5e791f88bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a141cbbe331de423925760a5e791f88bf">is_node_operator</a> (<a class="el" href="parser_8h.html#acac9cbaeea226ed297804c012dc12b16">NodeType</a> type)</td></tr>
+<tr class="memdesc:a141cbbe331de423925760a5e791f88bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the node type is operator.  <br /></td></tr>
 <tr class="separator:a141cbbe331de423925760a5e791f88bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d46b2a7369ef135bfab56b27060ac6" id="r_ab4d46b2a7369ef135bfab56b27060ac6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4d46b2a7369ef135bfab56b27060ac6">precedence</a> (<a class="el" href="parser_8h.html#acac9cbaeea226ed297804c012dc12b16">NodeType</a> type, char *op)</td></tr>
+<tr class="memdesc:ab4d46b2a7369ef135bfab56b27060ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returning operator precendence.  <br /></td></tr>
 <tr class="separator:ab4d46b2a7369ef135bfab56b27060ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e7ed9831f4804445956fc399982ba3a" id="r_a7e7ed9831f4804445956fc399982ba3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e7ed9831f4804445956fc399982ba3a">infix_to_postfix</a> (<a class="el" href="structASTNode.html">ASTNode</a> **expression, size_t size, <a class="el" href="structScopeStack.html">ScopeStack</a> *memory)</td></tr>
+<tr class="memdesc:a7e7ed9831f4804445956fc399982ba3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting expression from infix to postfix notation.  <br /></td></tr>
 <tr class="separator:a7e7ed9831f4804445956fc399982ba3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af84d03eb651dfe1d76777599fe66ef10" id="r_af84d03eb651dfe1d76777599fe66ef10"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af84d03eb651dfe1d76777599fe66ef10">num_to_string</a> (double number)</td></tr>
+<tr class="memdesc:af84d03eb651dfe1d76777599fe66ef10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting num to string.  <br /></td></tr>
 <tr class="separator:af84d03eb651dfe1d76777599fe66ef10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0e7529137879c96cf671425f3e52351" id="r_ae0e7529137879c96cf671425f3e52351"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0e7529137879c96cf671425f3e52351">evaluate_expression</a> (<a class="el" href="structASTNode.html">ASTNode</a> *expression)</td></tr>
+<tr class="memdesc:ae0e7529137879c96cf671425f3e52351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluating expression and returning value node.  <br /></td></tr>
 <tr class="separator:ae0e7529137879c96cf671425f3e52351"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -130,6 +135,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluating expression and returning value node. </p>
+<p>Function evaluating the expression in postfix notation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>Pointer to <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> with the type of NODE_EXPRESSION and having its elements ordered in posfix notation stored as its childreen </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> containing the result of evaluated expression </dd></dl>
 
 </div>
 </div>
@@ -157,6 +171,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Converting expression from infix to postfix notation. </p>
+<p>Fuction converting order of the expression node childreen from infix to postfix notation and inserting values of the variables from the program memory </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>Pointer to the <a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> pointer containing elements of the expression </td></tr>
+    <tr><td class="paramname">size</td><td>Size of the expression - number of the expression root node children </td></tr>
+    <tr><td class="paramname">memory</td><td>Pointer to the memory stack of the user program </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structASTNode.html" title="Represents a node in an Abstract Syntax Tree (AST).">ASTNode</a> containing expression in postfix notation </dd></dl>
+
 </div>
 </div>
 <a id="a141cbbe331de423925760a5e791f88bf" name="a141cbbe331de423925760a5e791f88bf"></a>
@@ -174,6 +199,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if the node type is operator. </p>
+<p>Function checking if type is any of the operators (Logic/Arithmetic/Relational). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Any type of the node to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returning 1/0 as true/false </dd></dl>
+
 </div>
 </div>
 <a id="af84d03eb651dfe1d76777599fe66ef10" name="af84d03eb651dfe1d76777599fe66ef10"></a>
@@ -190,6 +224,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Converting num to string. </p>
+<p>Function converting double to string (char *) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>number to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string (char*) containing the provided number </dd></dl>
 
 </div>
 </div>
@@ -211,6 +254,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returning operator precendence. </p>
+<p>Fuction determining operator precendence </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type of the Node - operator type </td></tr>
+    <tr><td class="paramname">op</td><td>value of the node - operator value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer correspondning to the precendence of the operator </dd></dl>
 
 </div>
 </div>

@@ -98,6 +98,9 @@ $(function(){initNavTree('structASTNode.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a node in an Abstract Syntax Tree (AST).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="parser_8h_source.html">parser.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -111,7 +114,10 @@ Data Fields</h2></td></tr>
 <tr class="memitem:abbe0aa0042a225cea5f9d7796eeec2d6" id="r_abbe0aa0042a225cea5f9d7796eeec2d6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbe0aa0042a225cea5f9d7796eeec2d6">children_num</a></td></tr>
 <tr class="separator:abbe0aa0042a225cea5f9d7796eeec2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a node in an Abstract Syntax Tree (AST). </p>
+<p>This structure defines a node in an Abstract Syntax Tree. It contains a NodeType indicating its type, a value (if applicable), an array of child nodes, and the number of children. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a id="ae75b299ea64dd241ff5c65cf0e42f734" name="ae75b299ea64dd241ff5c65cf0e42f734"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae75b299ea64dd241ff5c65cf0e42f734">&#9670;&#160;</a></span>children</h2>
 
@@ -123,6 +129,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Array of child nodes </p>
 
 </div>
 </div>
@@ -137,6 +144,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Number of children nodes </p>
 
 </div>
 </div>
@@ -151,6 +159,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Type of the AST node </p>
 
 </div>
 </div>
@@ -165,6 +174,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Value associated with the node </p>
 
 </div>
 </div>
