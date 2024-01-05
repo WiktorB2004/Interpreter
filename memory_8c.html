@@ -114,25 +114,28 @@ Functions</h2></td></tr>
 <tr class="memitem:a025ae50e9e600c08ba4464ef4d6f3850" id="r_a025ae50e9e600c08ba4464ef4d6f3850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a025ae50e9e600c08ba4464ef4d6f3850">pop_scope</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack)</td></tr>
 <tr class="memdesc:a025ae50e9e600c08ba4464ef4d6f3850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops the top scope from the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a025ae50e9e600c08ba4464ef4d6f3850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1eaa18d2c09afb507b2c29f7ab6fb922" id="r_a1eaa18d2c09afb507b2c29f7ab6fb922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eaa18d2c09afb507b2c29f7ab6fb922">add_variable</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, char *type, char *name, <a class="el" href="structASTNode.html">ASTNode</a> *value, <a class="el" href="structASTNode.html">ASTNode</a> *params)</td></tr>
-<tr class="memdesc:a1eaa18d2c09afb507b2c29f7ab6fb922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new variable to the current (top) scope in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
-<tr class="separator:a1eaa18d2c09afb507b2c29f7ab6fb922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99bc0c2de954eea88a98cb610f70e7f5" id="r_a99bc0c2de954eea88a98cb610f70e7f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99bc0c2de954eea88a98cb610f70e7f5">add_variable</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, char *type, char *name, <a class="el" href="structASTNode.html">ASTNode</a> *value, <a class="el" href="structASTNode.html">ASTNode</a> *params)</td></tr>
+<tr class="memdesc:a99bc0c2de954eea88a98cb610f70e7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new variable to the current (top) scope in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
+<tr class="separator:a99bc0c2de954eea88a98cb610f70e7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8481d305b4b4f6e10d316ea113e67446" id="r_a8481d305b4b4f6e10d316ea113e67446"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVariable.html">Variable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8481d305b4b4f6e10d316ea113e67446">find_variable</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *stack, const char *name)</td></tr>
 <tr class="memdesc:a8481d305b4b4f6e10d316ea113e67446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a variable by name within the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
 <tr class="separator:a8481d305b4b4f6e10d316ea113e67446"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d16e8649b07eae0ed2ab4df6ad363d6" id="r_a9d16e8649b07eae0ed2ab4df6ad363d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d16e8649b07eae0ed2ab4df6ad363d6">modify_variable_value</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *memory, char *name, <a class="el" href="structASTNode.html">ASTNode</a> *value_node)</td></tr>
-<tr class="memdesc:a9d16e8649b07eae0ed2ab4df6ad363d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the value of a variable in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
-<tr class="separator:a9d16e8649b07eae0ed2ab4df6ad363d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51d1df4356d274348342c16782bced5e" id="r_a51d1df4356d274348342c16782bced5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structASTNode.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51d1df4356d274348342c16782bced5e">modify_variable_value</a> (<a class="el" href="structScopeStack.html">ScopeStack</a> *memory, char *name, <a class="el" href="structASTNode.html">ASTNode</a> *value_node)</td></tr>
+<tr class="memdesc:a51d1df4356d274348342c16782bced5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the value of a variable in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>.  <br /></td></tr>
+<tr class="separator:a51d1df4356d274348342c16782bced5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5de50e9cb147c2946b70dc88beedeb" id="r_adc5de50e9cb147c2946b70dc88beedeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc5de50e9cb147c2946b70dc88beedeb">print_memory</a> (const <a class="el" href="structScopeStack.html">ScopeStack</a> *memory)</td></tr>
+<tr class="memdesc:adc5de50e9cb147c2946b70dc88beedeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the contents of the memory scopes.  <br /></td></tr>
+<tr class="separator:adc5de50e9cb147c2946b70dc88beedeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a1eaa18d2c09afb507b2c29f7ab6fb922" name="a1eaa18d2c09afb507b2c29f7ab6fb922"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1eaa18d2c09afb507b2c29f7ab6fb922">&#9670;&#160;</a></span>add_variable()</h2>
+<a id="a99bc0c2de954eea88a98cb610f70e7f5" name="a99bc0c2de954eea88a98cb610f70e7f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99bc0c2de954eea88a98cb610f70e7f5">&#9670;&#160;</a></span>add_variable()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void add_variable </td>
+          <td class="memname"><a class="el" href="structASTNode.html">ASTNode</a> * add_variable </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structScopeStack.html">ScopeStack</a> *</td>          <td class="paramname"><span class="paramname"><em>stack</em>, </span></td>
         </tr>
@@ -264,14 +267,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9d16e8649b07eae0ed2ab4df6ad363d6" name="a9d16e8649b07eae0ed2ab4df6ad363d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d16e8649b07eae0ed2ab4df6ad363d6">&#9670;&#160;</a></span>modify_variable_value()</h2>
+<a id="a51d1df4356d274348342c16782bced5e" name="a51d1df4356d274348342c16782bced5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d1df4356d274348342c16782bced5e">&#9670;&#160;</a></span>modify_variable_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void modify_variable_value </td>
+          <td class="memname"><a class="el" href="structASTNode.html">ASTNode</a> * modify_variable_value </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structScopeStack.html">ScopeStack</a> *</td>          <td class="paramname"><span class="paramname"><em>memory</em>, </span></td>
         </tr>
@@ -319,6 +322,32 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adc5de50e9cb147c2946b70dc88beedeb" name="adc5de50e9cb147c2946b70dc88beedeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc5de50e9cb147c2946b70dc88beedeb">&#9670;&#160;</a></span>print_memory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_memory </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScopeStack.html">ScopeStack</a> *</td>          <td class="paramname"><span class="paramname"><em>memory</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the contents of the memory scopes. </p>
+<p>This function prints the details of variables stored in memory across different scopes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">memory</td><td>A pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a> representing the memory scopes. </td></tr>
   </table>
   </dd>
 </dl>
