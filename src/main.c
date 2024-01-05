@@ -8,7 +8,9 @@
 // FIXME: Create error handler which will print the message and exit if not in testing_mode -> Then test the erorr handling
 // FIXME: Better erorr handling of incorrect memory access - non existing variable etc.
 // FIXME: Create good/bad example files
-// FIXME: Comment the code and document the logic
+// FIXME: Comment the code
+// FIXME: Add bool variable type handling
+// BUG: Cant assign return value to variable - good only on variable declaration
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,13 +49,15 @@ int main(int argc, char *argv[])
 
     // printf("\nParser\n");
     ASTNode *ASTree = parse_program(&tokens);
-    // print_ASTree(ASTree, 0);
+    print_ASTree(ASTree, 0);
 
     // printf("\nInterpreter\n");
     ScopeStack memoryStack;
     init_ScopeStack(&memoryStack, 500);
     push_scope(&memoryStack, 2000);
     evaluate(ASTree, &memoryStack);
+
+    print_memory(&memoryStack);
 
     free(source_code);
     free(tokens);

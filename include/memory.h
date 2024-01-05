@@ -80,7 +80,7 @@ void pop_scope(ScopeStack *stack);
  * @param value Value associated with the variable.
  * @param params Parameters associated with the variable.
  */
-void add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value, ASTNode *params);
+ASTNode *add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value, ASTNode *params);
 
 /*!
  * \brief Finds a variable by name within the ScopeStack.
@@ -98,4 +98,13 @@ Variable *find_variable(ScopeStack *stack, const char *name);
  * @param name Name of the variable to modify.
  * @param value_node New value node to assign to the variable.
  */
-void modify_variable_value(ScopeStack *memory, char *name, ASTNode *value_node);
+ASTNode *modify_variable_value(ScopeStack *memory, char *name, ASTNode *value_node);
+
+/*!
+ * \brief Prints the contents of the memory scopes.
+ *
+ * This function prints the details of variables stored in memory across different scopes.
+ *
+ * @param memory A pointer to the ScopeStack representing the memory scopes.
+ */
+void print_memory(const ScopeStack *memory);

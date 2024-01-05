@@ -40,12 +40,12 @@ void pop_scope(ScopeStack *stack)
 }
 
 // Add a variable to the current scope's symbol table
-void add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value, ASTNode *params)
+ASTNode *add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value, ASTNode *params)
 {
     if (stack->top < 0)
     {
         printf("No active scope\n");
-        return;
+        return create_ASTNode(NODE_ERROR, "No memory scope initialized before adding variable");
     }
     SymbolTable *current_scope = &(stack->items[stack->top]);
     if (current_scope->size >= current_scope->capacity)
@@ -54,12 +54,38 @@ void add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value, AST
         exit(EXIT_FAILURE);
     }
     Variable *entry = &(current_scope->entries[current_scope->size++]);
-    if (value != NULL && type != NULL && name != NULL)
+    char *value_type;
+    switch (value->type)
+    {
+    // FIXME: Add boolean handling
+    case NODE_VAL:
+        value_type = "int";
+        break;
+    case NODE_T_VAL:
+        if (value->value[0] == '\'')
+        {
+            value_type = "char";
+        }
+        else
+        {
+            value_type = "string";
+        }
+        break;
+    default:
+        value_type = "void";
+        break;
+    }
+    if (value != NULL && type != NULL && name != NULL && strcmp(type, value_type) == 0)
     {
         entry->type = strdup(type);
         entry->name = strdup(name);
         entry->value = value;
         entry->params = params;
+        return NULL;
+    }
+    else
+    {
+        return create_ASTNode(NODE_ERROR, "Invalid variable assignment cant add the variable to memory");
     }
 }
 
@@ -81,8 +107,63 @@ Variable *find_variable(ScopeStack *stack, const char *name)
     return NULL;
 }
 
-void modify_variable_value(ScopeStack *memory, char *name, ASTNode *value_node)
+ASTNode *modify_variable_value(ScopeStack *memory, char *name, ASTNode *value_node)
 {
     Variable *target = find_variable(memory, name);
-    target->value = value_node;
+    char *value_type;
+
+    switch (value_node->type)
+    {
+    // FIXME: Add boolean handling
+    case NODE_VAL:
+        value_type = "int";
+        break;
+    case NODE_T_VAL:
+        if (value_node->value[0] == '\'')
+        {
+            value_type = "char";
+        }
+        else
+        {
+            value_type = "string";
+        }
+        break;
+    default:
+        break;
+    }
+
+    if (strcmp(target->type, value_type) == 0)
+    {
+        target->value = value_node;
+        return NULL;
+    }
+    else
+    {
+        return create_ASTNode(NODE_ERROR, "Invalid variable assignment - different types");
+    }
+}
+
+void print_memory(const ScopeStack *memory)
+{
+    if (memory == NULL)
+    {
+        printf("Memory is NULL.\n");
+        return;
+    }
+
+    printf("Memory contents:\n");
+    for (int i = 0; i <= memory->top; i++)
+    {
+        SymbolTable current_table = memory->items[i];
+
+        printf("Scope %d:\n", i);
+        for (size_t j = 0; j < current_table.size; ++j)
+        {
+            Variable current_var = current_table.entries[j];
+            printf("  Variable %zu:\n", j);
+            printf("    Name: %s\n", current_var.name);
+            printf("    Type: %s\n", current_var.type);
+            printf("    Value: %s\n", current_var.value->value);
+        }
+    }
 }

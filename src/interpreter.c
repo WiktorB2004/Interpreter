@@ -11,8 +11,9 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         return NULL;
     }
 
-    ASTNode *type, *name, *value, *value2, *params;
+    ASTNode *type, *name, *value, *value2, *params, *out;
     Variable *param, *var, *var2, *function;
+    char *erorr_message;
     switch (node->type)
     {
     // SECTION: Variables
@@ -20,14 +21,26 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         type = evaluate(node->children[0], memory);
         name = evaluate(node->children[1], memory);
         value = evaluate(node->children[2], memory);
-        // FIXME: Validate values and create new variable
-        add_variable(memory, type->value, name->value, value, NULL);
+        out = add_variable(memory, type->value, name->value, value, NULL);
+        // This validation also happens when tokenizing and parsing
+        // FIXME: + Error handler
+        if (out != NULL)
+        {
+            printf("Incorrect variable type - tried assigning %s (%s) to incorrect value %s: %s\n", name->value, type->value, value->value, out->value);
+            exit(EXIT_FAILURE);
+        }
         break;
     case NODE_ASSIGN:;
         name = evaluate(node->children[0], memory);
         value = evaluate(node->children[1], memory);
-        // FIXME: Validate values and create new variable
-        modify_variable_value(memory, name->value, value);
+        var = find_variable(memory, name->value);
+        out = modify_variable_value(memory, name->value, value);
+        // FIXME: + Error handler
+        if (out != NULL)
+        {
+            printf("Incorrect variable type - tried assigning %s (%s) to incorrect value %s: %s\n", name->value, var->type, value->value, out->value);
+            exit(EXIT_FAILURE);
+        }
         break;
     // SECTION: Expressions and values
     case NODE_T_VAL:
@@ -57,7 +70,12 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             type = node->children[1];
             params = node->children[2];
             value = node->children[3];
-            add_variable(memory, type->value, name->value, value, params);
+            out = add_variable(memory, type->value, name->value, value, params);
+            if (out != NULL)
+            {
+                printf("%s\n", out->value);
+                exit(EXIT_FAILURE);
+            }
         }
         else if (strcmp(node->value, "While_Loop") == 0)
         {
@@ -172,8 +190,27 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
             curr = params->children[i];
             if (curr->type != NODE_ID)
             {
-                // FIXME: Get correct variable type
-                add_variable(memory, "int", function->params->children[i]->value, curr, NULL);
+                // FIXME: Implement bool handling and void
+                switch (curr->type)
+                {
+                case NODE_VAL:
+                    add_variable(memory, "int", function->params->children[i]->value, curr, NULL);
+                    break;
+                case NODE_T_VAL:
+                    if (curr->value[0] == '\'')
+                    {
+                        add_variable(memory, "char", function->params->children[i]->value, curr, NULL);
+                    }
+                    else
+                    {
+                        add_variable(memory, "string", function->params->children[i]->value, curr, NULL);
+                    }
+                    break;
+                default:
+                    // FIXME: Make error messages formated - sprintf to erorr_message
+                    return create_ASTNode(NODE_ERROR, "Incorrect function parameter passed");
+                    break;
+                }
             }
             else
             {
@@ -182,7 +219,12 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
                 {
                     return create_ASTNode(NODE_ERROR, "Variable not found");
                 }
-                add_variable(memory, var->type, function->params->children[i]->value, var->value, NULL);
+                out = add_variable(memory, var->type, function->params->children[i]->value, var->value, NULL);
+                if (out != NULL)
+                {
+                    printf("%s", out->value);
+                    exit(EXIT_FAILURE);
+                }
             }
         }
         evaluate(function->value, memory);
