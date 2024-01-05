@@ -1,0 +1,7 @@
+DEF main -> int (a, b, c, d) {
+    return 1;
+}
+
+int d = 1;
+int return_val = 0;
+return_val = main(1, "test", 'c', d);

@@ -1,0 +1,6 @@
+DEF main -> int (a, b, c, d) {
+    return 1;
+}
+
+int d = 1;
+string return_val = main(1, "test", 'c', d);
