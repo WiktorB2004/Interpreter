@@ -163,6 +163,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Adds a new variable to the current (top) scope in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<p>Checks if the type of variable match with its value and adds it to the memory afterwards.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
@@ -173,6 +174,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>NULL if everything went well - NODE_ERROR with error message otherwise </dd></dl>
 
 </div>
 </div>
@@ -292,6 +294,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Modifies the value of a variable in the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </p>
+<p>Checks if the type of variable to modify is matching with destination variable and modifies it</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stack</td><td>Pointer to the <a class="el" href="structScopeStack.html" title="Represents a stack of memory scopes.">ScopeStack</a>. </td></tr>
@@ -300,6 +303,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>NULL if everything went well - NODE_ERROR with error message otherwise </dd></dl>
 
 </div>
 </div>
