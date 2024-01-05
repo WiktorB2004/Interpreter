@@ -74,11 +74,14 @@ void pop_scope(ScopeStack *stack);
 /*!
  * \brief Adds a new variable to the current (top) scope in the ScopeStack.
  *
+ * Checks if the type of variable match with its value and adds it to the memory afterwards.
+ *
  * @param stack Pointer to the ScopeStack.
  * @param type Type of the variable.
  * @param name Name of the variable.
  * @param value Value associated with the variable.
  * @param params Parameters associated with the variable.
+ * @return NULL if everything went well - NODE_ERROR with error message otherwise
  */
 ASTNode *add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value, ASTNode *params);
 
@@ -94,9 +97,12 @@ Variable *find_variable(ScopeStack *stack, const char *name);
 /*!
  * \brief Modifies the value of a variable in the ScopeStack.
  *
+ *  Checks if the type of variable to modify is matching with destination variable and modifies it
+ *
  * @param stack Pointer to the ScopeStack.
  * @param name Name of the variable to modify.
  * @param value_node New value node to assign to the variable.
+ * @return NULL if everything went well - NODE_ERROR with error message otherwise
  */
 ASTNode *modify_variable_value(ScopeStack *memory, char *name, ASTNode *value_node);
 
