@@ -71,10 +71,26 @@ ASTNode *add_variable(ScopeStack *stack, char *type, char *name, ASTNode *value,
             value_type = "string";
         }
         break;
+    case NODE_SCOPE:
+        value_type = type;
+    case NODE_LIST_B:
+        for (size_t i = 0; i < value->children_num; i++)
+        {
+            if ((value->children[i]->type == NODE_VAL && strcmp(type, "int") != 0) ||
+                (value->children[i]->type == NODE_T_VAL && value->children[i]->value[0] == '\'' && strcmp(type, "char") != 0) ||
+                (value->children[i]->type == NODE_T_VAL && value->children[i]->value[0] == '\"' && strcmp(type, "string") != 0))
+            {
+                value_type = "invalid";
+                break;
+            }
+            value_type = type;
+        }
+        break;
     default:
         value_type = "void";
         break;
     }
+
     if (value != NULL && type != NULL && name != NULL && strcmp(type, value_type) == 0)
     {
         entry->type = strdup(type);

@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     // printf("\nParser\n");
     ASTNode *ASTree = parse_program(&tokens);
-    print_ASTree(ASTree, 0);
+    // print_ASTree(ASTree, 0);
 
     // printf("\nInterpreter\n");
     ScopeStack memoryStack;
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     push_scope(&memoryStack, 2000);
     evaluate(ASTree, &memoryStack);
 
-    print_memory(&memoryStack);
+    // print_memory(&memoryStack);
 
     free(source_code);
     free(tokens);

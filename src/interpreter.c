@@ -23,7 +23,7 @@ ASTNode *evaluate(ASTNode *node, ScopeStack *memory)
         value = evaluate(node->children[2], memory);
         out = add_variable(memory, type->value, name->value, value, NULL);
         // This validation also happens when tokenizing and parsing
-        // FIXME: + Error handler
+        // FIXME: + Error handler and edit error message for list elements
         if (out != NULL)
         {
             printf("Incorrect variable type - tried assigning %s (%s) to incorrect value %s: %s\n", name->value, type->value, value->value, out->value);
