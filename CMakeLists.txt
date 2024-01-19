@@ -38,5 +38,7 @@ set_target_properties(WLang PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${OBJ_DIR}
 )
 
-enable_testing()
-add_subdirectory(${TEST_DIR})
+if (NOT DEFINED RELEASE_BUILD)
+    enable_testing()
+    add_subdirectory(${TEST_DIR})
+endif()
