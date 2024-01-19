@@ -96,60 +96,58 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> Project start date: 9.11.2023 <br  />
- Project status: Mostly completed - few enhancements needed <br  />
- About: The project involved the creation of a custom language interpreter for WLang using the C programming language. <br  />
+ About: The project involves creation of a custom language interpreter for WLang using the C programming language. <br  />
 </p>
 <ul>
-<li>WLang Interpreter documentation - <a href="https://wiktorb2004.github.io/WLang_interpreter-C/">Documentation</a></li>
-<li>WLang Language documentation - Under Development</li>
+<li>WLang Interpreter source code documentation - <a href="https://wiktorb2004.github.io/WLang_interpreter-C/">WLang Docs</a></li>
 </ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
 How to use</h1>
 <h3><a class="anchor" id="autotoc_md2"></a>
 Interpreter</h3>
-<div class="fragment"><div class="line">git clone https://github.com/WiktorB2004/WLang_interpreter-C.git</div>
-<div class="line">cd WLang_interpreter-C/</div>
-<div class="line">mkdir build</div>
-<div class="line">cd build</div>
-<div class="line">cmake ..</div>
-<div class="line">cmake --build .</div>
-<div class="line">cd ..</div>
-<div class="line">./bin/WLang PATH_TO_WLANG_FILE (eg. examples/example.wlg)</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3"></a>
+<ul>
+<li>Use bash script (currently tested and compatible with Ubuntu) <div class="fragment"><div class="line">$ curl -O -L https://raw.githubusercontent.com/WiktorB2004/WLang_interpreter-C/master/scripts/Setup.sh</div>
+<div class="line"># or wget https://raw.githubusercontent.com/WiktorB2004/WLang_interpreter-C/master/scripts/Setup.sh</div>
+<div class="line">$ sudo chmod +x Setup.sh</div>
+<div class="line">$ ./Setup.sh</div>
+<div class="line">$ wlang PATH_TO_YOUR_FILE</div>
+</div><!-- fragment --></li>
+<li>Use docker image <div class="fragment"><div class="line">$ docker pull ghcr.io/wiktorb2004/wlang_interpreter-c:master</div>
+<div class="line">$ docker run -v &quot;$(pwd):/app/exec&quot; ghcr.io/wiktorb2004/wlang_interpreter-c:master /app/exec/PATH_TO_YOUR_FILE</div>
+<div class="line">$ sudo chmod +x Setup.sh</div>
+<div class="line">$ ./Setup.sh</div>
+</div><!-- fragment --></li>
+<li>Download repository and build the source code <div class="fragment"><div class="line">$ git clone https://github.com/WiktorB2004/WLang_interpreter-C.git</div>
+<div class="line">$ cd WLang_interpreter-C/</div>
+<div class="line">$ mkdir build</div>
+<div class="line">$ cd build</div>
+<div class="line">$ cmake ..</div>
+<div class="line">$ cmake --build .</div>
+<div class="line">$ cd ..</div>
+<div class="line">$ ./bin/WLang PATH_TO_WLANG_FILE (eg. examples/example.wlg)</div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md3"></a>
 Generating documentation - you need to have Doxygen installed</h3>
-<div class="fragment"><div class="line">git clone https://github.com/WiktorB2004/WLang_interpreter-C.git</div>
-<div class="line">cd WLang_interpreter-C/</div>
-<div class="line">doxygen Doxyfile</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+<div class="fragment"><div class="line">$ git clone https://github.com/WiktorB2004/WLang_interpreter-C.git</div>
+<div class="line">$ cd WLang_interpreter-C/</div>
+<div class="line">$ doxygen Doxyfile</div>
+</div><!-- fragment --><p> The documentation will be available inside /docs folder</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Project Plan / Phases</h1>
 <p>The development process consisted of several key phases, each contributing to the successful implementation of the interpreter.</p>
 <ol type="1">
-<li>Understanding Interpreter Architecture:<ul>
-<li>Initially, the project required a comprehensive understanding of interpreter architecture. This involved studying the theoretical foundations of interpreters, parsing techniques, lexing, abstract syntax trees (ASTs), tokenization, and interpreting code execution flow. This phase involved learning a lot from online resources.</li>
-</ul>
-</li>
-<li>Planning and Designing the Interpreter:<ul>
-<li>Once the foundational knowledge was acquired, the next step was to devise an overall plan for the interpreter's architecture and functionality. This phase involved outlining the grammar rules of the WLang language in EBNF, defining the tokenization and parsing processes, creating the AST structure, and designing the execution flow. The plan also included breaking down the project into smaller manageable tasks and establishing a roadmap for development.</li>
-</ul>
-</li>
-<li>Writing the Code:<ul>
-<li>With a plan in place, the implementation phase began. This step includes implementing lexing and parsing functions to tokenize the input code and construct the AST. Additionally, coding the interpreter requires defining execution logic for interpreting the AST nodes and executing the WLang code according to its defined grammar rules.</li>
-</ul>
-</li>
-<li>Testing, bug fixing and implementing missing features:<ul>
-<li>Throughout the coding phase, rigorous testing and debugging will be essential. This involves creating test cases to validate the interpreter's functionality, identifying and resolving bugs, and refining the code for optimal performance and correctness.</li>
-</ul>
-</li>
-<li>Iterative Development:<ul>
-<li>The process of building the interpreter is planned to be iterative, requiring continuous refinement and enhancement. This involves revisiting the codebase to optimize performance, add new features, handle edge cases, and improve the interpreter's overall robustness.</li>
-</ul>
-</li>
+<li>Understanding Interpreter Architecture</li>
+<li>Planning and Designing the Interpreter:</li>
+<li>Writing the Code:</li>
+<li>Testing, bug fixing and implementing missing features:</li>
+<li>Iterative Development</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Summary</h2>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Portfolio Project Summary</h1>
 <p>The project to build a custom language interpreter for WLang in C was an intensive process that demanded a strong understanding of interpreter design principles, meticulous planning, and systematic implementation. The outcome was an interpreter capable of parsing and executing code written in the WLang language, demonstrating the ability to create a functional interpreter from scratch in the C programming language.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
-Why C?</h1>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Why C?</h2>
 <p>C was chosen for the WLang interpreter project due to its high performance, efficiency, portability across platforms, rich library support, and fine-grained control over system resources. Its mature ecosystem and compatibility made it an ideal language for crafting a fast and robust custom language interpreter.</p>
 <hr  />
 <p> Thank you for exploring this project, and I hope it demonstrates my dedication to the craft of software development and my commitment to delivering high-quality solutions. If you have any questions or would like to collaborate with me, please feel free to get in touch. </p>
