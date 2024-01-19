@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        fprintf(stderr, "Please provide filename for WLan interpreter\n");
+        fprintf(stderr, "Please provide filename for WLang interpreter\n");
         exit(EXIT_FAILURE);
     }
     const char *filename = argv[1];
