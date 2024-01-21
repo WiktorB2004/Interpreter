@@ -21,8 +21,6 @@ $ wlang PATH_TO_YOUR_FILE
 ```
 $ docker pull ghcr.io/wiktorb2004/wlang_interpreter-c:master
 $ docker run -v "$(pwd):/app/exec" ghcr.io/wiktorb2004/wlang_interpreter-c:master /app/exec/PATH_TO_YOUR_FILE
-$ sudo chmod +x Setup.sh
-$ ./Setup.sh
 ``` 
 - Download repository and build the source code
 ```
